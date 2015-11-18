@@ -3,12 +3,29 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+  
+  {{> menu}}	
+	
 </body>
 
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
+</template>
+<template name="menu">
+	<ul id="menu">
+    <li><a href="#">Home</a></li>
+    <li>
+        <a href="#">Categories</a>
+        <ul>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">Graphic design</a></li>
+            <li><a href="#">Development tools</a></li>
+            <li><a href="#">Web design</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Work</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
 </template>
