@@ -1,5 +1,7 @@
 Router.configure({
-  layoutTemplate: 'layout'
+  layoutTemplate: 'layout',
+  loadingTemplate: 'loading',
+  notFoundTemplate: 'notFound'
 });
 
-Router.route('/', {name: 'menu'});
+Router.route('/', {name: 'home'});
