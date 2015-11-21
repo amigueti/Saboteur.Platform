@@ -5,3 +5,4 @@ Router.configure({
 });
 
 Router.route('/', {name: 'home'});
+Router.route('/juegos', {name: 'juegos'});
