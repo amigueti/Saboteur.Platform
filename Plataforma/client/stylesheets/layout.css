@@ -172,9 +172,3 @@
 #menu ul li:first-child a:hover:after{
     border-bottom-color: #04acec;
 }
-body {
-    background-image: url("backlayout.png");
-    background-color: #315481;
-    background-attachment: fixed;
-
-}
