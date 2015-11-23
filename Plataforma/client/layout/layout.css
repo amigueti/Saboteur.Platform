@@ -1,5 +1,18 @@
 /* CSS declarations go here */
 
+body {
+    margin: 50px;
+    padding: 0;
+    background: #FFFFFF url("/images/bottom-bg-glow.gif") repeat-y 30% 0;
+    font: normal 13px/1.5 Arial, Helvetica, Garuda, sans-serif;
+    color: #000;
+}
+
+#logo-footer {
+    float: right;
+    margin-top: -20px;
+    margin-bottom: 20px; 
+}
 #menu{
     width: 100%;
     margin: 0;
@@ -171,4 +184,10 @@
 
 #menu ul li:first-child a:hover:after{
     border-bottom-color: #04acec;
+}
+
+#logo-footer {
+    float: right;
+    margin-top: -20px;
+    margin-bottom: 20px; 
 }
