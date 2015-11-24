@@ -15,12 +15,7 @@
 			    <li><a href="{{pathFor route='ranking'}}">Ranking</a></li>
 			    <li><a href="{{pathFor route='perfil'}}">Perfil Jugador</a></li>
 			    <li><a href="{{pathFor route='about'}}">Ayuda</a></li>
-			    {{#if currentUser}}
-			        <li><a href="#" class="logout">Logout</a></li>
-			    {{else}}
-			    	<li><a href="{{pathFor route='register'}}">Registro</a></li>
-			    	<li><a href="{{pathFor route='login'}}">Login</a></li>
-			    {{/if}}
+			    <li>{{> loginButtons }}</li>
 			</ul>
 		</div>
 	</div>
