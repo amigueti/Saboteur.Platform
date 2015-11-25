@@ -1,3 +1,20 @@
 <template name ="perfil">
-	<h1>Perfil Jugador Aqui</h1>
+	{{ > players }}
+</template>
+
+<template name ="addPerfil">
+
+	<form>Completa tu perfil:
+        <input type="text" placeholder="Deja un comentario" name="coment">
+    </form>
+</template>
+
+<template name="players">
+    <h2>Info Player</h2>
+    {{> addPerfil}}
+    <ul>
+        {{#each player}}
+            <li>{{name}}</li>
+        {{/each}}
+    </ul>
 </template>
