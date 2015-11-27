@@ -4,7 +4,7 @@
 
     <template name="hello">
       <form id="formulario">
-            <label>nick</label><input type="text" id="nick" name="nick"><br>
+            <label>nick</label><input type="text" id="nick" name="usuario"><br>
             <label>Message</label><textarea name="message" id="message"></textarea>
             <input type="submit" value="Submit message">
        </form>
