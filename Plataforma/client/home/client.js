@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
         Messages = new Meteor.Collection('messages');
-        
+
         Deps.autorun(function() {
           Meteor.subscribe('messages', { 
                 onReady : function() {
@@ -8,6 +8,8 @@ if (Meteor.isClient) {
                 }
           });
         });
+
+	Meteor.subscribe("usuarios");
 
       Template.hello.events({
          'submit form': function(event) {

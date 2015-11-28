@@ -17,6 +17,10 @@
            return Messages.find( {}, {sort : {time : -1}, limit : 500} );
         });
 
+	Meteor.publish("usuarios", function () {
+		return Meteor.users.find({}, {fields: {username: 1, 'profile.foto': 1}});
+	});
+
         Meteor.startup(function () {
           // code to run on server at startup
         });
