@@ -1,0 +1,25 @@
+<template name ="home">
+	  {{> hello}}
+</template>
+
+    <template name="hello">
+      <form id="formulario">
+            <label>nick</label><input type="text" id="nick" name="nick"><br>
+            <label>Message</label><textarea name="message" id="message"></textarea>
+            <input type="submit" value="Submit message">
+       </form>
+       
+        <div>
+        {{#each latestMessages}} 
+            <p>
+                <label>{{nick}}</label>
+                <em>{{time}}</em><br>
+                {{message}}
+            </p>
+        {{/each}} 
+
+        </div>
+
+    </template>
+
+

@@ -1,0 +1,41 @@
+/* CSS declarations go here */
+.Table
+{
+    display:table;
+    border-spacing: 10px; /*Optional*/
+}
+.Row
+{
+    display:table-row;
+}
+.lado-izq
+{
+    display:table-cell;
+}
+.lado-dch
+{
+    display:table-cell;
+    float:left;
+}
+.tabla-perfil
+{
+    display:table-row;
+}
+.avatar
+{
+    display:table-cell;
+}
+.perfil
+{
+    display:table-cell;
+    background-color: red; /*Optional*/
+}
+.Puntuaciones
+{
+	background-color: green; /*Optional*/
+}
+
+img.resize{
+   max-width:20%;
+   max-height:20%;
+}
