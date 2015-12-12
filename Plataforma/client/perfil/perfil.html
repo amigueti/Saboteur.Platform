@@ -1,20 +1,71 @@
-<template name ="perfil">
-	{{ > players }}
+
+
+<template name="perfil">
+	{{#if conectado}}
+		{{> perfil_usuario}}
+	{{else}}
+		{{> not_logged}}
+	{{/if}}
 </template>
 
-<template name ="addPerfil">
 
-	<form>Completa tu perfil:
-        <input type="text" placeholder="Deja un comentario" name="coment">
-    </form>
+<template name="not_logged">
+	<p>Debes iniciar sesión para ver la información de tu perfil</p>
 </template>
 
-<template name="players">
-    <h2>Info Player</h2>
-    {{> addPerfil}}
-    <ul>
-        {{#each player}}
-            <li>{{name}}</li>
-        {{/each}}
-    </ul>
+
+<template name="perfil_usuario">
+	{{#with perfil}}
+	<div id="perfil">
+		<h3>Información</h3>
+		<div id="foto_perfil">
+			Foto aqui{{foto}}
+		</div>
+		<div id="info_player">
+			<ul>
+				<li>Nombre: {{nombre}}</li>
+				<li>Apellido: {{apellido}}</li>
+				<li>País: {{pais}}</li>
+			</ul>
+		</div>
+	</div>
+	<div id="puntuacion" class="tabla-puntuaciones">
+		<h3>Máximas Puntuaciones</h3>
+		<p>{{> puntuaciones}}</p>
+	</div>
+
+	<div id="resto_jugadores">
+		<h3>Resto Jugadores</h3>
+		{{> jugadores}}
+	</div>
+	{{/with}}
+</template>
+
+
+<template name="puntuaciones">
+	<div class="Puntuaciones">
+		<p> Aquí irán las puntuaciones de los distintos juegos. </p>
+	</div>
+</template>
+
+<template name="jugadores">
+	<div class="Puntuaciones">
+		{{#each jugadores}}
+			<div>
+				{{> jugador}}
+			</div>
+		{{/each}}	
+	</div>
+</template>
+
+<template name="jugador">
+	<li><a href="/perfil/{{_id}}">{{username}}</a></li>
+</template>
+
+<template name="otros_jugadores">
+	<ul>
+		<li>Nombre: {{nombre}}</li>
+		<li>Apellido: {{apellido}}</li>
+		<li>País: {{pais}}</li>
+	</ul>
 </template>

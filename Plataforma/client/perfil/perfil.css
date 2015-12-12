@@ -1,0 +1,33 @@
+body{
+    height: 400px;
+    width: 1214px;
+}
+#perfil{
+    float: left;
+    height: 200px;
+    width: 300px;
+}
+#foto_perfil{
+    float: left;
+    height: 100px;
+    width: 100px;
+
+}
+
+#info_player{
+    float: left;
+    height: 100px;
+    width: 200px;
+}
+
+#puntuacion{
+    float: left;
+    height: 200px;
+    width: 300px;
+}
+
+#jugadores{
+    float: left;
+    height: 200px;
+    width: 300px;
+}

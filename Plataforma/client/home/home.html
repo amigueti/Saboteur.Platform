@@ -1,25 +1,46 @@
+<head>
+    <title>Minijuegos</title>
+</head>
+
+<body>
+    <div id="main_body_juego">
+        <div id="headerlogo">
+        </div>
+    </div>
+</body>
+
+
 <template name ="home">
-	  {{> hello}}
+    {{#if currentUser}}
+	  {{> chat}}
+    {{else}}
+        Debes estar registrado para chatear
+    {{/if}}
 </template>
 
-    <template name="hello">
-      <form id="formulario">
-            <label>nick</label><input type="text" id="nick" name="nick"><br>
-            <label>Message</label><textarea name="message" id="message"></textarea>
-            <input type="submit" value="Submit message">
-       </form>
-       
-        <div>
-        {{#each latestMessages}} 
-            <p>
-                <label>{{nick}}</label>
-                <em>{{time}}</em><br>
-                {{message}}
-            </p>
-        {{/each}} 
-
+    <template name="chat">
+    <div id="chatDiv">
+        <div id= "chat">
+            <form id="formulario">
+                <br>
+                <br>
+                <br>
+                <label>  Nickname:</label>  {{nick}}<br>
+                <label>  Message:</label>
+                <input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="20">
+           </form>
+           <div id="mensajes">
+            <br>
+            <br>
+            {{#each latestMessages}} 
+                <p>
+                    <label>·{{nick}}: </label>
+                    {{message}}
+                </p>
+            {{/each}} 
+            </div>
         </div>
-
+    </div>
     </template>
 
 

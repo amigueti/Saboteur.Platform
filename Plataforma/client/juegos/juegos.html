@@ -1,11 +1,23 @@
 <template name ="juegos">
-	<table id="games" border="3">
-    <tr>
-	    <td><input type="button" class="botonimagen1" /></td>
-	    <td><input type="button" class="botonimagen2" /></td>
-	    <td><input type="button" class="botonimagen3" /></td>
-	    <td><input type="button" class="botonimagen4" /></td>
-	    <td><input type="button" class="botonimagen5" /></td>
-    </tr>
-    </table>
+
+    <div class="span">
+    	{{>choose_game}}
+
+    	<div id='container' class="span">
+		{{> alien_invasion}}      
+    	</div>
+    </div>
+</template>
+
+<template name="alien_invasion">
+  <canvas id='game' width='320' height='480'></canvas>
+</template>
+
+<template name="choose_game">
+  <div id="games" class="btn-group">
+    <input id="none" class="btn" type="button" value="None" />
+    {{#each games}}
+    <input id="{{name}}" value="{{name}}" type="button" class="btn btn-primary" />
+    {{/each}}
+  </div>
 </template>

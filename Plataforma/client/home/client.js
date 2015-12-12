@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
         Messages = new Meteor.Collection('messages');
-        
+
         Deps.autorun(function() {
           Meteor.subscribe('messages', { 
                 onReady : function() {
@@ -9,23 +9,31 @@ if (Meteor.isClient) {
           });
         });
 
-      Template.hello.events({
+	Meteor.subscribe("usuarios");
+
+      Template.chat.events({
          'submit form': function(event) {
             event.preventDefault();
+            var currentUser = Meteor.user().username;
             var post = {
-                nick : $(event.target).find('[name=nick]').val(),
+                nick : currentUser,
                 message : $(event.target).find('[name=message]').val()
             }
             if ( (post.message != "") && (post.nick != "") ) {
                 Meteor.call("addMessage", post);
             }
+            $('[name="message"]').val('');
+
         }
       });
 
-       Template.hello.helpers({       
+       Template.chat.helpers({
+          nick: function() {
+            return Meteor.user().username;
+          },
            latestMessages : function() {
                  if (Session.get("active")) {
-                     return Messages.find({}, {sort : {time : -1}, limit : 500});
+                     return Messages.find({}, {sort : {time : -1}, limit : 10});
                  } else {
                      return [];
                  }

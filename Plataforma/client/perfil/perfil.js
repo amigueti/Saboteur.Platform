@@ -1,16 +1,27 @@
-Template.addPerfil.events({
-    'submit form': function(event){
-      event.preventDefault();
-      var coment = $('[name=coment]').val();
-      Users.insert({
-          name: coment
-      });
-      $('[name=coment]').val('');
-    }
+
+
+Template.perfil.helpers({
+	'conectado': function(){
+		return Meteor.userId();
+	}
 });
 
-Template.players.helpers({
-    'player': function(){
-        return Users.find({}, {sort: {name: 1}});
-    }
+
+Template.perfil_usuario.helpers({
+	'perfil': function(){
+		return Meteor.user().profile;
+		//return Perfiles.find();//nombre="Jaime");
+	},
+	'otro_perfil': function(){
+		var currentUser= this._id;
+		return Meteor.users.find({currentUser}).fetch();
+	}
 });
+
+
+Template.jugadores.helpers({
+	'jugadores': function(){
+		return Meteor.users.find().fetch()
+	}
+});
+
