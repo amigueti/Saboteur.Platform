@@ -11,7 +11,7 @@ Router.route('/ranking',{name: 'ranking'});
 Router.route('/register',{name: 'register'});
 Router.route('/login',{name: 'login'});
 
-Router.route('perfil',{
+Router.route('/perfil',{
 	path: '/perfil/:id',
 	template: 'perfil'
 });
