@@ -22,3 +22,5 @@ ian:accounts-ui-bootstrap-3
 accounts-password
 iron:router
 sacha:spin
+cfs:standard-packages
+cfs:filesystem

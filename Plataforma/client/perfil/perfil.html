@@ -19,13 +19,18 @@
 	<div id="perfil">
 		<h3>Información</h3>
 		<div id="foto_perfil">
-			Foto aqui{{foto}}
+			{{#if foto }}
+				<img class="perfil" src={{foto}}>
+			{{else}}
+				<img class="perfil" src="images/pinguino.jpg">
+			{{/if}}
 		</div>
 		<div id="info_player">
 			<ul>
 				<li>Nombre: {{nombre}}</li>
 				<li>Apellido: {{apellido}}</li>
 				<li>País: {{pais}}</li>
+				<li><input type="file" name="imagen" class="myFileInput"></li>
 			</ul>
 		</div>
 	</div>
@@ -59,6 +64,11 @@
 </template>
 
 <template name="jugador">
+	{{#if foto }}
+		<img class="jugadores" src={{foto}}>
+	{{else}}
+		<img class="jugadores" src="images/pinguino.jpg">
+	{{/if}}
 	<li><a href="/perfil/{{_id}}">{{username}}</a></li>
 </template>
 
