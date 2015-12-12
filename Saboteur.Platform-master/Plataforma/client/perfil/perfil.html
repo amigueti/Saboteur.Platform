@@ -1,0 +1,78 @@
+
+
+<template name="perfil">
+	{{#if conectado}}
+		{{> perfil_usuario}}
+	{{else}}
+		{{> not_logged}}
+	{{/if}}
+</template>
+
+
+<template name="not_logged">
+	<p>UPPS! Esto es embarazoso pero, ¿estás logeado?</p>
+</template>
+
+
+<template name="perfil_usuario">
+	{{#with perfil}}
+	<div class="Table">
+		<div class="Row">
+			<div class="lado-izq">
+				<div class="tabla-perfil">
+					<div class="avatar">
+						{{#if foto }}
+							<img class="resize" src={{foto}}>
+						{{else}}
+							<img class="resize" src="images/pinguino.jpg">
+						{{/if}}
+						<br>
+						<input type="file" name="imagen" class="myFileInput">
+					</div>
+					<div class="perfil">
+						<ul>
+							<li>nombre: {{nombre}}</li>
+							<li>apellido: {{apellido}}</li>
+							<li>nacionalidad: {{pais}}</li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabla-puntuaciones">
+					<p>{{> puntuaciones}}</p>
+				</div>
+			</div>
+			<div class="lado-dch">
+				{{> jugadores}}	
+	</div>
+		</div>
+	</div>
+	{{/with}}
+</template>
+
+
+<template name="puntuaciones">
+	<div class="Puntuaciones">
+		<p> Aquí irán las puntuaciones de los distintos juegos. </p>
+	</div>
+</template>
+
+<template name="jugadores">
+	<div class="Puntuaciones">
+		{{#each jugadores}}
+			<div>
+				{{> jugador}}
+			</div>
+		{{/each}}	
+	</div>
+</template>
+
+<template name="jugador">
+	<div class="Jugador">
+		{{#if foto = NULL}}
+			<img src="images/pinguino.jpg"  height="42" width="42">
+		{{else}}
+			<p> hay que cambiar la foto </p>
+		{{/if}}
+		{{username}}
+	</div>
+</template>
