@@ -1,23 +1,6 @@
 <template name ="juegos">
 
-    <div class="span">
-    	{{>choose_game}}
-
-    	<div id='container' class="span">
-		{{> alien_invasion}}      
-    	</div>
-    </div>
+    <li><a href="{{pathFor route='alien'}}" target="_blank">Alien Invasion</a></li>
 </template>
 
-<template name="alien_invasion">
-  <canvas id='game' width='320' height='480'></canvas>
-</template>
 
-<template name="choose_game">
-  <div id="games" class="btn-group">
-    <input id="none" class="btn" type="button" value="None" />
-    {{#each games}}
-    <input id="{{name}}" value="{{name}}" type="button" class="btn btn-primary" />
-    {{/each}}
-  </div>
-</template>

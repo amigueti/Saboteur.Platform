@@ -15,3 +15,9 @@ Router.route('/perfil',{
 	path: '/perfil/:id',
 	template: 'perfil'
 });
+
+
+Router.route('/alien', {
+    name: 'alien',
+    layoutTemplate: 'empty_layout'
+});
