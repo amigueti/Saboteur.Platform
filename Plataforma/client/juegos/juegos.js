@@ -1,4 +1,4 @@
-Games = new Meteor.Collection('games');
+
 
 Template.juegos.events({
   'click a[target=_blank]': function (event) {

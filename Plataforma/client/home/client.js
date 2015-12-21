@@ -1,15 +1,33 @@
-if (Meteor.isClient) {
-        Messages = new Meteor.Collection('messages');
 
-        Deps.autorun(function() {
-          Meteor.subscribe('messages', { 
-                onReady : function() {
-                    Session.set("active", true); 
-                }
-          });
-        });
+//*********************************
+//Subscription a Las bases de Datos
+  //Messages = new Meteor.Collection('messages');
+  Meteor.subscribe("messages");
+  Meteor.subscribe("usuarios");
 
-	Meteor.subscribe("usuarios");
+
+//*********************************
+
+Meteor.startup(function(){
+    Session.set("current_game", "none");
+    $('#gamecontainer').hide();
+    $('#container').hide();
+
+    $(document).on("click", ".alert .close", function(e) {
+        $(this).parent().hide();
+    });
+});
+
+//*********
+  Deps.autorun(function() {
+    Meteor.subscribe('messages', { 
+          onReady : function() {
+              Session.set("active", true); 
+          }
+    });
+  });
+
+
 
       Template.chat.events({
          'submit form': function(event) {
@@ -43,4 +61,26 @@ if (Meteor.isClient) {
 	Images = new FS.Collection("images", {
   		stores: [new FS.Store.FileSystem("images")]
 	});
-}
+
+Template.choose_game.helpers({
+  'encontrado': function(){
+    return Games.find().fetch();
+  }
+    
+});
+/*Template.choose_game.games = function (){
+    return Games.find();
+}*/
+Template.choose_game.events({
+    'click #AlienInvasion': function () {
+        $('#gamecontainer').hide();
+        $('#container').show();
+        var game = Games.findOne({name:"AlienInvasion"});
+        Session.set("current_game", game._id);
+    },
+    'click #none': function () {
+        $('#container').hide();
+        $('#gamecontainer').hide();
+        Session.set("current_game", "none");
+    }
+});

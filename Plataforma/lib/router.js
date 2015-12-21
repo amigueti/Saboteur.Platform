@@ -16,8 +16,3 @@ Router.route('/perfil',{
 	template: 'perfil'
 });
 
-
-Router.route('/alien', {
-    name: 'alien',
-    layoutTemplate: 'empty_layout'
-});
