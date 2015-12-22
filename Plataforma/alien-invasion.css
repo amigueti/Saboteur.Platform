@@ -22,8 +22,8 @@ table {
 
 /* Center the container */
 #container {
-    margin: 1cm;
-  width:480px;
+    margin-left: 15%;
+  	width:90%;
 }
 
 /* Give canvas a background */

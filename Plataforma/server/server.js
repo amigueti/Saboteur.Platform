@@ -31,7 +31,7 @@ Meteor.startup(function() {
     if (Games.find().count() == 0) {
     Games.insert({name: "AlienInvasion"});
     };
-    if (Games.find().count() == 1) {
+    if (Games.find().count() == 0) {
         Games.insert({name: "Saboteur"});
         };
     });

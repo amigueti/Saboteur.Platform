@@ -8,19 +8,24 @@
       {{>loginButtons}}
     </div>
     <div id="logo">
-
+      <h3>LOGO</h3>
     </div>
     <div id="centro">
     </div>
   </div>
   <div class="juegos">
-    {{> choose_game }}
+    <div id="botones_juegos">
+      {{> choose_game }}
+    </div>
     <div id='container' class="juegos">
       {{> alien_invasion}}      
     </div>
   </div>
-  <div class="templates">
-
+  <div id="navigation">
+    {{>navigation}}
+  </div>
+  <div class="templates" style="display: none" data-bind="visible: true">
+      
   </div>
 </body>
 
