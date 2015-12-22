@@ -3,20 +3,25 @@
 </head>
 
 <body>
-    <div id="main_body_juego">
-        <div id="headerlogo">
-        	<h3>LOGIN</h3>
+  <div id="header">
+    <div id="login">
+      {{>loginButtons}}
+    </div>
+    <div id="logo">
 
-        	{{>loginButtons}}
-        	<br>
-        </div>
     </div>
-    <div class="span7">
-      {{> choose_game }}
-      <div id='container' class="span7">
-	{{> alien_invasion}}      
-      </div>
+    <div id="centro">
     </div>
+  </div>
+  <div class="juegos">
+    {{> choose_game }}
+    <div id='container' class="juegos">
+      {{> alien_invasion}}      
+    </div>
+  </div>
+  <div class="templates">
+
+  </div>
 </body>
 
 <template name="choose_game">
