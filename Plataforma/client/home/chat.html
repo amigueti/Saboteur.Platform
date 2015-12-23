@@ -9,29 +9,21 @@
     {{/if}}
 </template>
 
-    <template name="chat">
-    <div id="chatDiv">
-        <div id= "chat">
-            <form id="formulario">
-                <br>
-                <br>
-                <br>
-                <label>  Nickname:</label>  {{nick}}<br>
-                <label>  Message:</label>
-                <input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="20">
-           </form>
-           <div id="mensajes">
+<template name="chat">
+    <div id="chat_gral">
+        <div id="mensajes">
             <br>
-            <br>
-            {{#each latestMessages}} 
-                <p>
-                    <label>·{{nick}}: </label>
-                    {{message}}
-                </p>
+           {{#each latestMessages}} 
+            <p>
+                <label>·{{nick}}: </label>
+                {{message}}
+            </p>
             {{/each}} 
             </div>
-        </div>
+        <form id="formulario">
+            <input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="27">
+       </form>
     </div>
-    </template>
+</template>
 
 

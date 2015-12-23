@@ -46,12 +46,10 @@ Meteor.startup(function(){
       });
 
        Template.chat.helpers({
-          nick: function() {
-            return Meteor.user().username;
-          },
            latestMessages : function() {
                  if (Session.get("active")) {
-                     return Messages.find({}, {sort : {time : -1}, limit : 10});
+                    var UltimosMensajes = Messages.find({}, {sort : {time : -1}, limit : 10});
+                     return UltimosMensajes;
                  } else {
                      return [];
                  }

@@ -28,6 +28,7 @@ Meteor.methods ({
 //Si no hay juegos, lo introducimos
 Meteor.startup(function() {
     // At startup, fill collection of games if it's empty
+    Messages.remove({});
     if (Games.find().count() == 0) {
     Games.insert({name: "AlienInvasion"});
     };
