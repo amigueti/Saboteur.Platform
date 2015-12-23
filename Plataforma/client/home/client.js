@@ -48,7 +48,7 @@ Meteor.startup(function(){
        Template.chat.helpers({
            latestMessages : function() {
                  if (Session.get("active")) {
-                    var UltimosMensajes = Messages.find({}, {sort : {time : -1}, limit : 10});
+                    var UltimosMensajes = Messages.find({}, {sort : {time : -1}, limit : 10}).fetch().reverse();
                      return UltimosMensajes;
                  } else {
                      return [];
