@@ -16,6 +16,8 @@ Meteor.startup(function(){
     $('.juegos').hide();
     $('.perfil_template').hide();
     $('.ranking_template').hide();
+    $('#partidas_a_unirse').hide();
+    $('#div_crear').hide();
 
     $(document).on("click", ".alert .close", function(e) {
         $(this).parent().hide();
@@ -77,6 +79,7 @@ Template.choose_game.events({
     'click #AlienInvasion': function () {
         $('#gamecontainer').hide();
         $('#container').show();
+        $('#container_sab').hide();
         var game = Games.findOne({name:"AlienInvasion"});
         Session.set("current_game", game._id);
     },
@@ -85,13 +88,17 @@ Template.choose_game.events({
         $('#container').hide();
         $('#container_sab').show();
         $('#partidas_a_unirse').show();
+        $('#mi_partida  ').hide();
+        $('#crear_partida').show();
         $('#div_crear').hide();
+
         //var game = Games.findOne({name:"Saboteur"});
         //Session.set("current_game", game._id);
     },
     'click #none': function () {
         $('#container').hide();
         $('#gamecontainer').hide();
+        $('#container_sab').hide();
         Session.set("current_game", "none");
     }
 });
@@ -101,15 +108,19 @@ Template.menu.events({
       $('.juegos').show();
       $('.perfil_template').hide();
       $('.ranking_template').hide();
+      $('#container_sab').hide();
   },
   'click #Boton_Perfil': function(){
       $('.juegos').hide();
       $('.perfil_template').show();
       $('.ranking_template').hide();
+      $('#container_sab').hide();
+
   },
   'click #Boton_Ranking': function(){
       $('.juegos').hide();
       $('.perfil_template').hide();
       $('.ranking_template').show();
+      $('#container_sab').hide();
   }
 })

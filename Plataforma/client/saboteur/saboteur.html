@@ -29,6 +29,11 @@
 		<label> Titulo: {{mi_gente.titulo}} </label>
 		<br>
         <label> Maximo Jugadores {{mi_gente.num_jug}}</label>
+        <div id="abandonar">
+			{{#if currentUser = mi_gente.creador}}
+				<input id="boton_eliminar" class="btn" type="button" value="Eliminar Partida" />
+			{{/if}}
+		</div>
 	</div>
 
 </template>
