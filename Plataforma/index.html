@@ -13,6 +13,21 @@
     <div id="centro">
     </div>
   </div>
+  <!--<div id="navigation">
+    {{>navigation}}
+  </div>-->
+  <div id="menu_fijo">
+    {{#if currentUser}}
+      {{> chat}}
+    {{else}}
+      <div id="registro_chat">
+        Debes estar registrado para chatear
+      </div>
+    {{/if}}
+    <div id="botones_menu">
+      {{>menu}}
+    </div>
+  </div>
   <div class="juegos">
     <div id="botones_juegos">
       {{> choose_game }}
@@ -21,11 +36,11 @@
       {{> alien_invasion}}      
     </div>
   </div>
-  <div id="navigation">
-    {{>navigation}}
+  <div class="perfil_template">
+    {{>perfil}}
   </div>
-  <div class="templates" style="display: none" data-bind="visible: true">
-      
+  <div class="ranking_template">
+    {{>ranking}}
   </div>
 </body>
 
@@ -40,4 +55,13 @@
 
 <template name="alien_invasion">
 	<canvas id='game' width='320' height='480'></canvas>
+</template>
+
+<template name="menu">
+  <div id="menu2" class="btn-group-vertical">
+    <button id="Boton_Juegos" type="button" class="btn btn-primary">Juegos</button>
+    <button id="Boton_Perfil" type="button" class="btn btn-primary">Perfil</button>
+    <button id="Boton_Ranking" type="button" class="btn btn-primary">Ranking</button>
+
+  </div>
 </template>

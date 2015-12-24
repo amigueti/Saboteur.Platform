@@ -12,6 +12,9 @@ Meteor.startup(function(){
     Session.set("current_game", "none");
     $('#gamecontainer').hide();
     $('#container').hide();
+    $('.juegos').hide();
+    $('.perfil_template').hide();
+    $('.ranking_template').hide();
 
     $(document).on("click", ".alert .close", function(e) {
         $(this).parent().hide();
@@ -82,3 +85,21 @@ Template.choose_game.events({
         Session.set("current_game", "none");
     }
 });
+
+Template.menu.events({
+  'click #Boton_Juegos': function(){
+      $('.juegos').show();
+      $('.perfil_template').hide();
+      $('.ranking_template').hide();
+  },
+  'click #Boton_Perfil': function(){
+      $('.juegos').hide();
+      $('.perfil_template').show();
+      $('.ranking_template').hide();
+  },
+  'click #Boton_Ranking': function(){
+      $('.juegos').hide();
+      $('.perfil_template').hide();
+      $('.ranking_template').show();
+  }
+})
