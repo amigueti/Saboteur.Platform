@@ -1,0 +1,34 @@
+<template name="saboteur">
+	{{>crear_partida}}
+	{{>unirse}}
+	{{>mi_partida}}
+</template>
+
+<template name="crear_partida">
+	<div id="crear_partida">
+		<input id="crear" class="btn" type="button" value="Crear Partida" />
+	</div>
+	<div id="div_crear">
+		<form class="form_crear">
+			<br>
+	        <p>Titulo Partida: <input type="text" name="titulo"></p>
+	        <p>Numero Jugadores: <input type="text" name="num_jugadores"></p>
+	        <p><input type="submit" value="crear"></p>
+	    </form>
+	</div>
+</template>
+
+<template name="unirse">
+	<div id="partidas_a_unirse">
+		<h3>Lista de Partidas Disponibles</h3>
+	</div>
+</template>
+
+<template name="mi_partida">
+	<div id="mi_partida">
+		<label> Titulo: {{mi_gente.titulo}} </label>
+		<br>
+        <label> Maximo Jugadores {{mi_gente.num_jug}}</label>
+	</div>
+
+</template>

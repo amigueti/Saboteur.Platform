@@ -44,7 +44,7 @@ body {
 .juegos{
 	float: left;
 	margin-top: 24px;
-	width: 40%;
+	width: 60%;
 	height: 550px;
 	border-width: 2px;
 	margin-left: 5%;
@@ -98,3 +98,11 @@ body {
 #registro_chat{
 	float: left;
 }
+#container_sab{
+	float: left;
+	margin-top: 24px;
+	width: 100%;
+	height: 550px;
+	margin-left: 5%;
+}
+

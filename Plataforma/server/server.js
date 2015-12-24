@@ -13,6 +13,10 @@ Meteor.publish("usuarios", function () {
     return Meteor.users.find({}, {fields: {username: 1, 'profile.foto': 1}});
 });
 
+/*Meteor.publish("partidas", function () {
+    return Meteor.Partidas.find(*titulo de partida* *max jugadores*);
+});*/
+
 //**************************************
 Meteor.methods ({
     addMessage : function (post) {
@@ -26,6 +30,7 @@ Meteor.methods ({
 });
 
 //Si no hay juegos, lo introducimos
+//Borramos los mensajes antiguos
 Meteor.startup(function() {
     // At startup, fill collection of games if it's empty
     Messages.remove({});

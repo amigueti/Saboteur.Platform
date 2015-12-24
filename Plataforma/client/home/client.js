@@ -12,6 +12,7 @@ Meteor.startup(function(){
     Session.set("current_game", "none");
     $('#gamecontainer').hide();
     $('#container').hide();
+    $('#container_sab').hide();
     $('.juegos').hide();
     $('.perfil_template').hide();
     $('.ranking_template').hide();
@@ -78,6 +79,15 @@ Template.choose_game.events({
         $('#container').show();
         var game = Games.findOne({name:"AlienInvasion"});
         Session.set("current_game", game._id);
+    },
+    'click #Saboteur': function () {
+        $('#gamecontainer').hide();
+        $('#container').hide();
+        $('#container_sab').show();
+        $('#partidas_a_unirse').show();
+        $('#div_crear').hide();
+        //var game = Games.findOne({name:"Saboteur"});
+        //Session.set("current_game", game._id);
     },
     'click #none': function () {
         $('#container').hide();
