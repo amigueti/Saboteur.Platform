@@ -189,3 +189,6 @@ body {
     margin-top: -20px;
     margin-bottom: 20px; 
 }
+#formbusqueda input:placeholder{
+    text-align: center;
+}
