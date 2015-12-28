@@ -5,6 +5,12 @@ Template.navigation.events({
 	'submit form': function(event) {
             event.preventDefault();
             var buscado = $(event.target).find('[name=busqueda]').val();
-            if(Meteor.users.username = buscado)
-            
-})
+            console.log(buscado);
+            console.log(Meteor.users.findOne({username: buscado}));
+            if(Meteor.users.findOne({username: buscado})){
+            	console.log("encontado");
+            }else{
+            	console.log("no encontrado");
+            }
+     }       
+});
