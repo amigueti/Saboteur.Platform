@@ -2,5 +2,18 @@
 <template name="ranking">
 	<div id="ranking">
 		<h3>Mejores Marcas</h3>
+			<div class="muestra_ranking">
+				<!--Poner un si global: si Saboteur: si Chess: y añadir abajo la lista-->
+			  {{# if rankSelected }}
+			 		 <h4> Ranking {{rankSelected}} </h4>
+				{{else}}
+					<h4> Ranking generalll </h4>
+				{{/if}}
+			</div>
+		   <div id="botones_ranking" class="btn-group-vertical">
+			 <button id="Boton_global" type="button"  class="btn btn-primary">global</button>
+			 <button id="Boton_allien" type="button"  class="btn btn-primary">Allien</button>
+			 <button id="Boton_saboteur" type="button" class="btn btn-primary">Saboteur</button>
+		  </div>
 	</div>
 </template>
