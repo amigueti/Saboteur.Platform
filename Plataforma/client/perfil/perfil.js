@@ -9,12 +9,21 @@ Template.perfil.helpers({
 
 Template.perfil_usuario.helpers({
 	'perfil': function(){
-		return Meteor.user().profile;
-		//return Perfiles.find();//nombre="Jaime");
+		console.log("helper-perfil:");
+		console.log(Meteor.users.findOne({_id: this._id}).profile);
+		return Meteor.users.findOne({_id: this._id}).profile;
 	},
-	'otro_perfil': function(){
-		var currentUser= this._id;
-		return Meteor.users.find({currentUser}).fetch();
+	'upload': function(){
+		console.log("UPLOAD:");
+		console.log(this._id);
+		console.log(Meteor.userId());
+		if (Meteor.userId() == this._id){
+			console.log("mismo user");
+			return true;
+		} else {
+			console.log("distino user");
+			return false;
+		}
 	}
 });
 
@@ -47,5 +56,4 @@ Template.perfil_usuario.events({
 		});
 	}
 });
-
 

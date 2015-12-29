@@ -12,6 +12,7 @@ Template.navigation.helpers({
 	}
 });
 
+
 Accounts.ui.config({
     passwordSignupFields: 'USERNAME_ONLY',
     requestPermissions: {},

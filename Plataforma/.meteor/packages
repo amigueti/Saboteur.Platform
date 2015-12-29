@@ -24,4 +24,3 @@ iron:router
 sacha:spin
 cfs:standard-packages
 cfs:filesystem
-autopublish

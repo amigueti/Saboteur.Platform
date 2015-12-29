@@ -10,7 +10,7 @@ Meteor.publish('messages', function(salon) {
 });
 
 Meteor.publish("usuarios", function () {
-    return Meteor.users.find({}, {fields: {username: 1, 'profile.foto': 1}});
+    return Meteor.users.find({}, {fields: {username: 1,'profile.nombre':1, 'profile.apellido':1, 'profile.pais':1, 'profile.foto': 1}});
 });
 
 /*Meteor.publish("partidas", function () {

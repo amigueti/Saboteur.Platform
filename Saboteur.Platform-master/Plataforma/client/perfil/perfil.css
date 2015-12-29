@@ -1,41 +1,35 @@
-/* CSS declarations go here */
-.Table
-{
-    display:table;
-    border-spacing: 10px; /*Optional*/
-}
-.Row
-{
-    display:table-row;
-}
-.lado-izq
-{
-    display:table-cell;
-}
-.lado-dch
-{
-    display:table-cell;
-    float:left;
-}
-.tabla-perfil
-{
-    display:table-row;
-}
-.avatar
-{
-    display:table-cell;
-}
-.perfil
-{
-    display:table-cell;
-    background-color: red; /*Optional*/
-}
-.Puntuaciones
-{
-	background-color: green; /*Optional*/
+
+#foto_perfil{
+    float: left;
+    height: 100px;
+    width: 100px;
+
 }
 
-img.resize{
-   max-width:20%;
-   max-height:20%;
+#info_player{
+    float: left;
+    height: 100px;
+    width: 200px;
+}
+
+#puntuacion{
+    float: left;
+    height: 200px;
+    width: 300px;
+}
+
+#jugadores{
+    float: left;
+    height: 200px;
+    width: 300px;
+}
+
+img.perfil{
+   max-width:100%;
+   max-height:100%;
+}
+
+img.jugadores{
+   max-width:5%;
+   max-height:5%;
 }

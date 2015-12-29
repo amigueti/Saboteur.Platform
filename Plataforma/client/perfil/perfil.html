@@ -1,13 +1,13 @@
 
 
 <template name="perfil">
-	<!--{{#if conectado}}
+	{{#if conectado}}
 		{{> perfil_usuario}}
 	{{else}}
 		{{> not_logged}}
-	{{/if}}-->
-		<h3> AQUI PERFIL. DEBE MODIFICARSE TEMPLATE</h3>
-
+	{{/if}}
+	<!--<h3> PERFIL DE USUARIOS </h3>
+	<p>para activar el perfil del usuario, descativar el comentario al inicio de perfil.html</p>-->
 </template>
 
 
@@ -32,20 +32,24 @@
 				<li>Nombre: {{nombre}}</li>
 				<li>Apellido: {{apellido}}</li>
 				<li>País: {{pais}}</li>
-				<li><input type="file" name="imagen" class="myFileInput"></li>
+				{{#if upload}}
+					<li><input type="file" name="imagen" class="myFileInput"></li>
+				{{/if}}
 			</ul>
 		</div>
 	</div>
+	{{/with}}
+
 	<div id="puntuacion" class="tabla-puntuaciones">
 		<h3>Máximas Puntuaciones</h3>
-		<p>{{> puntuaciones}}</p>
+		{{> puntuaciones}}
 	</div>
 
 	<div id="resto_jugadores">
 		<h3>Resto Jugadores</h3>
 		{{> jugadores}}
 	</div>
-	{{/with}}
+	
 </template>
 
 
@@ -54,6 +58,7 @@
 		<p> Aquí irán las puntuaciones de los distintos juegos. </p>
 	</div>
 </template>
+
 
 <template name="jugadores">
 	<div class="Puntuaciones">
@@ -65,19 +70,15 @@
 	</div>
 </template>
 
+
 <template name="jugador">
-	{{#if foto }}
-		<img class="jugadores" src={{foto}}>
+	<p>
+	{{#if profile.foto }}
+		<img class="jugadores" src={{profile.foto}}>
 	{{else}}
 		<img class="jugadores" src="images/pinguino.jpg">
 	{{/if}}
-	<li><a href="/perfil/{{_id}}">{{username}}</a></li>
+	<a href="/perfil/{{_id}}">{{username}}</a></p>
 </template>
 
-<template name="otros_jugadores">
-	<ul>
-		<li>Nombre: {{nombre}}</li>
-		<li>Apellido: {{apellido}}</li>
-		<li>País: {{pais}}</li>
-	</ul>
-</template>
+

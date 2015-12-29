@@ -6,47 +6,50 @@
 	{{else}}
 		{{> not_logged}}
 	{{/if}}
+	<!--<h3> PERFIL DE USUARIOS </h3>
+	<p>para activar el perfil del usuario, descativar el comentario al inicio de perfil.html</p>-->
 </template>
 
 
 <template name="not_logged">
-	<p>UPPS! Esto es embarazoso pero, ¿estás logeado?</p>
+	<p>Debes iniciar sesión para ver la información de tu perfil</p>
 </template>
 
 
 <template name="perfil_usuario">
 	{{#with perfil}}
-	<div class="Table">
-		<div class="Row">
-			<div class="lado-izq">
-				<div class="tabla-perfil">
-					<div class="avatar">
-						{{#if foto }}
-							<img class="resize" src={{foto}}>
-						{{else}}
-							<img class="resize" src="images/pinguino.jpg">
-						{{/if}}
-						<br>
-						<input type="file" name="imagen" class="myFileInput">
-					</div>
-					<div class="perfil">
-						<ul>
-							<li>nombre: {{nombre}}</li>
-							<li>apellido: {{apellido}}</li>
-							<li>nacionalidad: {{pais}}</li>
-						</ul>
-					</div>
-				</div>
-				<div class="tabla-puntuaciones">
-					<p>{{> puntuaciones}}</p>
-				</div>
-			</div>
-			<div class="lado-dch">
-				{{> jugadores}}	
-	</div>
+	<div id="perfil">
+		<h3>Información</h3>
+		<div id="foto_perfil">
+			{{#if foto }}
+				<img class="perfil" src={{foto}}>
+			{{else}}
+				<img class="perfil" src="images/pinguino.jpg">
+			{{/if}}
+		</div>
+		<div id="info_player">
+			<ul>
+				<li>Nombre: {{nombre}}</li>
+				<li>Apellido: {{apellido}}</li>
+				<li>País: {{pais}}</li>
+				{{#if upload}}
+					<li><input type="file" name="imagen" class="myFileInput"></li>
+				{{/if}}
+			</ul>
 		</div>
 	</div>
 	{{/with}}
+
+	<div id="puntuacion" class="tabla-puntuaciones">
+		<h3>Máximas Puntuaciones</h3>
+		{{> puntuaciones}}
+	</div>
+
+	<div id="resto_jugadores">
+		<h3>Resto Jugadores</h3>
+		{{> jugadores}}
+	</div>
+	
 </template>
 
 
@@ -55,6 +58,7 @@
 		<p> Aquí irán las puntuaciones de los distintos juegos. </p>
 	</div>
 </template>
+
 
 <template name="jugadores">
 	<div class="Puntuaciones">
@@ -66,13 +70,15 @@
 	</div>
 </template>
 
+
 <template name="jugador">
-	<div class="Jugador">
-		{{#if foto = NULL}}
-			<img src="images/pinguino.jpg"  height="42" width="42">
-		{{else}}
-			<p> hay que cambiar la foto </p>
-		{{/if}}
-		{{username}}
-	</div>
+	<p>
+	{{#if profile.foto }}
+		<img class="jugadores" src={{profile.foto}}>
+	{{else}}
+		<img class="jugadores" src="images/pinguino.jpg">
+	{{/if}}
+	<a href="/perfil/{{_id}}">{{username}}</a></p>
 </template>
+
+
