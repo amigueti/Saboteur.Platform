@@ -6,19 +6,56 @@
 	left:350px;
 	height: 450px;
 	width: 900px;
+	border-color: black;
 	
 }
 #imag{
 	position: relative;
-	left:380px;
+	left:180px;
 	top:20px;
 
 }
 body{
 	background-color: yellow;
 }
-#formPerfil{
+
+#fechas{
 	position: relative;
-	left: 280px;
-	top: 60px;
+	left: 0px;
+}
+.panel-heading{
+	text-align: center;
+}
+#panelinfo{
+	position: relative;
+	left: 200px;
+	top: 0px;
+	height: 449px;
+	width: 500px;
+	border-style: solid;
+}
+#formPerfil{
+	position: absolute;
+	left: 75px;
+	top: 230px;
+	height:100%;
+	width: 500px;
+}
+input#email_1.col-xs-4{
+	width: 300px;
+}
+input#nombre_1.col-xs-4{
+	width: 300px;
+}
+input#nacionalidad_1.col-xs-4{
+	width: 300px;
+}
+#botonPanel{
+	position: absolute;
+	left:150px;
+	top:150px;
+	background-color: #D9EDF7;
+}
+.inc{
+	background-color: #D9EDF7;
 }

@@ -6,6 +6,9 @@ Template.perfil.events({
 Template.perfil.helpers({
 	'imagen':function(){
 		return Meteor.user().profile.image;
+	},
+	'nick':function(){
+		return Meteor.user().username;
 	}
 
 });
