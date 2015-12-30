@@ -11,9 +11,14 @@
 #imag{
 	position: relative;
 	left:380px;
-	top:40px;
+	top:20px;
 
 }
 body{
 	background-color: yellow;
+}
+#formPerfil{
+	position: relative;
+	left: 280px;
+	top: 60px;
 }
