@@ -34,11 +34,29 @@ body{
 	width: 500px;
 	border-style: solid;
 }
+#panelinfo2{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 449px;
+	width: 200px;
+	border-style: solid;
+	border-radius: 10px;
+}
+#panelinfo3{
+	position: absolute;
+	left: 700px;
+	top: 0px;
+	height: 449px;
+	width: 198px;
+	border-style: solid;
+	border-radius: 10px;
+}
 #formPerfil{
 	position: absolute;
 	left: 75px;
 	top: 230px;
-	height:100%;
+	
 	width: 500px;
 }
 input#email_1.col-xs-4{
