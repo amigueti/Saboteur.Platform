@@ -6,3 +6,15 @@
       Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
 
   });*/
+
+Meteor.methods ({
+    addPerfil : function (post) {
+        Perfiles.insert({
+            nick : post.nick,
+            email : post.email,
+            nombre : post.nombre,
+            nacionalidad:post.nacionalidad,
+            genero:post.genero
+        });
+    }
+});

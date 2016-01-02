@@ -9,6 +9,21 @@ Template.perfil.events({
 	'click button.inc':function(){
 		Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
 		$('#editYourAvatarModal').modal();
+	},
+	'click button#botonPanel':function(form){
+		event.preventDefault();
+            var currentUser = Meteor.user().username;
+            var post = {
+                nick : currentUser,
+                email : $('input#email_1.col-xs-4').val(),
+                nombre: $('input#nombre_1.col-xs-4').val(),
+                nacionalidad:$('input#naacionalidad_1.col-xs-4').val(),
+                genero:$('.radio-inline').find('[name=genderRadios]').val()
+            }
+            	console.log(post);
+                Meteor.call("addPerfil", post);
+            
+            
 	}
 });
 Template.perfil.helpers({
