@@ -1,39 +1,99 @@
+
+
 <template name="saboteur">
-	{{>crear_partida}}
-	{{>unirse}}
-	{{>mi_partida}}
+	{{#if currentUser}}
+		{{> totalPartidas}}
+		{{> misPartidas}}
+	        {{> actualPartida}}
+	{{/if}}
 </template>
 
-<template name="crear_partida">
-	<div id="crear_partida">
-		<input id="crear" class="btn" type="button" value="Crear Partida" />
-	</div>
-	<div id="div_crear">
-		<form class="form_crear">
-			<br>
-	        <p>Titulo Partida: <input type="text" name="titulo"></p>
-	        <p>Numero Jugadores: <input type="text" name="num_jugadores"></p>
-	        <p><input type="submit" value="crear"></p>
-	    </form>
-	</div>
+
+<template name="totalPartidas">
+    <div class="totalPartidas">
+        <h2>TOTAL DE PARTIDAS </h2>
+        {{#each listTotal}}
+            <li>
+                {{titulo}}: [{{listaJugadores}}]
+                {{#if auxTotal}}
+                    <button type="button" class="unirsePartida">Unirse a Partida!</button>
+                {{/if}}
+            </li>
+        {{/each}}
+        <div class="crearPartida">
+            <form>
+                <input type="text" name="titulo" placeholder="Titulo" required />
+                <input type="number" name="numJugadores" min="3" max="10" placeholder="Numero" required />
+                <button type="submit"> Crear Partida </button>
+            </form>
+        </div>
+    </div>
 </template>
 
-<template name="unirse">
-	<div id="partidas_a_unirse">
-		<h3>Lista de Partidas Disponibles</h3>
-	</div>
+<template name="misPartidas">
+    <div class="misPartidas">
+        <h2> MIS PARTIDAS NO EMPEZADAS</h2>
+        {{#each listMias false}}
+            <li>
+                {{titulo}} : [{{listaJugadores}}]
+                {{#if auxMias}}
+                    <button type="button" class="empezarPartida">Empezar Partida!</button>
+                {{/if}}
+            </li>
+        {{/each}}
+
+        <h2> MIS PARTIDAS EMPEZADAS</h2>
+        {{#each listMias true}}
+            <li class="miPartida {{selectedPartida}}">
+                {{titulo}} : [{{listaJugadores}}]
+            </li>
+        {{/each}}
+    </div>
 </template>
 
-<template name="mi_partida">
-	<div id="mi_partida">
-		<label> Titulo: {{mi_gente.titulo}} </label>
-		<br>
-        <label> Maximo Jugadores {{mi_gente.num_jug}}</label>
-        <div id="abandonar">
-			{{#if currentUser = mi_gente.creador}}
-				<input id="boton_eliminar" class="btn" type="button" value="Eliminar Partida" />
-			{{/if}}
-		</div>
-	</div>
+<!-- PARTIDA SELECCIONADA-->
 
+<template name="actualPartida">
+    <div class="actualPartida">
+        {{#if renderThis}}
+            <h1>Titulo: {{partida.titulo}} : {{#if miTurno}} (ES MI TURNO) {{else}} (ESPERANDO) {{/if}}</h1>
+            <li>Jugadores: [{{partida.listaJugadores}}]</li>
+            <li>Mazo: {{mazoLength}}</li>
+            <li>Roll: {{carac.roll}}</li>
+            <li>Farolillo: {{#if carac.farolillo}} Arreglado {{else}} Roto {{/if}} </li>
+            <li>Pico: {{#if carac.pico}} Arreglado {{else}} Roto {{/if}} </li>
+            <li>Vagoneta: {{#if carac.vagoneta}} Arreglado {{else}} Roto {{/if}} </li>
+            <li>Puntos: {{carac.puntuacion}}</li>
+            <hr>
+
+            <form>
+                <select id="Mano">
+                    {{#each carac.mano}}
+                        <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                <select id="Tipo">
+                        <option value="Poner">Poner</option>
+                        <option value="Descartar">Descartar</option>
+                </select>
+                <select id="Objetivo">
+                    <option value="none">none</option>
+                    {{#each partida.listaJugadores}}
+                        <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                <select id="Objeto">
+                    <option value="default">Default</option>
+                    <option value="farolillo">Farolillo</option>
+                    <option value="vagoneta">Vagoneta</option>
+                    <option value="pico">Pico</option>
+                </select>
+                <input type="number" name="fila" id="fila" placeholder="Fila" required/>
+                <input type="number" name="columna" id="columna"  placeholder="Columna" required/>
+                <button type="submit"> Submit</button>
+            </form>
+        {{/if}}
+    </div>
+    <canvas id="canvas" width="850" height="900"></canvas>
+    <canvas id="canvas2" width="450" height="600"></canvas>
 </template>

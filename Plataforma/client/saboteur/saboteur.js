@@ -1,70 +1,184 @@
-//acceso a partidas
+Meteor.subscribe("partidas");
+Meteor.subscribe("caracteristicas");
+Meteor.subscribe("mov_card");
 
-	Meteor.subscribe("partidas");
 
-//funcion al empezar
-Meteor.startup(function(){
-    Session.set("current_game", "none");
-    $('#partidas_a_unirse').show();
-	$('#div_crear').hide();
-	$('#mi_partida').hide();
 
-    $(document).on("click", ".alert .close", function(e) {
-        $(this).parent().hide();
-    });
+// TOTAL PARTIDAS
+Template.totalPartidas.helpers({
+	listTotal: function () {
+      		return Partidas.find();
+    	},
+
+    	auxTotal: function () {
+      		if (this.listaJugadores.indexOf(Meteor.user().username) == -1){
+        		return true;
+      		}
+      			return false;
+    	},
 });
-//	Cliente
 
-Template.crear_partida.events({
-	'click #crear': function () {
-        $('#partidas_a_unirse').hide();
-        $('#div_crear').show();
+Template.totalPartidas.events({
+	'submit form': function(event){
+		event.preventDefault();
+		var titulo = event.target.titulo.value;
+    		var numJugadores = event.target.numJugadores.value;
+	    	Meteor.call("nuevaPartida", Meteor.user().username, titulo, numJugadores);
+	},
+
+	'click .unirsePartida': function(event){
+		event.preventDefault();
+		console.log("llamando a unirse");
+		Meteor.call("unirsePartida", this._id, Meteor.user().username);
+	},
+
+});
+
+// MIS PARTIDAS
+
+Template.misPartidas.helpers({
+    listMias: function (bool) {
+      return Partidas.find({listaJugadores: Meteor.user().username, empezada: bool});
     },
-    'submit form': function(event){
-          event.preventDefault();
-          var Titulo = $('[name=titulo]').val();
-          var Num_jug = $('[name=num_jugadores]').val();
-          var Empezado = false;
-          var currentUser = Meteor.userId();
-          //si meto algun dato en el form, inserto los datos en el form
-          if (Titulo){
-          	Partidas.insert({
-	          	titulo: Titulo,
-	          	num_jug: Num_jug,
-	          	creador: currentUser,
-	          	empezado: Empezado
-	        });
-	        $('[name=titulo]').val('');
-          	$('[name=num_jugadores]').val('');
-	        $('#div_crear').hide();
-	        $('#crear_partida').hide();
-	        $('#mi_partida').show();
-          }
-    
-    }
+
+    auxMias: function () {
+      return this.listaJugadores[0] == Meteor.user().username && this.numJugadores == this.listaJugadores.length && !this.empezada
+    },
+    selectedPartida: function () {
+      var partidaId = this._id;
+      var selectedPartida = Session.get("selectedPartida");
+      if(partidaId == selectedPartida){
+        return "selected"
+      }
+    },
 
 });
 
-Template.mi_partida.helpers({
-	'mi_gente': function(){
-		var currentUser = Meteor.userId();
-		var misPartidas = Partidas.find({"creador": currentUser}).fetch().reverse();
-		return misPartidas[0];
-	}
-})
 
-Template.mi_partida.events({
-	'click #boton_eliminar': function(event){
-    	var currentUser = Meteor.userId();
-    	event.preventDefault();
-    	var misPartidas = Partidas.find({"creador": currentUser}).fetch().reverse();
-    	var idPartida = misPartidas[0]._id;
-    	var confirm = window.confirm("¿Eliminar esta sala?");
-    	if(confirm){
-            Partidas.remove({ _id: idPartida });
-        }
-        $('#mi_partida').hide();
-	    $('#crear_partida').show();
-	    $('#partidas_a_unirse').show();
+Template.misPartidas.events({
+  'click .empezarPartida': function(event){
+    event.preventDefault();
+    Meteor.call("empezarPartida", this._id);
+    //render();
+  },
+
+  'click .miPartida': function(){
+    if(Partidas.findOne({_id: this._id}).empezada){
+      Session.set("selectedPartida",this._id);
+      render();
     }
-})
+  },
+
+});
+
+// PARTIDA SELECCIONADA
+rendThis = function() {
+  if(Partidas.find().count() > 0 && Session.get("selectedPartida")){
+    return true;
+  }
+  return false;
+}
+
+myTurno = function(){
+  var turno = Partidas.findOne({_id: Session.get("selectedPartida")}).jugadorActivo;
+  if(turno == Meteor.userId()){
+    return true;
+  }
+  return false;
+
+}
+partd = function(){
+  return Partidas.findOne({_id: Session.get("selectedPartida")});
+}
+
+mazLength = function(){
+  return Partidas.findOne({_id: Session.get("selectedPartida")}).mazoGeneral.length;
+}
+
+caracteristicas = function(){
+    return Caracteristicas.findOne({partidaId: Session.get("selectedPartida"),jugadorId: Meteor.userId()});
+}
+
+Template.actualPartida.helpers({
+    /*renderThis: function () {
+      if(Partidas.find().count() > 0 && Session.get("selectedPartida")){
+        return true;
+      }
+      return false;
+    },*/
+    renderThis: function() {
+      return rendThis();
+    },
+
+    /*miTurno: function () {
+      var turno = Partidas.findOne({_id: Session.get("selectedPartida")}).jugadorActivo;
+      if(turno == Meteor.userId()){
+        return true;
+      }
+      return false;
+    },*/
+    miTurno: function(){
+        return myTurno();
+    },
+
+    /*partida: function () {
+      return Partidas.findOne({_id: Session.get("selectedPartida")});
+    },*/
+    partida: function(){
+        return partd();
+    },
+
+    /*mazoLength: function () {
+      return Partidas.findOne({_id: Session.get("selectedPartida")}).mazoGeneral.length;
+    },*/
+    mazoLength: function(){
+        return mazLength();
+    },
+
+    /*carac: function () {
+      return Caracteristicas.findOne({partidaId: Session.get("selectedPartida"),jugadorId: Meteor.userId()});
+    },*/
+    carac: function(){
+      return caracteristicas();
+    },
+});
+
+Template.actualPartida.events({
+  'submit form': function(event){
+    event.preventDefault();
+/*
+    var partidaId = Session.get("selectedPartida");
+    var carta = $('#Mano option:selected').val();
+    var tipo = $('#Tipo option:selected').val();
+    var objetivo = $('#Objetivo option:selected').val();
+    var objeto = $('#Objeto option:selected').val();
+    var fila = $('[name=fila]').val();
+    var columna = $('[name=columna]').val();
+*/
+	var form = event.target;
+	var partidaId = Session.get("selectedPartida");
+    	var carta = event.target.Mano.value;
+    	var tipo = event.target.Tipo.value;
+   	var objetivo = event.target.Objetivo.value;
+    	var objeto = event.target.Objeto.value;
+    	var fila = event.target.fila.value;
+    	var columna = event.target.columna.value;
+
+	console.log(form);
+	console.log(partidaId);
+	console.log(carta);
+	console.log(tipo);
+	console.log(objetivo);
+	console.log(objeto);
+	console.log(fila);
+	console.log(columna);
+	
+
+    if(tipo == "Poner"){
+      Meteor.call("ponerCarta", partidaId, Meteor.userId(),carta,parseInt(fila),parseInt(columna),objetivo,objeto);
+    }else{
+      Meteor.call("pasarTurno", partidaId, Meteor.userId(),carta);
+    }
+
+  },
+});

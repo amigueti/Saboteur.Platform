@@ -1,23 +1,25 @@
-#crear_partida{
+/* CSS declarations go here */
+
+#content div{
+	display: inline-block;
+	border: 1px solid black;
 	float: left;
-	width: 130px;
-}
-#partidas_a_unirse{
-	float: left;
-	width: 50%;
-	height: 300px;
-	border-style: solid;
-}
-#div_crear{
-	float: left;
-	width: 50%;
-	height: 300px;
-	border-style: solid;
+	width: 25%;
+	height: 500px;
+	overflow: hidden;
 }
 
-#mi_partida{
-	float: left;
-	width: 50%;
-	height: 300px;
-	border-style: solid;
+.crearPartida{
+	position: relative;
+	width: 100% !important;
+	height: 21px !important;
+	display: block;
+}
+
+.actualPartida{
+	width: 25% !important;
+}
+
+.selected{
+	background-color: blue;
 }
