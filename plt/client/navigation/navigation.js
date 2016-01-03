@@ -17,6 +17,20 @@ Template.navigation.events({
      },
      'click #navPerfil':function(){
         Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
-        
+        //Se crea el perfil por primera vez
+        usuario = Meteor.user().username;
+             id = Meteor.user()._id;
+            var post = {
+                _id:id,
+                nick : usuario,
+                email : "",
+                nombre: "",
+                nacionalidad:"",
+                genero:""
+            }
+                console.log(post);
+                Meteor.call("addPerfil", post);
+                alert("Has creado tu perfil");
+            
      }       
 });

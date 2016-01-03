@@ -15,9 +15,9 @@ Template.perfil.events({
 		//preventDefault();
 			console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
              usuario = Meteor.user().username;
-             //id = Meteor.user()._id;
+             id = Meteor.user()._id;
             var post = {
-            	//_id:id,
+            	_id:id,
                 nick : usuario,
                 email : $('input#email_1.col-xs-4').val(),
                 nombre: $('input#nombre_1.col-xs-4').val(),
@@ -25,8 +25,8 @@ Template.perfil.events({
                 genero:$('.radio-inline').find('[name=genderRadios]').val()
             }
             	console.log(post);
-                Meteor.call("addPerfil", post);
-            
+                Meteor.call("updatePerfil", post);
+            	alert("Has actualizado tu perfil");
             
 	}
 });
