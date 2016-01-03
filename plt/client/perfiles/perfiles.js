@@ -32,3 +32,12 @@ Template.perfiles.helpers({
 
 
 });
+Template.perfiles.events({
+	'click button.inc':function(){
+		console.log("AÑADIR AMIGO");
+		perfil_username=Perfiles.findOne({_id:idOtro}).nick;
+		id_usuario=Meteor.user()._id;
+		Amigos.update({
+			_id:id_usuario},{$push:{usernames:perfil_username}});
+	}
+});
