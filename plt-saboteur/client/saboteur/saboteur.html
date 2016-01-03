@@ -1,0 +1,89 @@
+
+<template name="saboteur">
+	{{#if currentUser}}
+		{{> tab_board}}
+	{{/if}}
+
+	<div class="total-board" hidden></div>
+
+	<div class="match-board" hidden>
+		<canvas id="canvas"></canvas>
+	</div>
+</template>
+
+
+<template name="tab_board">
+
+	<div class="tab-board">
+		<ul class="tabs">
+			<li class="active">
+				<a href="#tab-matches" data-toggle="tab"><i class="board-icon board-icon-1"></i>Matches</a>
+			</li>
+			<li>
+				<a href="#tab-mymatches" data-toggle="tab"><i class="board-icon board-icon-2"></i>My Matches</a>
+			</li>
+			<li>
+				<a href="#tab-profile" data-toggle="tab"><i class="board-icon board-icon-3"></i>Profile</a>
+			</li>
+			<li>
+				<a href="#tab-new" data-toggle="tab"><i class="board-icon board-icon-4"></i>New Match</a>
+			</li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane fade in active" id="tab-matches">
+				<h1>LIST OF MATCHES</h1>
+				<div>
+					{{#each match}}
+						<li class="li-matches">
+							Match::: {{titulo}}, [{{listaJugadores}}] {{measure}}
+							{{#if userInMatch}}
+								<button type="button" class="unirse-partida"> Join Match </button>
+							{{/if}}	
+						</li>
+					{{/each}}
+				</div>	
+			</div>
+			<div class="tab-pane fade" id="tab-mymatches">
+				<div>
+					<p>MY MATCHES</p>
+					{{#each mymatch}}
+						<li>
+							Match::: {{titulo}}, [{{listaJugadores}}] {{measure}}
+							{{#if startMatch}}
+								<button type="button" class="empezar-partida"> Start Match </button>
+							{{/if}}
+						</li>
+					{{/each}}
+				</div>
+				<div>
+					<p>MY STARTED MATCHES</p>
+					{{#each mystartedMatch}}
+						<li>
+							Match::: {{titulo}}, [{{listaJugadores}}] {{measure}}
+							<button type="button" class="entrar-partida"> Enter Match </button>
+						</li>
+					{{/each}}
+				</div>	
+			</div>
+			<div class="tab-pane fade" id="tab-profile">
+				<p>PROFILE</p>
+			</div>
+			<div class="tab-pane fade" id="tab-new">
+				<p>New Match</p>
+		    	<form>
+		    		<input type="text" name="titulo" placeholder="Title" required />
+		    		<input type="number" name="numJugadores"  min="2" max="10" required />
+		   			<button type="submit"> New Match </button>
+		   		</form>
+		   		<div id="tab-error"></div>
+			</div>
+
+		</div>
+
+	</div>
+</template>
+
+
+<template name="loading">
+</template>
