@@ -5,9 +5,14 @@
 });*/
 
 Router.route('/', {name: 'home'});
-Router.route('/juegos', {name: 'juegos'});
+//Router.route('/juegos', {name: 'juegos'});
 Router.route('/about',{name: 'about'});
 Router.route('/ranking',{name: 'ranking'});
+
+
+Router.route('/juego/sabateur',{
+	template: 'saboteur'
+});
 
 Router.route('/perfil/:_id',{
 	template: 'perfil',

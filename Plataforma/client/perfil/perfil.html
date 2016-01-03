@@ -3,6 +3,7 @@
 <template name="perfil">
 	{{#if conectado}}
 		{{> perfil_usuario}}
+		{{> juego}}
 	{{else}}
 		{{> not_logged}}
 	{{/if}}
@@ -82,3 +83,6 @@
 </template>
 
 
+<template name="juego">
+	<p><a href="/juego/sabateur">sabateur</a></p>
+</template>

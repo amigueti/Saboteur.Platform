@@ -1,0 +1,79 @@
+#cuadroPerfil{
+	border-radius: 10px;
+	border-style: solid;
+	position: absolute;
+	top:121px;
+	left:350px;
+	height: 450px;
+	width: 900px;
+	border-color: yellow;
+	
+}
+#imag{
+	position: relative;
+	left:180px;
+	top:20px;
+
+}
+body{
+	background-color: yellow;
+}
+
+#fechas{
+	position: relative;
+	left: 0px;
+}
+.panel-heading{
+	text-align: center;
+}
+#panelinfo{
+	position: relative;
+	left: 200px;
+	top: 0px;
+	height: 449px;
+	width: 500px;
+	border-style: solid;
+}
+#panelinfo2{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 449px;
+	width: 200px;
+	border-style: solid;
+	border-radius: 10px;
+}
+#panelinfo3{
+	position: absolute;
+	left: 700px;
+	top: 0px;
+	height: 449px;
+	width: 198px;
+	border-style: solid;
+	border-radius: 10px;
+}
+#formPerfil{
+	position: absolute;
+	left: 75px;
+	top: 230px;
+	
+	width: 500px;
+}
+input#email_1.col-xs-4{
+	width: 300px;
+}
+input#nombre_1.col-xs-4{
+	width: 300px;
+}
+input#nacionalidad_1.col-xs-4{
+	width: 300px;
+}
+#botonPanel{
+	position: absolute;
+	left:150px;
+	top:150px;
+	background-color: #D9EDF7;
+}
+.inc{
+	background-color: #D9EDF7;
+}

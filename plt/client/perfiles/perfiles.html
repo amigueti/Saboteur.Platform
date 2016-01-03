@@ -1,0 +1,87 @@
+<template name="perfiles">
+<div class="panel panel-default" id="cuadroPerfil">
+		<div class="panel panel-info" id="panelinfo">
+ 			<div class="panel-heading">{{nicky}}</div>
+ 			
+			<div id="imag">
+			
+			<img  src="https://sp.yimg.com/xj/th?id=OIP.M7381cb1c2000d22e936b4289355c14b2o0">
+			</div>
+		
+
+
+			<div class="well well-sm">
+			     Nombre: {{nombre}} 
+			 </div>    
+			<div class="well well-sm">
+			     Email: {{email}}
+			  </div>   
+			  <div class="well well-sm">
+			     Nacionalidad: {{nacionalidad}}
+			  </div>
+			<div class="well well-sm">
+			     Genero: {{genero}}
+			 
+			</div>
+			
+    		<button class="inc">Añadir a amigos</button>
+  
+  			
+		
+
+
+		</div>
+		<div class="panel panel-info" id="panelinfo2">
+			<div class="panel-heading">Mejores Marcas</div>
+
+
+			<table class="table table-bordered">
+  				 <thead>
+			        <tr>
+			           
+			            <th>Juego</th>
+			            <th>Puntuacion</th>
+			            
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr>
+			            
+			            <td>Saboteur</td>
+			            <td>0</td>
+			            
+			        </tr>
+			        <tr>
+			            
+			            <td>Alien-invasion</td>
+			            <td>0</td>
+			            
+			        </tr>
+			        <tr>
+			            
+			            <td>OTRO</td>
+			            <td>0</td>
+			            
+			        </tr>
+    			</tbody>
+			</table>
+
+
+
+		</div>
+		<div class="panel panel-info" id="panelinfo3">
+			<div class="panel-heading">Amigos</div>
+				<div class="list-group">
+				    <a href="#" class="list-group-item active">
+				        <span> <img src="{{imagen}}" width="25" height="25"></span> {{nicky}}<span class="badge">15</span>
+				    </a>
+				    
+				</div>
+		
+
+		</div>
+		
+		
+	
+</div>
+</template>
