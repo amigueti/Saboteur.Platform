@@ -25,13 +25,12 @@ Template.navigation.events({
             var post = {
                 _id:id,
                 nick : usuario,
-                imagen:AVATAR,
-                email : null,
-                nombre: null,
-                nacionalidad:null,
-                genero:null
+                email : $('input#email_1.col-xs-4').val(),
+                nombre: $('input#nombre_1.col-xs-4').val(),
+                nacionalidad:$('input#naacionalidad_1.col-xs-4').val(),
+                genero:$('.radio-inline').find('[name=genderRadios]').val()
             }
-            console.log(post);
+            //console.log(post);
             Meteor.call("addPerfil", post);
             alert("Has creado tu perfil");
             creado=true;
