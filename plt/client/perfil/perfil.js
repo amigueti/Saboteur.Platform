@@ -16,9 +16,11 @@ Template.perfil.events({
 			console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
              usuario = Meteor.user().username;
              id = Meteor.user()._id;
+             imagen = Meteor.user().profile.image;
             var post = {
             	_id:id,
                 nick : usuario,
+                imagen:imagen,
                 email : $('input#email_1.col-xs-4').val(),
                 nombre: $('input#nombre_1.col-xs-4').val(),
                 nacionalidad:$('input#naacionalidad_1.col-xs-4').val(),

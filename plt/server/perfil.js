@@ -12,6 +12,7 @@ Meteor.methods ({
         Perfiles.insert({
             _id:post.id,
             nick : post.nick,
+            imagen:post.imagen,
             email : post.email,
             nombre : post.nombre,
             nacionalidad:post.nacionalidad,
@@ -22,6 +23,7 @@ Meteor.methods ({
         Perfiles.update({
             _id:post.id,
             nick : post.nick,
+            imagen:post.imagen,
             email : post.email,
             nombre : post.nombre,
             nacionalidad:post.nacionalidad,

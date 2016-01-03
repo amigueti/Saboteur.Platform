@@ -23,6 +23,7 @@ Template.navigation.events({
             var post = {
                 _id:id,
                 nick : usuario,
+                imagen:AVATAR,
                 email : "",
                 nombre: "",
                 nacionalidad:"",
