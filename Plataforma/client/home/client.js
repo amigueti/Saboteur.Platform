@@ -92,8 +92,8 @@ Template.choose_game.events({
         $('#crear_partida').show();
         $('#div_crear').hide();
 
-        //var game = Games.findOne({name:"Saboteur"});
-        //Session.set("current_game", game._id);
+        var game = Games.findOne({name:"Saboteur"});
+        Session.set("current_game", game._id);
     },
     'click #none': function () {
         $('#container').hide();
@@ -108,19 +108,6 @@ Template.menu.events({
       $('.juegos').show();
       $('.perfil_template').hide();
       $('.ranking_template').hide();
-      $('#container_sab').hide();
-  },
-  'click #Boton_Perfil': function(){
-      $('.juegos').hide();
-      $('.perfil_template').show();
-      $('.ranking_template').hide();
-      $('#container_sab').hide();
-
-  },
-  'click #Boton_Ranking': function(){
-      $('.juegos').hide();
-      $('.perfil_template').hide();
-      $('.ranking_template').show();
       $('#container_sab').hide();
   }
 })
