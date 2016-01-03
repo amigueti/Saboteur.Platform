@@ -1,5 +1,5 @@
 var idOtro=document.URL.slice(31,100);
-
+var existeListaAmigos =false;
 Template.perfiles.helpers({
 
 	'imagen':function(){
@@ -37,7 +37,11 @@ Template.perfiles.events({
 		console.log("AÑADIR AMIGO");
 		perfil_username=Perfiles.findOne({_id:idOtro}).nick;
 		id_usuario=Meteor.user()._id;
-		Amigos.update({
-			_id:id_usuario},{$push:{usernames:perfil_username}});
+		if(existeListaAmigos){
+			Amigos.update({_id:id_usuario},{$push:{usernames:perfil_username}});
+		}else{
+			Amigos.insert({_id:id_usuario,usernames:[perfil_username]});
+			existeListaAmigos = true;
+		}	
 	}
 });
