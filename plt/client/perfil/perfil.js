@@ -11,11 +11,14 @@ Template.perfil.events({
 		//Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
 		$('#editYourAvatarModal').modal();
 	},
-	'click button#botonPanel':function(form){
-		event.preventDefault();
-            var currentUser = Meteor.user().username;
+	'click #botonDatos':function(){
+		//preventDefault();
+			console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+             usuario = Meteor.user().username;
+             //id = Meteor.user()._id;
             var post = {
-                nick : currentUser,
+            	//_id:id,
+                nick : usuario,
                 email : $('input#email_1.col-xs-4').val(),
                 nombre: $('input#nombre_1.col-xs-4').val(),
                 nacionalidad:$('input#naacionalidad_1.col-xs-4').val(),
@@ -28,11 +31,12 @@ Template.perfil.events({
 	}
 });
 Template.perfil.helpers({
-	
+
 	'imagen':function(){
-		return Meteor.user().profile.image;
+		var imagen =Meteor.user().profile.image;
+		return imagen;
 	},
-	'nick':function(){
+	'nicky':function(){
 		return Meteor.user().username;
 	}
 

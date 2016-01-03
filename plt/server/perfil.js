@@ -10,6 +10,7 @@
 Meteor.methods ({
     addPerfil : function (post) {
         Perfiles.insert({
+            //_id:id,
             nick : post.nick,
             email : post.email,
             nombre : post.nombre,
