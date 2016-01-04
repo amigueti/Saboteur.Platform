@@ -32,10 +32,23 @@ Template.perfiles.helpers({
 	'amigos':function(){
 		
 		return Amigos.findOne({_id:idOtro}).usernames;
+	},
+	'imagenAmigo':function(usernames){
+		usernames = Amigos.findOne({_id:idOtro}).usernames;
+		usernames.forEach(function(item){
+			ImagenAmigo = Meteor.users.findOne({username:item}).profile.image;
+		});
+		return ImagenAmigo;
+
+	},
+	'numeroAmigos':function(usernames){
+		usernames = Amigos.findOne({_id:idOtro}).usernames;
+		usernames.forEach(function(item){
+			IdAmigo = Meteor.users.findOne({username:item})._id;
+		});
+			return Amigos.findOne({_id:idAmigo}).usernames.length;
+		
 	}
-	/*'imagenAmigo':function(){
-		imagen_Amigo = 
-	}*/
 
 
 });
