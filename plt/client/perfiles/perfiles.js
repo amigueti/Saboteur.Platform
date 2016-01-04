@@ -28,7 +28,16 @@ Template.perfiles.helpers({
 	'genero':function(){
 		perfil=Perfiles.findOne({_id:idOtro});
 		return perfil.genero;
+	},
+	'amigos':function(){
+		amigos = Amigos.findOne({_id:idOtro}).usernames;
+		amigos.forEach(function(){
+			amigoMostrado=amigos.entries().next().value});
+		return amigoMostrado;
 	}
+	/*'imagenAmigo':function(){
+		imagen_Amigo = 
+	}*/
 
 
 });
