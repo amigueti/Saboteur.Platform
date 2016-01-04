@@ -39,6 +39,26 @@ Template.perfil.helpers({
 	},
 	'nicky':function(){
 		return Meteor.user().username;
+	},
+	'amigos':function(){
+		
+		return Amigos.findOne({_id:Meteor.userId()}).usernames;
+	},
+	'imagenAmigo':function(usernames){
+		usernames = Amigos.findOne({_id:Meteor.userId()}).usernames;
+		usernames.forEach(function(item){
+			ImagenAmigo = Meteor.users.findOne({username:item}).profile.image;
+		});
+		return ImagenAmigo;
+
+	},
+	'rutaAmigos':function(usernames){
+		usernames = Amigos.findOne({_id:Meteor.userId()}).usernames;
+		usernames.forEach(function(item){
+			IdAmigo = Meteor.users.findOne({username:item})._id;
+		});
+			return IdAmigo;
+		
 	}
 
 });

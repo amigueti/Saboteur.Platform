@@ -63,5 +63,8 @@ Template.perfiles.events({
 			Amigos.insert({_id:id_usuario,usernames:[perfil_username]});
 			existeListaAmigos = true;
 		}	
+	},
+	'click .list-group-item':function(){
+		console.log("He pulsado");
 	}
 });
