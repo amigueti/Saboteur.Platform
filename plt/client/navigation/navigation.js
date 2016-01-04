@@ -19,6 +19,7 @@ Template.navigation.events({
         
         if(creado==false){
             Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
+           
             //Se crea el perfil por primera vez
             usuario = Meteor.user().username;
              id = Meteor.user()._id;

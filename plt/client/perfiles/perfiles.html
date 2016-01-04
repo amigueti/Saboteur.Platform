@@ -71,13 +71,14 @@
 		</div>
 		<div class="panel panel-info" id="panelinfo3">
 			<div class="panel-heading">Amigos</div>
+				{{#each amigos}}
 				<div class="list-group">
-				    <a href="#" class="list-group-item active">
-				        <span> <img src="{{imagen}}" width="25" height="25"></span> {{nicky}}<span class="badge">15</span>
+				    <a href="/perfiles/{{rutaAmigos}}" class="list-group-item active">
+				        <span> <img src="{{imagenAmigo}}" width="25" height="25"></span> {{amigos}}<span class="badge">0</span>
 				    </a>
 				    
 				</div>
-		
+				{{/each}}
 
 		</div>
 		
