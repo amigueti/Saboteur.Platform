@@ -41,12 +41,12 @@ Template.perfiles.helpers({
 		return ImagenAmigo;
 
 	},
-	'numeroAmigos':function(usernames){
+	'rutaAmigos':function(usernames){
 		usernames = Amigos.findOne({_id:idOtro}).usernames;
 		usernames.forEach(function(item){
 			IdAmigo = Meteor.users.findOne({username:item})._id;
 		});
-			return Amigos.findOne({_id:idAmigo}).usernames.length;
+			return IdAmigo;
 		
 	}
 
