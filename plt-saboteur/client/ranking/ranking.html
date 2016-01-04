@@ -1,0 +1,37 @@
+<template name="ranking">
+<div class="panel panel-default" id="cuadroRanking">
+
+		<div class="panel panel-info" id="panelinfo2">
+			<div class="panel-heading">Ranking Saboteur</div>
+
+			<table class="table table-bordered">
+  				 <thead>
+			        <tr>
+			           
+			            <th>Posicion</th>
+			            <th>Foto</th>
+			            <th>Usuario</th>
+							<th>Puntos</th>
+							<th>Juego</th>
+							<th>Última partida</th>
+							<th>Pais</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+
+					 {{#each position}}
+			        <tr>
+			            <td>FaltaContador</td>
+			            <td>{{imagen}}</td>
+							<td>{{nick}}</td>
+			            <td>{{puntos}}</td>
+							<td>{{juego}}</td>
+							<td>{{ultpartida}}</td>
+							<th>{{Pais}}</th>
+			        </tr>
+					{{/each}}
+    			</tbody>
+			</table>
+		</div>	
+</div>
+</template>
