@@ -54,7 +54,8 @@ Template.perfiles.events({
 			existeListaAmigos = true;
 		}	
 	},
-	'click .list-group-item':function(){
+	'bdlclick .list-group-item':function(){
 		console.log("He pulsado");
+		location.reload();
 	}
 });

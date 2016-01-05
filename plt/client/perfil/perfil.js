@@ -29,6 +29,10 @@ Template.perfil.events({
                // Meteor.call("updatePerfil", post);
             	alert("Has actualizado tu perfil");
             
+	},
+	'bdlclick .list-group-item':function(){
+		console.log("He pulsado");
+		location.reload();
 	}
 });
 Template.perfil.helpers({
