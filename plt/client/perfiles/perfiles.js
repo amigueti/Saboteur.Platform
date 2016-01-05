@@ -32,35 +32,21 @@ Template.perfiles.helpers({
 	'amigos':function(){
 		
 		return Amigos.findOne({_id:idOtro}).usernames;
-	},
-	'imagenAmigo':function(usernames){
-		usernames = Amigos.findOne({_id:idOtro}).usernames;
-		usernames.forEach(function(item){
-			ImagenAmigo = Meteor.users.findOne({username:item}).profile.image;
-		});
-		return ImagenAmigo;
-
-	},
-	'rutaAmigos':function(usernames){
-		usernames = Amigos.findOne({_id:idOtro}).usernames;
-		usernames.forEach(function(item){
-			IdAmigo = Meteor.users.findOne({username:item})._id;
-		});
-			return IdAmigo;
-		
 	}
 
 
 });
 Template.perfiles.events({
 	'click button.inc':function(){
+		idOtro=document.URL.slice(31,100);
 		console.log("AÑADIR AMIGO");
 		perfil_username=Perfiles.findOne({_id:idOtro}).nick;
 		id_usuario=Meteor.user()._id;
+		fotoAmigo=Meteor.users.findOne({_id:idOtro}).profile.image;
 		if(existeListaAmigos){
-			Amigos.update({_id:id_usuario},{$push:{usernames:perfil_username}});
+			Amigos.update({_id:id_usuario},{$push:{usernames:{idAmigo:idOtro,username:perfil_username,foto:fotoAmigo}}});
 		}else{
-			Amigos.insert({_id:id_usuario,usernames:[perfil_username]});
+			Amigos.insert({_id:id_usuario,usernames:[{idAmigo:idOtro,username:perfil_username,foto:fotoAmigo}]});
 			existeListaAmigos = true;
 		}	
 	},
