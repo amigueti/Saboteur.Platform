@@ -11,8 +11,8 @@
 }
 #imag{
 	position: relative;
-	left:180px;
-	top:20px;
+	left:183px;
+	top:0px;
 
 }
 body{
@@ -75,5 +75,8 @@ input#nacionalidad_1.col-xs-4{
 	background-color: #D9EDF7;
 }
 .inc{
-	background-color: #D9EDF7;
+	background-color: #22CF24;
+	text-align: center;
+	position: relative;
+	left:185px;
 }

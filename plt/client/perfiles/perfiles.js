@@ -1,36 +1,40 @@
-var idOtro=document.URL.slice(31,100);
+//var idOtro=document.URL.slice(31,100);
 var existeListaAmigos =false;
 Template.perfiles.helpers({
 
 	'imagen':function(){
-		
+		idOtro=document.URL.slice(31,100);
 		 imagenOtro =Meteor.users.findOne({_id:idOtro});
 		return imagenOtro.profile.image;
 	},
 	'nicky':function(){
-		
+		idOtro=document.URL.slice(31,100);
 		perfil=Perfiles.findOne({_id:idOtro});
 
 		return perfil.nick;
 	},
 	'email':function(){
+		idOtro=document.URL.slice(31,100);
 		perfil=Perfiles.findOne({_id:idOtro});
 		return perfil.email;
 	},
 	'nombre':function(){
+		idOtro=document.URL.slice(31,100);
 		perfil=Perfiles.findOne({_id:idOtro});
 		return perfil.nombre;
 	},
 	'nacionalidad':function(){
+		idOtro=document.URL.slice(31,100);
 		perfil=Perfiles.findOne({_id:idOtro});
 		return perfil.nacionalidad;
 	},
 	'genero':function(){
+		idOtro=document.URL.slice(31,100);
 		perfil=Perfiles.findOne({_id:idOtro});
 		return perfil.genero;
 	},
 	'amigos':function(){
-		
+		idOtro=document.URL.slice(31,100);
 		return Amigos.findOne({_id:idOtro}).usernames;
 	}
 
