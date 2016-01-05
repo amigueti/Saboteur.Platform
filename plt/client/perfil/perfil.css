@@ -84,3 +84,8 @@ input#nacionalidad_1.col-xs-4{
     border-color: #E7EEF5;
 
 }
+.panel-info > .panel-heading {
+    color: #E9E297;
+    background-color: #0E0F0E;
+    border-color: #C0DEE4;
+}

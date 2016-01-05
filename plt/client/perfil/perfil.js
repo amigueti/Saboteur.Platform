@@ -27,6 +27,7 @@ Template.perfil.events({
             });
             	//console.log(post);
                // Meteor.call("updatePerfil", post);
+               
             	alert("Has actualizado tu perfil");
             
 	},
