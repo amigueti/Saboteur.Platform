@@ -17,7 +17,7 @@ Template.navigation.events({
      },
      'click #navPerfil':function(){
         
-        if(creado==false){
+        if(!Perfiles.findOne({_id:Meteor.userId()})){
             Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
            
             //Se crea el perfil por primera vez
