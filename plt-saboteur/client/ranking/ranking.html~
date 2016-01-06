@@ -56,7 +56,7 @@
 </template>
 
 <template name="tablaespecif" id="tableespecif">
-			<div class="panel-heading">Ranking {{nombrejuego}}</div>
+			<div class="panel-heading">Ranking {{prueba}}</div>
 			<table class="table table-bordered">
   				 <thead>
 			        <tr>
