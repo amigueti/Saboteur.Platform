@@ -23,9 +23,11 @@
 			     Genero: {{genero}}
 			 
 			</div>
-			
-    		<button class="inc">Añadir a amigos</button>
-  
+			{{#if esAmigo}}
+    		<button class="inc" id="botonquitarAmigo">Eliminar de amigos</button>
+  			{{else}}
+  			<button class="inc" id="botonponerAmigo">Añadir a amigos</button>
+  			{{/if}}
   			
 		
 
@@ -69,7 +71,7 @@
 
 
 		</div>
-		<div class="panel panel-info" id="panelinfo3">
+		<div class="panel panel-info" id="panelinfo3" scrolling="yes">
 			<div class="panel-heading">Amigos</div>
 				{{#each amigos}}
 				<div class="list-group">

@@ -74,9 +74,27 @@ input#nacionalidad_1.col-xs-4{
 	top:150px;
 	background-color: #D9EDF7;
 }
-.inc{
+#botonponerAmigo{
 	background-color: #22CF24;
 	text-align: center;
 	position: relative;
-	left:185px;
+	left:188px;
+}
+#botonquitarAmigo{
+	background-color: red;
+	text-align: center;
+	position: relative;
+	left:188px;
+}
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+    z-index: 2;
+    color: #FFF;
+    background-color: #428BCA;
+    border-color: #E7EEF5;
+
+}
+.panel-info > .panel-heading {
+    color: #E9E297;
+    background-color: #0E0F0E;
+    border-color: #C0DEE4;
 }

@@ -17,6 +17,7 @@ Template.navigation.events({
      },
      'click #navPerfil':function(){
         
+        
         if(!Perfiles.findOne({_id:Meteor.userId()})){
             Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
            
@@ -35,7 +36,8 @@ Template.navigation.events({
             Meteor.call("addPerfil", post);
             alert("Has creado tu perfil");
             creado=true;
-        }        
+        }    
+
             
      }       
 });

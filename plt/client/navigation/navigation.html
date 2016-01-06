@@ -7,7 +7,9 @@
 			        <a href="/#" class="btn btn-primary" id="navJuegos">Juegos</a>
 			    </li>
 			    <li><a href="/#" class="btn btn-primary" id="navRanking">Ranking</a></li>
+			    {{#if currentUser}}
 			    <li><a href="/perfil" class="btn btn-primary" id="navPerfil">Perfil de Usuario</a></li>
+			    {{/if}}
 			    <li><a href="/#" class="btn btn-primary" id="navHelp">Ayuda</a></li>
 			    <li>{{> loginButtons }}</li>
 			    <li><form id="formbusqueda">

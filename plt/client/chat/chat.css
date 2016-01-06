@@ -6,6 +6,8 @@
 	float: left;
 }
 #chat_gral{
+	position: absolute;
+	top:120px;
 	border-radius: 10px;
 	border-style: solid;
 	float: left;
