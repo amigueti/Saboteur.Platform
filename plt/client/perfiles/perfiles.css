@@ -78,7 +78,7 @@ input#nacionalidad_1.col-xs-4{
 	background-color: #22CF24;
 	text-align: center;
 	position: relative;
-	left:185px;
+	left:188px;
 }
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
     z-index: 2;
