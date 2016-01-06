@@ -101,11 +101,13 @@ var setGanadores = function(partidaId){
         var aux = Toplist.findOne({name: nameJugador});
         if(aux){
             Toplist.update({name: nameJugador},{$inc: {puntos: caracs[i].puntuacion}});
+				Meteor.call("updateRanking", nameJugador, caracs[i].puntuacion);
         }else{
             Toplist.insert({
                 name: nameJugador,
                 puntos: caracs[i].puntuacion,
             });
+				Meteor.call("insertRanking", nameJugador, caracs[i].puntuacion);
         }
     };
 

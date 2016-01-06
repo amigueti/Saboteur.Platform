@@ -17,24 +17,27 @@ Template.navigation.events({
      },
      'click #navPerfil':function(){
         
-        if(creado==false){
+        
+        if(!Perfiles.findOne({_id:Meteor.userId()})){
             Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
+           
             //Se crea el perfil por primera vez
             usuario = Meteor.user().username;
              id = Meteor.user()._id;
             var post = {
                 _id:id,
                 nick : usuario,
-                email : $('input#email_1.col-xs-4').val(),
-                nombre: $('input#nombre_1.col-xs-4').val(),
-                nacionalidad:$('input#naacionalidad_1.col-xs-4').val(),
-                genero:$('.radio-inline').find('[name=genderRadios]').val()
+                email : "",
+                nombre: "",
+                nacionalidad:"",
+                genero:""
             }
             //console.log(post);
             Meteor.call("addPerfil", post);
             alert("Has creado tu perfil");
             creado=true;
-        }        
+        }    
+
             
      }       
 });

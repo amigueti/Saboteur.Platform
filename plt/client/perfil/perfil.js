@@ -17,18 +17,23 @@ Template.perfil.events({
              usuario = Meteor.user().username;
              id = Meteor.user()._id;
              
-            var post = {
+            Perfiles.update({_id:id},{
             	_id:id,
                 nick : usuario,
                 email : $('input#email_1.col-xs-4').val(),
                 nombre: $('input#nombre_1.col-xs-4').val(),
-                nacionalidad:$('input#naacionalidad_1.col-xs-4').val(),
+                nacionalidad:$('input#nacionalidad_1.col-xs-4').val(),
                 genero:$('.radio-inline').find('[name=genderRadios]').val()
-            }
+            });
             	//console.log(post);
-                Meteor.call("updatePerfil", post);
+               // Meteor.call("updatePerfil", post);
+               
             	alert("Has actualizado tu perfil");
             
+	},
+	'bdlclick .list-group-item':function(){
+		console.log("He pulsado");
+		location.reload();
 	}
 });
 Template.perfil.helpers({
@@ -39,6 +44,10 @@ Template.perfil.helpers({
 	},
 	'nicky':function(){
 		return Meteor.user().username;
+	},
+	'amigos':function(){
+		
+		return Amigos.findOne({_id:Meteor.userId()}).usernames;
 	}
 
 });
