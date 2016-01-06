@@ -76,13 +76,10 @@
 					 {{#each position}}
 
 			        <tr>
-							<td>PosicionFalta</td>
-							<td>{{jugadorSelected.imagen}}</td>
-							<td>{{jugadorSelected.nick}}</td>
+
 			            <td>{{puntos}}</td>
 							<td>{{juego}}</td>
-							<td>{{ultpartida}}</td>
-							<td>{{jugadorSelected.nacionalidad}}</td>
+
 			        </tr>
 					{{/each}}
     			</tbody>

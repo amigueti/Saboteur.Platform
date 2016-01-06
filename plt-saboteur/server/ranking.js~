@@ -18,11 +18,13 @@ Meteor.methods ({
    },
 
     insertPointsAllien : function ( points) {
-		if (this.userId)
+		console.log("dido1");
+
 			     var aux = Ranking.findOne({user_id:this.userId, juego: "Allien"});
 		     if(aux){
+				console.log("dido2");
 		         Ranking.update({user_id:this.userId},{$set: {puntos: points, ultPartida: Date.now()}});
-
+					console.log("this.puntos");
 		     }else{
 				Ranking.insert({
 		         user_id:this.userId,
@@ -30,6 +32,7 @@ Meteor.methods ({
 					puntos: points,
 					ultPartida: Date.now(),
 				});
+				console.log("dido");
 		     }
 
     },
