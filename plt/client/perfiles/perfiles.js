@@ -52,7 +52,7 @@ Template.perfiles.helpers({
 
 });
 Template.perfiles.events({
-	'click button.inc':function(){
+	'click #botonponerAmigo':function(){
 		idOtro=document.URL.slice(31,100);
 		console.log("AÑADIR AMIGO");
 		perfil_username=Perfiles.findOne({_id:idOtro}).nick;
@@ -68,6 +68,18 @@ Template.perfiles.events({
 	'bdlclick .list-group-item':function(){
 		console.log("He pulsado");
 		location.reload();
-	}
+	},
+	'click #botonquitarAmigo':function(){
+		idOtro=document.URL.slice(31,100);
+		console.log("KITAR AMIGO");
+		perfil_username=Perfiles.findOne({_id:idOtro}).nick;
+		id_usuario=Meteor.user()._id;
+		fotoAmigo=Meteor.users.findOne({_id:idOtro}).profile.image;
+		
+			Amigos.update({_id:id_usuario},{$pull:{usernames:{idAmigo:idOtro,username:perfil_username,foto:fotoAmigo}}});
+		
+			//console.log("FALLO AL KITAR AMIGO");
+			
+	},
 	
 });
