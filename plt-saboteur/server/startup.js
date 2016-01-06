@@ -177,6 +177,16 @@ Meteor.startup(function () {
         return Toplist.find();
     });
 
+    if (Games.find().count() == 0) {
+        Games.insert({name: "AlienInvasion"});
+        Games.insert({name: "Saboteur"});
+    };
+
+    Meteor.publish("games", function () {
+        return Games.find();
+    });
+
+    
 
     Meteor.methods({
         removeAll: function(){
