@@ -23,9 +23,11 @@
 			     Genero: {{genero}}
 			 
 			</div>
-			
-    		<button class="inc" id="botonponerAmigo">Añadir a amigos</button>
-  
+			{{#if esAmigo}}
+    		<button class="inc" id="botonquitarAmigo">Eliminar de amigos</button>
+  			{{else}}
+  			<button class="inc" id="botonponerAmigo">Añadir a amigos</button>
+  			{{/if}}
   			
 		
 

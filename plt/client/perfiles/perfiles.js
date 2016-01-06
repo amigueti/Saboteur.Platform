@@ -36,6 +36,17 @@ Template.perfiles.helpers({
 	'amigos':function(){
 		idOtro=document.URL.slice(31,100);
 		return Amigos.findOne({_id:idOtro}).usernames;
+	},
+	'esAmigo':function(){
+		idOtro=document.URL.slice(31,100);
+		encontrado=false;
+		maximo=Amigos.find({_id:Meteor.userId()}).fetch()[0].usernames.length;
+		for(i=0;i<maximo;i++){
+			if(Amigos.find({_id:Meteor.userId()}).fetch()[0].usernames[i].idAmigo == idOtro)
+				encontrado=true;
+		}
+		return encontrado;
+
 	}
 
 
@@ -58,4 +69,5 @@ Template.perfiles.events({
 		console.log("He pulsado");
 		location.reload();
 	}
+	
 });
