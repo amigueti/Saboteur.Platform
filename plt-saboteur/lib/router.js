@@ -4,6 +4,7 @@ Router.configure({
 
 Router.route('/perfil',{name: 'perfil'});
 Router.route('/',{name: 'chat'});
-Router.route('/juego',{
+Router.route('/juegos',{name: 'juegos'});
+Router.route('/saboteur',{
 	template: 'saboteur'
 });
