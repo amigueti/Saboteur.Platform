@@ -27,8 +27,13 @@ Template.perfil.events({
             });
             	//console.log(post);
                // Meteor.call("updatePerfil", post);
+               
             	alert("Has actualizado tu perfil");
             
+	},
+	'bdlclick .list-group-item':function(){
+		console.log("He pulsado");
+		location.reload();
 	}
 });
 Template.perfil.helpers({
@@ -43,22 +48,6 @@ Template.perfil.helpers({
 	'amigos':function(){
 		
 		return Amigos.findOne({_id:Meteor.userId()}).usernames;
-	},
-	'imagenAmigo':function(usernames){
-		usernames = Amigos.findOne({_id:Meteor.userId()}).usernames;
-		usernames.forEach(function(item){
-			ImagenAmigo = Meteor.users.findOne({username:item}).profile.image;
-		});
-		return ImagenAmigo;
-
-	},
-	'rutaAmigos':function(usernames){
-		usernames = Amigos.findOne({_id:Meteor.userId()}).usernames;
-		usernames.forEach(function(item){
-			IdAmigo = Meteor.users.findOne({username:item})._id;
-		});
-			return IdAmigo;
-		
 	}
 
 });

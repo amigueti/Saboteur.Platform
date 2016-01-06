@@ -23,9 +23,11 @@
 			     Genero: {{genero}}
 			 
 			</div>
-			
-    		<button class="inc">Añadir a amigos</button>
-  
+			{{#if esAmigo}}
+    		<button class="inc" id="botonquitarAmigo">Eliminar de amigos</button>
+  			{{else}}
+  			<button class="inc" id="botonponerAmigo">Añadir a amigos</button>
+  			{{/if}}
   			
 		
 
@@ -69,12 +71,12 @@
 
 
 		</div>
-		<div class="panel panel-info" id="panelinfo3">
+		<div class="panel panel-info" id="panelinfo3" scrolling="yes">
 			<div class="panel-heading">Amigos</div>
 				{{#each amigos}}
 				<div class="list-group">
-				    <a href="/perfiles/{{rutaAmigos}}" class="list-group-item active">
-				        <span> <img src="{{imagenAmigo}}" width="25" height="25"></span> {{amigos}}<span class="badge">0</span>
+				    <a href="/perfiles/{{this.idAmigo}}" class="list-group-item active">
+				        <span> <img src="{{this.foto}}" width="25" height="25"></span> {{this.username}}<span class="badge">0</span>
 				    </a>
 				    
 				</div>

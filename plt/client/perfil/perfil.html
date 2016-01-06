@@ -8,7 +8,7 @@
 	
 	
 			{{> editYourAvatarModal}}
-			<button class="inc">Edit</button>
+			<button class="inc"><span class="glyphicon glyphicon-camera"></span></button>
 			</div>
 		
 
@@ -94,8 +94,8 @@
 			<div class="panel-heading">Amigos</div>
 				{{#each amigos}}
 				<div class="list-group">
-				    <a href="/perfiles/{{rutaAmigos}}" class="list-group-item active">
-				        <span> <img src="{{imagenAmigo}}" width="25" height="25"></span> {{amigos}}<span class="badge">0</span>
+				    <a href="/perfiles/{{this.idAmigo}}" class="list-group-item active">
+				        <span> <img src="{{this.foto}}" width="25" height="25"></span> {{this.username}}<span class="badge">0</span>
 				    </a>
 				    
 				</div>
