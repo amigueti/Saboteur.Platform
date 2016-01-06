@@ -8,11 +8,17 @@ Template.navigation.events({
             event.preventDefault();
             var buscado = $(event.target).find('[name=busqueda]').val();
             console.log(buscado);
-            console.log(Meteor.users.findOne({username: buscado}));
-            if(Meteor.users.findOne({username: buscado})){
+            console.log(Perfiles.findOne({nick: buscado}));
+            if(Perfiles.findOne({nick: buscado})){
             	console.log("encontado");
+                idRuta=Perfiles.findOne({nick: buscado})._id;
+                console.log(idRuta);
+                ruta="/perfiles/"+String(idRuta);
+                Router.go(ruta);
+
             }else{
             	console.log("no encontrado");
+                alert("Usuario no encontrado");
             }
      },
      'click #navPerfil':function(){
