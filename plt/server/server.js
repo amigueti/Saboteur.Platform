@@ -1,5 +1,17 @@
-/*Meteor.publish('messages', function(salon) {
+
+Meteor.publish('messages', function(salon) {
    return Messages.find( {}, {sort : {time : -1}, limit : 500} );
+});
+Meteor.publish('perfiles',function(){
+	return Perfiles.find({});
+
+});
+Meteor.publish('amigos',function(){
+	return Amigos.find({});
+	
+});
+Meteor.publish('users',function(){
+	return Meteor.users.find({});
 });
 
 Meteor.methods ({
@@ -21,4 +33,4 @@ Meteor.methods ({
             genero:post.genero
         });
     }
-});*/
+});

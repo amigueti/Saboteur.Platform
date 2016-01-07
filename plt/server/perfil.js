@@ -7,7 +7,7 @@
 
   });*/
 
-Meteor.methods ({
+/*Meteor.methods ({
     addPerfil : function (post) {
         Perfiles.insert({
             _id:post._id,
@@ -18,4 +18,4 @@ Meteor.methods ({
             genero:post.genero
         });
     }
-});
+});*/
