@@ -34,9 +34,9 @@ Template.perfil.events({
             	alert("Has actualizado tu perfil");
             
 	},
-	'bdlclick .list-group-item':function(){
+	'click .list-group-item':function(){
 		console.log("He pulsado");
-		location.reload();
+		//location.reload();
 	}
 });
 Template.perfil.helpers({

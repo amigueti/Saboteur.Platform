@@ -14,6 +14,8 @@ Template.navigation.events({
                 console.log(idRuta);
                 ruta="/perfiles/"+String(idRuta);
                 Router.go(ruta);
+                location.href=ruta;
+                //.setTimeout(location.reload(),300000);
 
             }else{
             	console.log("no encontrado");

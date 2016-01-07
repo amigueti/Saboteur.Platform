@@ -72,7 +72,7 @@ Template.perfiles.events({
 	'click .list-group-item':function(){
 		console.log("He pulsado");
 		
-		location.reload();
+		//location.reload();
 	},
 	'click #botonquitarAmigo':function(){
 		idOtro=document.URL.slice(31,100);

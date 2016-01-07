@@ -11,7 +11,11 @@ Meteor.publish('amigos',function(){
 	
 });
 Meteor.publish('users',function(){
-	return Meteor.users.find({});
+	if(this.userId){
+		return Meteor.users.find({},{fields:{username:1,_id:1,profile:1}});
+	}else{
+		this,ready()
+	}
 });
 
 Meteor.methods ({
@@ -33,4 +37,20 @@ Meteor.methods ({
             genero:post.genero
         });
     }
+});
+Amigos.allow({
+	insert:function(userId,doc){
+		return Meteor.userId();
+	},
+	update:function(userId,doc){
+		return Meteor.userId();
+	}
+});
+Perfiles.allow({
+	insert:function(userId,doc){
+		return Meteor.userId();
+	},
+	update:function(userId,doc){
+		return Meteor.userId();
+	}
 });
