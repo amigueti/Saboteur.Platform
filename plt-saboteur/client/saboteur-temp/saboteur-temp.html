@@ -1,72 +1,48 @@
-<!-- MAIN PAGE-->
+
 
 <template name="saboteur_temp">
-	{{#if currentUser}}
-		{{> tab_board}}
-	{{/if}}	
-
-	<div class="total-board" hidden>
-	</div>
+	<div class="total-board" hidden></div>	
+		
 	<div class="match-board" hidden>
 		<canvas id="canvas"></canvas>
 	</div>
-</template>
 
 
-<!-- HOME PAGE-->
-
-
-
-
-
-<!-- GAMEBOARD -->
-
-<template name="tab_board">
-
-	<div class="tab-board">
-		<ul class="tabs">
-			<li class="active">
-				<a href="#tab-matches" data-toggle="tab"><i class="board-icon board-icon-1"></i>Matches</a>
-			</li>
-			<li>
-				<a href="#tab-mymatches" data-toggle="tab"><i class="board-icon board-icon-2"></i>My Matches</a>
-			</li>
-			<li>
-				<a href="#tab-profile" data-toggle="tab"><i class="board-icon board-icon-3"></i>Profile</a>
-			</li>
-			<li>
-				<a href="#tab-new" data-toggle="tab"><i class="board-icon board-icon-4"></i>New Match</a>
-			</li>
+	<div id="tabs">
+		<ul class="tab_links">
+			<li class="active"><a href="#partidas" data-toggle="tab" class="btn">Partidas</a></li>
+			<li><a href="#mis_partidas" data-toggle="tab" class="btn">Mis Partidas</a></li>
+			<li><a href="#crear_partida" data-toggle="tab" class="btn">Crear Partida</a></li>
 		</ul>
-
-		<div class="tab-content">
-			<div class="tab-pane fade in active" id="tab-matches">
-				<h1>LIST OF MATCHES</h1>
+		<div class="tab_content">
+			<div id="partidas" class="tab active">
+				<h3>Partidas disponibles</h3>
 				<div>
 					{{#each match}}
-						<li class="li-matches">
-							Match::: {{titulo}}, [{{listaJugadores}}] {{measure}}
+						<li class="lista_partidas">
+							{{titulo}}, [{{listaJugadores}}] {{measure}}
 							{{#if userInMatch}}
-								<button type="button" class="unirse-partida"> Join Match </button>
+								<button type="button" class="unirse-partida">Unirse</button>
 							{{/if}}	
 						</li>
 					{{/each}}
 				</div>	
 			</div>
-			<div class="tab-pane fade" id="tab-mymatches">
+			<div id="mis_partidas" class="tab">
+				<h3>Mis partidas sin lanzar</h3>
 				<div>
-					<p>MY MATCHES</p>
 					{{#each mymatch}}
 						<li>
-							Match::: {{titulo}}, [{{listaJugadores}}] {{measure}}
+							{{titulo}}, [{{listaJugadores}}] {{measure}}
 							{{#if startMatch}}
-								<button type="button" class="empezar-partida"> Start Match </button>
+								<button type="button" class="empezar-partida">Comenzar Partida</button>
 							{{/if}}
 						</li>
 					{{/each}}
+
 				</div>
 				<div>
-					<p>MY STARTED MATCHES</p>
+					<h3>Partidas Lanzadas</h3>
 					{{#each mystartedMatch}}
 						<li>
 							Match::: {{titulo}}, [{{listaJugadores}}] {{measure}}
@@ -75,24 +51,18 @@
 					{{/each}}
 				</div>	
 			</div>
-			<div class="tab-pane fade" id="tab-profile">
-				<p>PROFILE</p>
-			</div>
-			<div class="tab-pane fade" id="tab-new">
-				<p>New Match</p>
-		    	<form>
-		    		<input type="text" name="titulo" placeholder="Title" required />
+			<div id="crear_partida" class="tab">
+				<h3>Crear partida</h3>
+				<form>
+		    		<input type="text" name="titulo" placeholder="Titulo Partida" required />
 		    		<input type="number" name="numJugadores"  min="2" max="10" required />
-		   			<button type="submit"> New Match </button>
+		   			<button class="crear_partida" type="submit">Crear Partida</button>
 		   		</form>
-		   		<div id="tab-error"></div>
 			</div>
-
 		</div>
-
 	</div>
 
+	
+
 </template>
 
-<template name="loading">
-</template>

@@ -1,91 +1,73 @@
-/* TAB BOARD*/
+#tabs{
+	float: left;
+	width: 700px;
+	height: 400px;
+	margin-left: 50px; 
+    display:inline-block;
 
-.tab-board{
-    overflow: hidden;
-    width: 60%;
-    height: 535px;
-    left: 150px;
-    top: 0px;
+}
+.tab {
+    display:none;
+}
+ 
+.tab.active {
+    display:block;
+}
+.tab_links{
+    height: 35px;
+}
+.tab_links li{
+    margin: 0px 3px;
+    float: left;
+    list-style: outside none none;
 }
 
-.tab-board .tabs{
-    display: block;
-    width: 15%;
-    float: right;
-    height: 532px;
-    background-color: #d98f88;
-    background-color: rgba(255,241,244,0.24);
-    box-shadow: inset 5px 0 5px -2px rgba(104,16,52,0.2), 0 2px 2px rgba(0,0,0,0.2);
+    .tab-links:after {
+        display:block;
+        clear:both;
+        content:'';
+    }
+
+.tab_content {
+        padding:15px;
+        border-radius:3px;
+        box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+        background:#fff;
+    }
+ 
+        .tab {
+            display:none;
+        }
+ 
+        .tab.active {
+            display:block;
+        }
+
+
+
+.menu_tab li a {
+    padding: 0 10px;
 }
 
-.tab-board .tabs li{
-    float: none;
-    width: 100%;
-    height: 133px;
+
+.active {
+    position: relative;
+    top: 1px;
+    background: white;
 }
 
-.tab-board .tabs li a{
-    display: block;
-    font-family: "Allerta", sans-serif;
-    font-size: 19px;
-    padding: 20px 19px 0px;
-    height: 100%;
-    width: 100%;
-    color: #fff;
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-bottom: 1px solid #ae6077;
-    border-bottom: 1px solid rgba(87,43,56,0.12);
-    text-align: center;
-    box-shadow: none;
-    white-space: normal;
+
+.a.button{
+	-webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
     text-decoration: none;
-}
-
-.tab-board .tabs li.active a{
-    color: #d4e729;
-    background-color: #ad736c;
-    background-color: rgba(121,41,58, 0.1);
-    border-color: rgba(123,24,37,0.12);
-}
-
-.tab-board .tabs i{
-    display: block;
-    width: 50px;
-    height: 50px;
-    margin: 0;
-    background-image: url(images/icons/icons.png);
-    background-size: 100px auto;
-}
-
-.tab-board .tabs .board-icon{
-    margin: auto;
-}
-
-.tab-board .tabs .board-icon.board-icon-1{background-position: -50px -150px;}
-.tab-board .tabs .board-icon.board-icon-2{background-position: -50px -150px;}
-.tab-board .tabs .board-icon.board-icon-3{background-position: -50px -200px;}
-.tab-board .tabs .board-icon.board-icon-4{background-position: -50px -50px;}
-
-.tab-board .tabs li.active .board-icon{background-position: -50px -100px;}
-
-
-/* TAB BOARD CONTENT*/
-
-.tab-board .tab-content{
-    display: block;
-    width: 85%;
-}
-
-/* MY MATCHES */
-
-#tab-mymatches li {
-    color: red;
+    color: blue;
 }
 
 
-/* MATCH BOARD*/
-
+ /*PARTIDA EN CURSO*/
+ 
 .total-board {
     z-index: 999;
     position: absolute;
@@ -114,39 +96,7 @@
     box-shadow: 0px 0 8px 8px rgba(0,0,0,0.4); 
 }
 
-
 .match-board #canvas{
     width: 100%;
     height: 100%;
-    
-}
-
-#tab-matches{
-    width: 100%;
-    height: 100%;
-    background-color: red;
-}
-
-
-.tab-content #tab-matches h1{
-    font-family: "Allerta", sans-serif;
-    text-align: center;
-    padding-top: 10px;
-    font-size: 30px;
-    letter-spacing: 5px;
-    margin-top: 0;
-}
-
-.tab-content #tab-matches div{
-    overflow: scroll;
-    overflow-x: hidden; 
-    width: 100%;
-    height: 475px;
-}
-
-.tab-content .li-matches{
-    background-color: #fff;
-    width: 100%;
-    height: 80px;
-    border: 1px solid rgba(0,0,0,0.5);
 }

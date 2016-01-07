@@ -2,7 +2,6 @@
 
 Meteor.subscribe("all_games");
 
-
 Meteor.startup(function(){
     Session.set("current_game", "none");
     $('#gamecontainer').hide();
