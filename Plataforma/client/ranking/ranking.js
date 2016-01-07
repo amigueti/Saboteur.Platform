@@ -5,9 +5,6 @@ Template.ranking.events({
   }
 });
 
-if (Meteor.isClient) {
-  // This code only runs on the client
-
   Template.ranking.events({
     "click #Boton_global": function () {
 			Session.set("rankSelected","global");
@@ -32,5 +29,5 @@ if (Meteor.isClient) {
 			} else {
 				return Session.get("rankSelected");
 			} 
-	}
-}
+	};
+

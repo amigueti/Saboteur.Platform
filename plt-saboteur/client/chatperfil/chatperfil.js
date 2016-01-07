@@ -1,0 +1,31 @@
+
+Meteor.subscribe("perfiles");
+
+Template.chatperfil.events({
+         'submit form': function(event) {
+            event.preventDefault();
+            var currentUser = Meteor.user().username;
+            var post = {
+                nick : currentUser,
+                message : $(event.target).find('[name=message]').val(),
+		chat: "perfil-tester"
+            }
+            if ( (post.message != "") && (post.nick != "") ) {
+                Meteor.call("addMessage", post);
+            }
+            $('[name="message"]').val('');
+
+        }
+      });
+
+
+Template.chatperfil.helpers({
+           latestMessages : function() {
+                 if (Session.get("active")) {
+                    var UltimosMensajes = Messages.find({chat: "perfil-tester"}, {sort : {time : -1}, limit : 10}).fetch().reverse();
+                     return UltimosMensajes;
+                 } else {
+                     return [];
+                 }
+            }
+});

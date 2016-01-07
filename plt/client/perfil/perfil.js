@@ -21,13 +21,13 @@ Template.perfil.events({
              id = Meteor.user()._id;
              
             Perfiles.update({_id:id},{
-            	_id:id,
-                nick : usuario,
+            	$set:{
+            	
                 email : $('input#email_1.col-xs-4').val(),
                 nombre: $('input#nombre_1.col-xs-4').val(),
                 nacionalidad:$('input#nacionalidad_1.col-xs-4').val(),
                 genero:$('.radio-inline').find('[name=genderRadios]').val()
-            });
+            }});
             	//console.log(post);
                // Meteor.call("updatePerfil", post);
                
@@ -46,11 +46,33 @@ Template.perfil.helpers({
 		return imagen;
 	},
 	'nicky':function(){
-		return Meteor.user().username;
+		return Perfiles.findOne({_id:Meteor.userId()}).nick;
 	},
 	'amigos':function(){
 		
 		return Amigos.findOne({_id:Meteor.userId()}).usernames;
+	},
+
+	/////////////////////Esta SIN ACABAR/////Poner nombres en placeholder
+	'email':function(){
+		
+		perfil=Perfiles.findOne({_id:Meteor.userId()});
+		return perfil.email;
+	},
+	'nombre':function(){
+		
+		perfil=Perfiles.findOne({_id:Meteor.userId()});
+		return perfil.nombre;
+	},
+	'nacionalidad':function(){
+		
+		perfil=Perfiles.findOne({_id:Meteor.userId()});
+		return perfil.nacionalidad;
+	},
+	'genero':function(){
+		
+		perfil=Perfiles.findOne({_id:Meteor.userId()});
+		return perfil.genero;
 	}
 
 });

@@ -51,7 +51,7 @@ body {
     color: #fafafa;
 }
 
-*html #menu li a:hover{ /* IE6 */
+*html #menu li a:hover{ 
     color: #fafafa;
 }
 
@@ -59,7 +59,6 @@ body {
     display: block;
 }
 
-/* Sub-menu */
 
 #menu ul{
     list-style: none;
@@ -107,12 +106,12 @@ body {
     text-transform: none;
 }
 
-*html #menu ul a{ /* IE6 */
+*html #menu ul a{ 
     height: 10px;
     width: 150px;
 }
 
-*:first-child+html #menu ul a{ /* IE7 */
+*:first-child+html #menu ul a{ 
     height: 10px;
     width: 150px;
 }
@@ -155,7 +154,6 @@ body {
     border-radius: 0 0 5px 5px;
 }
 
-/* Clear floated elements */
 #menu:after{
     visibility: hidden;
     display: block;
@@ -165,7 +163,7 @@ body {
     height: 0;
 }
 
-* html #menu             { zoom: 1; } /* IE6 */
+* html #menu             { zoom: 1; } 
 *:first-child+html #menu { zoom: 1; } /* IE7 */
 
 #menu ul li:first-child a:after{

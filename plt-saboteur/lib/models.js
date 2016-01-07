@@ -4,7 +4,11 @@ Perfiles = new Meteor.Collection('perfiles');
 
 Amigos = new Meteor.Collection('amigos');
 
+
+Games = new Meteor.Collection('games');
+
 Ranking = new Mongo.Collection("ranking");
+
 
 /* Modelos para el saboteur */
 Partidas = new Meteor.Collection('partidas');
