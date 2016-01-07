@@ -19,7 +19,7 @@ Meteor.methods ({
 
     insertPointsAllien : function ( points) {
 		if (this.userId)
-			     var aux = Ranking.findOne({name: nameJugador, juego: "Allien"});
+			     var aux = Ranking.findOne({user_id:this.userId, juego: "Allien"});
 		     if(aux){
 		         Ranking.update({user_id:this.userId},{$set: {puntos: points, ultPartida: Date.now()}});
 

@@ -42,13 +42,14 @@
 
 					 {{#each position2}}
 			        <tr>
-			            <td>FaltaContador</td>
-			            <td>{{imagen}}g</td>
-							<td>{{nickg}}</td>
-			            <td>{{puntosg}}</td>
-							<td>{{juegog}}</td>
-							<td>{{ultpartidag}}</td>
-							<th>{{Paisg}}</th>
+							<td>PosicionFalta</td>
+							<td>{{jugadorSelected2.imagen}}</td>
+							<td>{{jugadorSelected2.nick}}</td>
+			            <td>{{puntos}}</td>
+							<td>{{juego}}</td>
+							<td>{{ultpartida}}</td>
+							<td>{{jugadorSelected2.nacionalidad}}</td>
+
 			        </tr>
 					{{/each}}
     			</tbody>
@@ -73,16 +74,19 @@
 			    <tbody>
 
 					 {{#each position}}
+
 			        <tr>
-			            <td>FaltaContador</td>
-			            <td>{{imagen}}</td>
-							<td>{{nick}}</td>
+							<td>PosicionFalta</td>
+							<td>{{jugadorSelected.imagen}}</td>
+							<td>{{jugadorSelected.nick}}</td>
 			            <td>{{puntos}}</td>
 							<td>{{juego}}</td>
 							<td>{{ultpartida}}</td>
-							<th>{{Pais}}</th>
+							<td>{{jugadorSelected.nacionalidad}}</td>
 			        </tr>
 					{{/each}}
     			</tbody>
 			</table>
 </template>
+	
+

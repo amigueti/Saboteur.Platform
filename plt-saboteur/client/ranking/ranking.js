@@ -7,23 +7,23 @@ Meteor.subscribe('perfiles');
   	Template.ranking.events({
 
     "click #Boton_global": function () {
-			Session.set("rankSelected","global");
+			Session.set("rankSelected","Global");
 		},
 
     "click #Boton_allien": function () {
-			Session.set("rankSelected", "allien");
+			Session.set("rankSelected", "Allien");
 		},
 
     "click #Boton_saboteur": function () {
-			Session.set("rankSelected", "saboteur");
+			Session.set("rankSelected", "Saboteur");
 		}
   	});
 
 	Template.ranking.helpers({ 
 		rankSelected: function (){
-			if (Session.get("rankSelected") == "allien") {
+			if (Session.get("rankSelected") == "Allien") {
 				return Session.get("rankSelected");
-			} else if (Session.get("rankSelected") == "saboteur") {
+			} else if (Session.get("rankSelected") == "Saboteur") {
 				return Session.get("rankSelected");
 			} else {
 				return Session.get("rankSelected");
@@ -31,19 +31,19 @@ Meteor.subscribe('perfiles');
 	},
 
 		allien: function (){
-			if (Session.get("rankSelected") == "allien") {
+			if (Session.get("rankSelected") == "Allien") {
 				return true;
 			}
 	},
 
 		saboteur: function (){
-			if (Session.get("rankSelected") == "saboteur") {
+			if (Session.get("rankSelected") == "Saboteur") {
 				return true;
 			}
 	},
 	
 		global: function (){
-			if (Session.get("rankSelected") == "global") {
+			if (Session.get("rankSelected") == "Global") {
 				return true;
 			}
 	},
@@ -51,18 +51,18 @@ Meteor.subscribe('perfiles');
 	});
 
 	Template.tablaespecif.helpers({
-	  position: function() {
-
-		var game = Session.get("rankSelected");
-		var select = Ranking.find({juego: game}, {sort : {puntos : -1}, limit : 10});
-		var post2 = Perfiles.findOne({_id: select.user_id});
-		var imagen = post2.imagen;
-		var nick = post2.nick;
-		var puntos = select.puntos;
-		var juego = select.juego;
-		var ultpartida = select.ultPartida;
-		var pais = Perfiles.post2.nacionalidad;
-			 return select;
+	  "position": function() {
+			if (Session.get("rankSelected") == "Allien") {
+			return Ranking.find({juego: "Allien"}, {sort : {puntos : -1}, limit : 10}).fetch();
+		} else if (Session.get("rankSelected") == "Saboteur") {
+			return Ranking.find({juego: "Saboteur"}, {sort : {puntos : -1}, limit : 10}).fetch();
+		} else {
+			return Session.get("rankSelected");
+		} 
+},
+	"jugadorSelected": function() {
+			var playerID = this.user_id;
+			return Perfiles.findOne({_id: playerID });
 	  },
 		nombrejuego: function() {
 					 return Session.get("rankSelected");
@@ -71,20 +71,15 @@ Meteor.subscribe('perfiles');
 
 
 	Template.tablaglobal.helpers({
-	  position2: function() {
-		var selectglobal = Ranking.find({}, {sort : {puntos : -1}, limit : 10});
-		var post = Perfiles.findOne({_id: select.user_id});
-		var imageng = post.imagen;
-		var nickg = post.nick;
-		var puntosg = selectglobal.puntos;
-		var juegog = selectglobal.juego;
-		var ultpartidag = selectglobal.ultPartida;
-		var paisg = Perfiles.post.nacionalidad;
-			 return selectglobal;
+	  "position2": function() {
+			var rankinglist = Ranking.find({}, {sort : {puntos : -1}, limit : 10}).fetch();
+			 return rankinglist;
 	  },
+	"jugadorSelected2": function() {
+			var playerID = this.user_id;
+			return Perfiles.findOne({_id: playerID });
+	  }
 	});
-
-
 
 
 
