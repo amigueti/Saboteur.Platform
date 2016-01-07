@@ -46,11 +46,33 @@ Template.perfil.helpers({
 		return imagen;
 	},
 	'nicky':function(){
-		return Meteor.user().username;
+		return Perfiles.findOne({_id:Meteor.userId()}).nick;
 	},
 	'amigos':function(){
 		
 		return Amigos.findOne({_id:Meteor.userId()}).usernames;
+	},
+
+	/////////////////////Esta SIN ACABAR/////Poner nombres en placeholder
+	'email':function(){
+		
+		perfil=Perfiles.findOne({_id:Meteor.userId()});
+		return perfil.email;
+	},
+	'nombre':function(){
+		
+		perfil=Perfiles.findOne({_id:Meteor.userId()});
+		return perfil.nombre;
+	},
+	'nacionalidad':function(){
+		
+		perfil=Perfiles.findOne({_id:Meteor.userId()});
+		return perfil.nacionalidad;
+	},
+	'genero':function(){
+		
+		perfil=Perfiles.findOne({_id:Meteor.userId()});
+		return perfil.genero;
 	}
 
 });
