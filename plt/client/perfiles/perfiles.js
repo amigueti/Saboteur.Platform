@@ -4,6 +4,8 @@ Meteor.subscribe("perfiles");
 Template.perfiles.helpers({
 
 	'imagen':function(){
+		console.log("ahhhhhhhhhhhhhhhhhhhajkhfajklñ");
+		console.log(data);
 		idOtro=document.URL.slice(31,100);
 		 imagenOtro =Meteor.users.findOne({_id:idOtro});
 		return imagenOtro.profile.image;

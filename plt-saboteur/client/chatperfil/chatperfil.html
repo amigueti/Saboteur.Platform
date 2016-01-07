@@ -1,0 +1,44 @@
+
+
+<template name="chatperfil">
+    <div id="chat_gral">
+        <div id="mensajes">
+            <br>
+           {{#each latestMessages}} 
+            <p>
+                <label>·{{nick}}: </label>
+                {{message}}
+            </p>
+            {{/each}} 
+        </div>
+        <form id="formulario">
+            <input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="27">
+       </form>
+    </div>
+</template>
+
+
+<template name="input">
+  <p>Message: <input type="text" id="message"></p>
+
+  
+  <div class="alert fade in" id="login-error" style="display:none;">
+    <button type="button" class="close">x</button>
+    You must be signed in to post messages.
+  </div>
+
+</template>
+
+<template name="messages">
+  <table id="rooms" class="table table-striped">  
+    <tbody>
+      {{#each messages}}
+      <tr>
+	<td><strong>{{name}}:</strong></td>
+	<td>{{message}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>
+

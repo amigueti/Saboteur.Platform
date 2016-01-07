@@ -8,7 +8,8 @@ Meteor.methods ({
         Messages.insert({
             nick : post.nick,
             message : post.message,
-            time : timestamp
+            time : timestamp,
+	    chat: post.chat
         });
     }
 });

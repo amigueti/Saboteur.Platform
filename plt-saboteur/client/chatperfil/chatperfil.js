@@ -1,21 +1,14 @@
-Meteor.subscribe("messages");
 
-Deps.autorun(function() {
-    Meteor.subscribe('messages', { 
-          onReady : function() {
-              Session.set("active", true); 
-          }
-    });
-  });
+Meteor.subscribe("perfiles");
 
-Template.chat.events({
+Template.chatperfil.events({
          'submit form': function(event) {
             event.preventDefault();
             var currentUser = Meteor.user().username;
             var post = {
                 nick : currentUser,
                 message : $(event.target).find('[name=message]').val(),
-		chat: "publico"
+		chat: "perfil-tester"
             }
             if ( (post.message != "") && (post.nick != "") ) {
                 Meteor.call("addMessage", post);
@@ -25,13 +18,14 @@ Template.chat.events({
         }
       });
 
-       Template.chat.helpers({
+
+Template.chatperfil.helpers({
            latestMessages : function() {
                  if (Session.get("active")) {
-                    var UltimosMensajes = Messages.find({chat: "publico"}, {sort : {time : -1}, limit : 10}).fetch().reverse();
+                    var UltimosMensajes = Messages.find({chat: "perfil-tester"}, {sort : {time : -1}, limit : 10}).fetch().reverse();
                      return UltimosMensajes;
                  } else {
                      return [];
                  }
             }
-       });
+});
