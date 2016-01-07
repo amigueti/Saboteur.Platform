@@ -8,3 +8,4 @@ Router.route('/ranking',{name: 'ranking'});
 Router.route('/juego',{
 	template: 'saboteur'
 });
+Router.route('/chatperfil',{name: 'chatperfil'});
