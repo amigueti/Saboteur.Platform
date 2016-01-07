@@ -21,13 +21,13 @@ Template.perfil.events({
              id = Meteor.user()._id;
              
             Perfiles.update({_id:id},{
-            	_id:id,
-                nick : usuario,
+            	$set:{
+            	
                 email : $('input#email_1.col-xs-4').val(),
                 nombre: $('input#nombre_1.col-xs-4').val(),
                 nacionalidad:$('input#nacionalidad_1.col-xs-4').val(),
                 genero:$('.radio-inline').find('[name=genderRadios]').val()
-            });
+            }});
             	//console.log(post);
                // Meteor.call("updatePerfil", post);
                
