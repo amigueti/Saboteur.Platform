@@ -9,8 +9,11 @@ AVATAR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYEBQYFBAYGBQY
 
 
 Template.perfil.events({
+	'click #botonsinFoto':function(){
+		Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
+	},
 	
-	'click button.inc':function(){
+	'click #botonconFoto':function(){
 		//Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
 		$('#editYourAvatarModal').modal();
 	},
