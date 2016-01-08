@@ -84,6 +84,7 @@ var sprites = {
 var loadCanvas = function(partidaId){
 	$(".total-board").show();
   	$(".match-board").show();
+
   	if(!c){
 		c = document.getElementById('canvas');
 		offsetLeft = $(c).offset().left;
