@@ -36,6 +36,17 @@ Meteor.methods ({
             nacionalidad:post.nacionalidad,
             genero:post.genero
         });
+    },
+    updatePerfil:function(id,usuario,email,nombre,nacionalidad,genero){
+    	Perfiles.update({_id:id},{
+            	$set:{
+    		
+    		nick:usuario,
+    		email:email,
+    		nombre:nombre,
+    		nacionalidad:nacionalidad,
+    		genero:genero}
+    	});
     }
 });
 Amigos.allow({

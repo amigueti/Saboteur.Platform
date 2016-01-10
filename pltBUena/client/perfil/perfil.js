@@ -22,17 +22,20 @@ Template.perfil.events({
 			console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
              usuario = Meteor.user().username;
              id = Meteor.user()._id;
-             
-            Perfiles.update({_id:id},{
+             email=$('input#email_1.col-xs-4').val();
+             nombre= $('input#nombre_1.col-xs-4').val();
+             nacionalidad=$('input#nacionalidad_1.col-xs-4').val();
+             genero=$('.radio-inline').find('[name=genderRadios]').val();
+            /*Perfiles.update({_id:id},{
             	$set:{
             	
                 email : $('input#email_1.col-xs-4').val(),
                 nombre: $('input#nombre_1.col-xs-4').val(),
                 nacionalidad:$('input#nacionalidad_1.col-xs-4').val(),
                 genero:$('.radio-inline').find('[name=genderRadios]').val()
-            }});
+            }});*/
             	//console.log(post);
-               // Meteor.call("updatePerfil", post);
+               Meteor.call("updatePerfil", id,usuario,email,nombre,nacionalidad,genero);
                
             	alert("Has actualizado tu perfil");
             
