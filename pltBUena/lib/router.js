@@ -6,7 +6,7 @@ Router.configure({
 Router.route('/perfil',{name: 'perfil'});
 Router.route('/',{name: 'chat'});
 Router.route('/juego',{
-	template: 'saboteur'
+	template: 'saboteur_temp'
 });
 Router.route('/perfiles/:_id',{
 	name: 'perfiles',
