@@ -1,8 +1,8 @@
 <template name ="navigation">
-	<div class="navbar navbar-static-top">
-		<div class="navbar-inner">
+	<div class="header">
+		<div class="header-container">
+				<a href="/" id="navHome">LOGO</a>
 			<ul id="menu">
-			    <li><a href="/" class="btn btn-primary btn-lg" id="navHome">Home</a></li>
 			    <li>
 			        <a href="/juego" class="btn btn-primary" id="navJuegos">Juegos</a>
 			    </li>
@@ -19,6 +19,12 @@
        			</form></li>
        			{{/if}}
 			</ul>
+			
+
+		</div>
+		<div id="botones-chat">
+			<button type="button" id="mostrar-chat" class="boton-chat">Chat ON </button>
+			<button type="button" id="ocultar-chat" class="boton-chat">Chat OFF </button>
 		</div>
 	</div>
 </template>

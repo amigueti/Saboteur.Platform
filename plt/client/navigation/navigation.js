@@ -45,5 +45,11 @@ Template.navigation.events({
         }    
 
             
-     }       
+     },
+     'click #mostrar-chat': function(){
+        $('#chat_gral').show();
+     },
+     'click #ocultar-chat': function(){
+        $('#chat_gral').hide();
+     }
 });
