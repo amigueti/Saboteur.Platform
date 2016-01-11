@@ -16,6 +16,7 @@
 }
 #chat_gral{
 	position: relative;
+	margin-left: 50px;
 	border-radius: 10px;
 	border-style: solid;
 	float: left;
