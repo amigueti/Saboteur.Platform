@@ -1,6 +1,7 @@
 Router.configure({
   layoutTemplate: 'layout',
-  notFoundTemplate: 'notFound'
+  notFoundTemplate: 'notFound',
+  loadingTemplate: 'loading'
 });
 
 Router.route('/perfil',{name: 'perfil'});
@@ -17,4 +18,4 @@ Router.route('/perfiles/:_id',{
 	}
 });
 
-//Router.onBeforeAction('dataNotFound', {only: 'perfiles'});
+Router.onBeforeAction('loading', {only: 'perfiles'});
