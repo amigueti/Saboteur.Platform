@@ -19,6 +19,14 @@
             		<input type="text" placeholder="Buscar Usuario" name="busqueda">
        			</form></li>
        			{{/if}}
+       				<li><a href="/#" class="btn btn-primary" id="navConectados">Usuarios</a>
+       				<ul>
+       					{{#each usuarios}}
+			            <li><span> <a href="#"><img src="{{this.image}}" width="22" height="22">  {{this.username}}</a></span></li>
+       					{{/each}}
+			            
+			        </ul>
+			        </li>
        			<li>{{> loginButtons }}</li>
 			</ul>
 		</div>

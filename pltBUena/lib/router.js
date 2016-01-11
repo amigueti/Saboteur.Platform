@@ -5,7 +5,7 @@ Router.configure({
 });
 
 Router.route('/perfil',{name: 'perfil'});
-Router.route('/',{name: 'chat'});
+Router.route('/',{name: 'home'});
 Router.route('/juego',{
 	template: 'saboteur_temp'
 });
