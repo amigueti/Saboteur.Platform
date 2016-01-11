@@ -4,7 +4,7 @@ Router.configure({
 });
 
 Router.route('/perfil',{name: 'perfil'});
-Router.route('/',{name: 'chat'});
+Router.route('/',{name: 'home'});
 Router.route('/juego',{
 	template: 'saboteur_temp'
 });
@@ -17,4 +17,4 @@ Router.route('/perfiles/:_id',{
 	}
 });
 
-Router.onBeforeAction('dataNotFound', {only: 'perfiles'});
+//Router.onBeforeAction('dataNotFound', {only: 'perfiles'});

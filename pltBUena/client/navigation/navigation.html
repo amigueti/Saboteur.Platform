@@ -19,10 +19,10 @@
             		<input type="text" placeholder="Buscar Usuario" name="busqueda">
        			</form></li>
        			{{/if}}
-       				<li><a href="/#" class="btn btn-primary" id="navConectados">Conectados</a>
+       				<li><a href="/#" class="btn btn-primary" id="navConectados">Usuarios</a>
        				<ul>
        					{{#each usuarios}}
-			            <li><a href="#">{{this.username}}:<span> <img src="{{this.image}}" width="15" height="15"></span></a></li>
+			            <li><span> <a href="#"><img src="{{this.image}}" width="22" height="22">  {{this.username}}</a></span></li>
        					{{/each}}
 			            
 			        </ul>

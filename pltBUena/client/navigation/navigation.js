@@ -8,13 +8,15 @@ Template.navigation.helpers({
    'usuarios': function() {
         a=[];
         for(i=0;i<Meteor.users.find().fetch().length;i++){
-            a.push({username:Meteor.users.find().fetch()[i].username,image:Meteor.users.find().fetch()[i].profile.image})
+            a.push({username:Meteor.users.find().fetch()[i].username,image:Meteor.users.find().fetch()[i].profile.image/*,login:Meteor.users.find().fetch()[i].profile.login*/})
                 //{login:Meteor.users.find().fetch()[i].profile.login})}
+        }
         return a;
     }
-}
+
 
 });
+
 Template.navigation.events({
 	'submit form': function(event) {
             event.preventDefault();
@@ -40,7 +42,7 @@ Template.navigation.events({
         
         if(!Perfiles.findOne({_id:Meteor.userId()})){
             alert("Has creado tu perfil");
-            Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR,login:false}}});
+            Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR,login:true}}});
            
             //Se crea el perfil por primera vez
             usuario = Meteor.user().username;
@@ -57,12 +59,17 @@ Template.navigation.events({
             Meteor.call("addPerfil", post);
             alert("Has creado tu perfil");
         }    
-        Deps.autorun(function(){
-    if(Meteor.userId()){
-        Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:Meteor.user().profile.image,login:true}}});
-    }
-});
+        
 
             
      }       
 });
+/*Deps.autorun(function(){
+            for(i=0;i<Meteor.users.find().fetch().length;i++){
+                if(Meteor.users.find().fetch()[i].profile.login ===true){
+                     Meteor.users.update({_id:Meteor.users.find().fetch()[i]._id},{$set:{profile:{image:Meteor.user().profile.image,login:true}}});
+                }else{
+                    Meteor.users.update({_id:Meteor.users.find().fetch()[i]._id},{$set:{profile:{image:Meteor.user().profile.image,login:false}}});
+                }
+            }    
+        });*/
