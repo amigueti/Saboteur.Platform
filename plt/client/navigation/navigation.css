@@ -1,5 +1,6 @@
 body {
-    background:white;
+    /*background:url(images/Tablero-1284462369_38.jpg);*/
+    background: white;
 
     font: normal 13px/1.5 Arial, Helvetica, Garuda, sans-serif;
     color: #000;
@@ -83,6 +84,9 @@ body {
     float: left;
     margin-left: 100px;
     margin-top: 20px;
+}
+#espacio-chat{
+
 }
 .boton-chat {
     

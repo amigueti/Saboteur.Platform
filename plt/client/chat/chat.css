@@ -1,3 +1,12 @@
+/*#contenedor-chat{
+	width: 200px;
+	height: 450px;
+    padding: 20px 20px 40px;
+    position: relative;
+    float: left;
+}*/
+
+
 #formulario{
 	text-align: center;
 	border-radius: 10px;
@@ -6,9 +15,7 @@
 	float: left;
 }
 #chat_gral{
-	position: absolute;
-	top:120px;
-	left: 70px;
+	position: relative;
 	border-radius: 10px;
 	border-style: solid;
 	float: left;

@@ -1,11 +1,23 @@
+#contenedor-tabs{
+    width: 920px;
+    min-height: 500px;
+    overflow: visible;
+    background: #FFF none repeat scroll 0% 0%;
+    border-radius: 8px;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);
+    margin: 10px auto;
+    padding: 20px 20px 40px;
+    position: relative;
+}
+
+
 #tabs{
-	float: left;
+    margin: 0px auto;
+    margin-left: 85px;
 	width: 700px;
-	top: 290px;
-	left: 400px; 
     display:inline-block;
     border-radius:10px;
-    position: absolute;
+    position: relative;
     background: transparent linear-gradient(to bottom, #519EF9 2%, #448EF0 2%, #3376DE 47%, #2866D2 59%, #2866D2 100%) repeat scroll 0% 0%;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
