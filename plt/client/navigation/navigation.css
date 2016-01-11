@@ -1,15 +1,46 @@
 body {
-    background:url(images/Tablero-1284462369_38.jpg);
+    background:white;
 
     font: normal 13px/1.5 Arial, Helvetica, Garuda, sans-serif;
     color: #000;
+    height: 900px;
+}
+/* url(images/Tablero-1284462369_38.jpg)*/
+/* url img sab http://www.orderofgamers.com/wordpress/wp-content/uploads/2013/04/saboteur.jpg*/
+#cabecera{
+    padding: 10px 0px 0px;
+    margin-bottom: 40px;
+    height: 174px;
+    border-bottom: 1px solid #FFF;
+    overflow: visible;
+}
+.cabecera-back {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b5bdc8+0,828c95+36,28343b+100;Grey+Black+3D */
+    background: rgb(181,189,200); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
 }
 
+#cabecera-content{
+    width: 920px;
+    height: 200px;
+    margin: 0px auto;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+    border: 2px solid #FFF;
+    border-radius: 5px;
+    box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    text-align: center;
+}
 #logo-footer {
     float: right;
     margin-top: -20px;
     margin-bottom: 20px; 
 }
+
 
 .header{
     width: 100%;
@@ -43,10 +74,10 @@ body {
     width: 175px;
     height: 25px;
     margin-left: 3px;
+    margin-right: 3px;
     position: relative;
     text-align: center;
-    background-color: red;
-    
+    background-color: transparent;
 }
 #botones-chat{
     float: left;
@@ -80,6 +111,22 @@ body {
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+#content{
+    width: 920px;
+    min-height: 500px;
+    overflow: visible;
+    background: #FFF none repeat scroll 0% 0%;
+    border-radius: 8px;
+    /*box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);*/
+    margin: 10px auto;
+    padding: 20px 20px 40px;
+    position: relative;
+    -webkit-box-shadow: 0px 10px 30px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 30px -6px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 30px -6px rgba(0,0,0,0.75);
+}
+
+
 /*#menu{
     width: 100%;
     margin: 0;
