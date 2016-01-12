@@ -54,18 +54,38 @@ Meteor.subscribe('perfiles');
 	  "position": function() {
 			if (Session.get("rankSelected") == "Allien") {
 			return Ranking.find({juego: "Allien"}, {sort : {puntos : -1}, limit : 10}).map(function(document, index){
-           document.index = index +1;
-			return document;
-			});
+           document.index = index;
+			return document;});
 		} else if (Session.get("rankSelected") == "Saboteur") {
-			return Ranking.find({juego: "Saboteur"}, {sort : {puntos : -1}, limit : 10}).map(function(document, index){
-           document.index = index +1;
-			return document;
-			});
+			return Ranking.find({juego: "Saboteur"}, {sort : {puntos : -1}, limit : 10}).fetch();
 		} 
 		},
 
+		/*"setContador": function() {
+			return Session.set("Contador", 0);
+		},
 
+	
+			if (Session.get("rankSelected") == "Allien") {
+			var length = Ranking.find({juego: "Allien"}, {sort : {puntos : -1}, limit : 10}).fetch().length;
+			console.log("%%%%%2");
+		} else if (Session.get("rankSelected") == "Saboteur") {
+			var length = Ranking.find({juego: "Saboteur"}, {sort : {puntos : -1}, limit : 10}).fetch().length;
+			console.log("%%%%%3");
+		} 
+			var contadorInc = Session.get("Contador") + 1;
+			if(contadorInc <= length ){
+			console.log("%%%%%1");
+			Session.set("Contador", contadorInc);
+					return Session.get("Contador");
+			}
+			else{
+				Session.set("Contador", 0);
+				return Session.get("Contador")+1;	
+			}
+		},
+
+*/
 
 	"jugadorSelected": function() {
 			var playerID = this.user_id;
@@ -79,12 +99,39 @@ Meteor.subscribe('perfiles');
 
 	Template.tablaglobal.helpers({
 	  "position2": function() {
-
+			/*var rankinglist = Ranking.find({}, {sort : {puntos : -1}, limit : 10}).fetch();
+			 return rankinglist;*/
 				return Ranking.find({}, {sort : {puntos : -1}, limit : 10}).map(function(document, index){
            document.index = index +1;
 			return document;});
 	  },
+		/*"setContador": function() {
+			return Session.set("Contador", 0);
+		},
 
+		"showContador": function() {
+			
+			if (Session.get("rankSelected") == "Allien") {
+			var length = Ranking.find({juego: "Allien"}, {sort : {puntos : -1}, limit : 10}).fetch().length;
+			console.log("%%%%%2");
+		} else if (Session.get("rankSelected") == "Saboteur") {
+			var length = Ranking.find({juego: "Saboteur"}, {sort : {puntos : -1}, limit : 10}).fetch().length;
+			console.log("%%%%%3");
+		} else{
+			var length = Ranking.find({}, {sort : {puntos : -1}, limit : 10}).fetch().length;
+		}
+			
+			var contadorInc = Session.get("Contador") + 1;
+			if(contadorInc <= length ){
+			console.log("%%%%%1");
+			Session.set("Contador", contadorInc);
+					return Session.get("Contador");
+			}
+			else{
+				Session.set("Contador", 0);
+				return Session.get("Contador")+1;	
+			}
+		},*/
 	"jugadorSelected2": function() {
 			var playerID = this.user_id;
 			return Perfiles.findOne({_id: playerID });

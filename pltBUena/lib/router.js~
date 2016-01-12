@@ -17,5 +17,5 @@ Router.route('/perfiles/:_id',{
 		if(this.ready()){this.render();}
 	}
 });
-Router.route('/ranking',{name: 'ranking'});
+
 //Router.onBeforeAction('loading', {only: 'perfiles'});

@@ -39,7 +39,7 @@
 			        </tr>
 			    </thead>
 			    <tbody>
-
+					 {{setContador}}
 					 {{#each position2}}
 			        <tr>
 							<td>{{index}}</td>
