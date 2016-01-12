@@ -18,4 +18,4 @@ Router.route('/perfiles/:_id',{
 	}
 });
 
-Router.onBeforeAction('loading', {only: 'perfiles'});
+//Router.onBeforeAction('loading', {only: 'perfiles'});
