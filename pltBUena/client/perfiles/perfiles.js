@@ -36,8 +36,12 @@ Template.perfiles.helpers({
 		return perfil.genero;
 	},
 	'amigos':function(){
+		a=[];
 		idOtro=document.URL.slice(31,100);
-		return Amigos.findOne({_id:idOtro}).usernames;
+		for(i=0;i<Amigos.findOne({_id:idOtro}).usernames.length;i++){
+		a.push(Meteor.users.findOne({_id:Amigos.findOne({_id:idOtro}).usernames[i].idAmigo}))
+		}
+		return a;
 	},
 	'esAmigo':function(){
 		idOtro=document.URL.slice(31,100);
@@ -63,11 +67,11 @@ Template.perfiles.events({
 		fotoAmigo=Meteor.users.findOne({_id:idOtro}).profile.image;
 		//existeListaAmigos=Amigos.find({id:Meteor.userId()}).fetch().length;
 		if(!existeListaAmigos){
-			Amigos.insert({_id:id_usuario,usernames:[{idAmigo:idOtro,username:perfil_username,foto:fotoAmigo}]});
+			Amigos.insert({_id:id_usuario,usernames:[{idAmigo:idOtro,username:perfil_username}]});
 			existeListaAmigos=true;
 		}else{
 			
-			Amigos.update({_id:id_usuario},{$push:{usernames:{idAmigo:idOtro,username:perfil_username,foto:fotoAmigo}}});
+			Amigos.update({_id:id_usuario},{$push:{usernames:{idAmigo:idOtro,username:perfil_username}}});
 		}	
 	},
 	'click .list-group-item':function(){
@@ -82,7 +86,7 @@ Template.perfiles.events({
 		id_usuario=Meteor.user()._id;
 		fotoAmigo=Meteor.users.findOne({_id:idOtro}).profile.image;
 		
-			Amigos.update({_id:id_usuario},{$pull:{usernames:{idAmigo:idOtro,username:perfil_username,foto:fotoAmigo}}});
+			Amigos.update({_id:id_usuario},{$pull:{usernames:{idAmigo:idOtro,username:perfil_username}}});
 		
 			//console.log("FALLO AL KITAR AMIGO");
 			

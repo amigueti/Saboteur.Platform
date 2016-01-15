@@ -56,7 +56,13 @@ Template.perfil.helpers({
 	},
 	'amigos':function(){
 		
-		return Amigos.findOne({_id:Meteor.userId()}).usernames;
+		a=[];
+		
+		for(i=0;i<Amigos.findOne({_id:Meteor.userId()}).usernames.length;i++){
+		a.push(Meteor.users.findOne({_id:Amigos.findOne({_id:Meteor.userId()}).usernames[i].idAmigo}))
+		}
+		return a;
+		
 	},
 
 	/////////////////////Esta SIN ACABAR/////Poner nombres en placeholder
