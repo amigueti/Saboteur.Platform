@@ -18,4 +18,6 @@ Router.route('/perfiles/:_id',{
 	}
 });
 Router.route('/ranking',{name: 'ranking'});
+Router.route('/ayuda',{name: 'ayuda'});
+
 //Router.onBeforeAction('loading', {only: 'perfiles'});

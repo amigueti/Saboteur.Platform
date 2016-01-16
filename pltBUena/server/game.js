@@ -18,10 +18,11 @@ var destruir = function(partidaId,carta,nameObjetivo,objeto){
 };
 
 var arreglar = function(partidaId,carta,nameObjetivo,objeto){
+	var r = false;
 	var index = 0;
 	if(carta.Objeto.length > 1){
 		if(objeto != "default" && carta.Objeto.indexOf(objeto) == -1){
-			return false;
+			return r;
 		} else {
 			index = carta.Objeto.indexOf(objeto);
 		}
@@ -30,18 +31,21 @@ var arreglar = function(partidaId,carta,nameObjetivo,objeto){
 	var c = Caracteristicas.findOne({partidaId: partidaId,jugadorId: idObjetivo});
 
 	if(c[carta.Objeto[index]]){
-		return false;
+		return r;
 	}
 
 	if(carta.Objeto[index] == "pico"){
 		Caracteristicas.update({partidaId: partidaId,jugadorId: idObjetivo},{$set: {pico: true}});
+		r = "ArreglarPico";
 	} else if(carta.Objeto[index] == "vagoneta"){
 		Caracteristicas.update({partidaId: partidaId,jugadorId: idObjetivo},{$set: {vagoneta: true}});
+		r = "ArreglarVagoneta";
 	}else{
 		Caracteristicas.update({partidaId: partidaId,jugadorId: idObjetivo},{$set: {farolillo: true}});
+		r = "ArreglarFarolillo";
 	}
 
-	return true;
+	return r;
 };
 
 var destapaCartaDestino = function(partidaId,carta){

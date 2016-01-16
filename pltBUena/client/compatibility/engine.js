@@ -114,7 +114,7 @@ var Board = function() {
 		this.list[i] = new Array(15);
 		for (j = 0; j < 15; j++) {
 			this.list[i][j] = new Card(j*60,i*90);
-			//this.list[i][j].setText(i.toString() + "," + j.toString());
+			this.list[i][j].setText(i.toString() + "," + j.toString());
 		};
 	};
 
@@ -286,7 +286,7 @@ HandBoard.prototype.updateHand = function(card){
 	for (i = 0; i < this.list.length - 2; i++) {
 		this.list[i].setColor("black");
 		if(this.list[i] === card){
-			this.list[i].setColor("yellow");///CAMBIO COLOR
+			this.list[i].setColor("red");
 		}	
 	};
 };
