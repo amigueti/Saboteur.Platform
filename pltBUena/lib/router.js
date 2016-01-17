@@ -4,8 +4,10 @@ Router.configure({
   
 });
 
-Router.route('/perfil',{name: 'perfil'});
-Router.route('/',{name: 'home'});
+Router.route('/perfil',{name: 'perfil',
+template: 'perfil'});
+Router.route('/',{name: 'home',
+template: 'home'});
 Router.route('/juego',{
 	template: 'saboteur_temp'
 });
@@ -18,6 +20,7 @@ Router.route('/perfiles/:_id',{
 	}
 });
 Router.route('/ranking',{name: 'ranking'});
-Router.route('/ayuda',{name: 'ayuda'});
+Router.route('/ayuda',{name: 'ayuda',
+template: 'ayuda'});
 
 //Router.onBeforeAction('loading', {only: 'perfiles'});

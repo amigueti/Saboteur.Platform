@@ -106,7 +106,15 @@ li.active a, li.active a:hover {
     text-align: justify;
     font-weight: 600;
 }
+#preparacion{
+    font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
 
+    background: transparent;
+    color: #B22222;
+    font-size: 17px;
+    text-align: justify;
+    font-weight: 600;
+}
 #logo{
     height: 100px;
     background: transparent;
@@ -115,4 +123,118 @@ li.active a, li.active a:hover {
     text-decoration: underline;
     font-size: 45px;
     margin-left: 40px;
+}
+#j1{
+    width: 400px;
+    float: left;
+}
+#j2{
+    width: 400px;
+    float: left;
+}
+#j3{
+    float: left;
+    height: 100px;
+}
+#como-jugar{
+    font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
+
+    background: transparent;
+    color: #B22222;
+    font-size: 17px;
+    text-align: justify;
+    font-weight: 600;    
+
+}
+.como-jugar-links{
+    margin-top: 100px;
+    margin-left: 0px;
+    float: left;
+
+}
+
+.como-jugar-links li{
+    background: transparent;
+}
+
+.como-jugar-links a{
+    background: transparent;
+    font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
+    color: #B22222;
+    font-size: 17px;
+    font-weight: 600;
+}
+.como-jugar-links .active{
+    background: transparent;
+
+
+}
+
+#tabla-jugar{
+    background: transparent;
+    height: 300px;
+}
+.como-jugar-content{
+    float: left;
+    width: 600px;
+    height: 350px;
+    background: transparent;
+}
+
+.como-jugar-content .active{
+    background: transparent;
+}
+
+#tunel{
+    margin-top: 50px;
+}
+
+#img-cartas-1{
+    float: left;
+}
+#img-cartas-2{
+    float:left;
+}
+#primera-fila{
+    font-size: 15px;
+    width: 390px;
+    float: left;
+}
+#segunda-fila{
+    font-size: 15px;
+    width: 390px;
+    float: left;
+}
+#img-derrumbe{
+    float: right;
+}
+#derrumbe{
+    font-size: 15px;
+    width: 500px;
+    float: right;
+}
+#img-mapa{
+    float: left;
+}
+#mapa{
+    font-size: 15px;
+    width: 500px;
+    float: left;
+}
+#final-ronda{
+    margin-top: 50px;
+}
+#pepitas{
+    margin-top: 50px;
+}
+
+#final{
+    font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
+
+    background: transparent;
+    color: #B22222;
+    font-size: 17px;
+    text-align: justify;
+    font-weight: 600;
+    margin-top: 75px;
 }
