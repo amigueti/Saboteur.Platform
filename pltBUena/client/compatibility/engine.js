@@ -101,7 +101,7 @@ Card.prototype.draw = function(scroll){
 	if(this.text){
 		drawText(this.text,"black","20px Georgia",x,y + 40);
 	}
-};		
+};
 
 // BOARD
 
@@ -114,7 +114,7 @@ var Board = function() {
 		this.list[i] = new Array(15);
 		for (j = 0; j < 15; j++) {
 			this.list[i][j] = new Card(j*60,i*90);
-			//this.list[i][j].setText(i.toString() + "," + j.toString());
+			this.list[i][j].setText(i.toString() + "," + j.toString());
 		};
 	};
 
@@ -133,7 +133,7 @@ Board.prototype.selectCell = function(x,y){
 
 	var columna = Math.floor(x/60);
    	var fila = Math.floor(y/90);
-   	
+
    	return [(fila+this.scroll),columna];
 };
 
@@ -168,7 +168,7 @@ var PlayerZone = function(x,y,w,h){
 					this.farol = "FarolNo";
 				}else{
 					this.farol = "FarolOk";
-				}	
+				}
 				break;
 			case "vagoneta":
 				if(this.vagon == "VagonOk"){
@@ -183,7 +183,7 @@ var PlayerZone = function(x,y,w,h){
 				}else{
 					this.pico = "PicoOk";
 				}
-				break;		
+				break;
 		}
 	};
 
@@ -248,7 +248,7 @@ PointsBoard.prototype.selectTarget = function(x,y){
 
 	for (i = 0; i < this.list.length; i++) {
 		if(this.list[i].inRegion(x,y)){
-			return this.list[i].name; 
+			return this.list[i].name;
 		}
 	};
 
@@ -286,8 +286,8 @@ HandBoard.prototype.updateHand = function(card){
 	for (i = 0; i < this.list.length - 2; i++) {
 		this.list[i].setColor("black");
 		if(this.list[i] === card){
-			this.list[i].setColor("yellow");
-		}	
+			this.list[i].setColor("red");
+		}
 	};
 };
 
@@ -354,8 +354,8 @@ GameBoard.prototype.inRegion = function(x,y){
 	//SOLO LLAMO A BOARD Y POINTBOARD SI HAY CARTA SELECCIONADA
 	if(this.selectedCard != null){
 		this.selectedCoord = this.board.selectCell(x,y);
-		this.selectedTarget = this.pointsboard.selectTarget(x,y); 
-	}	
+		this.selectedTarget = this.pointsboard.selectTarget(x,y);
+	}
 
 	//SI R NO ES NULL, HAY QUE COMPROBAR SI HAY QUE SELECCIONAR,PASAR O GIRAR.
 	if(r != null){
@@ -370,7 +370,7 @@ GameBoard.prototype.inRegion = function(x,y){
 				}
 				break;
 			case "PASAR":
-				this.selectedDiscard = true;		
+				this.selectedDiscard = true;
 				break;
 		}
 	}
@@ -452,7 +452,7 @@ var Game = function(partidaId) {
 	this.stop = false;
 	this.isMyTurn = false;
 	that = this;
-	
+
 
 	this.updateAcciones = function(){
 		var acciones = Acciones.find({partidaId: this.partidaId}).fetch();
@@ -460,7 +460,7 @@ var Game = function(partidaId) {
       		for (i = 0; i < acciones.length;i++) {
       			this.processAccion(acciones[i]);
       		};
-    	} 
+    	}
 	};
 
 
@@ -477,7 +477,7 @@ var Game = function(partidaId) {
 		stopAll(this.accionTracker,this.turnoTracker);
 	};
 
-	//CON EL TRACKER SE VE SI CAMBIA EL TURNO 
+	//CON EL TRACKER SE VE SI CAMBIA EL TURNO
 	this.updateTurno = function(turno){
 		//SI HA ACABADO LA RONDA POINTSBOARD NO ESTA DEFINIDO Y RETORNO
 		if(this.gameboard.pointsboard == undefined){
@@ -511,7 +511,7 @@ var Game = function(partidaId) {
 		if(accion[1] != null){
 			fila = accion[1][0];
 			columna = accion[1][1];
-		}	
+		}
 
 		//VARIABLE PARA NO DEJAR AL JUGADOR DAR MUCHOS CLICK Y CREAR POSIBLE FALLO.
 		//INPROCESS = true -> NO SE PUEDEN HACER CLICKS
@@ -570,17 +570,26 @@ var Game = function(partidaId) {
 				break;
 			case "accionT":
 				that.gameboard.board.list[accion.carta.fila][accion.carta.columna].setSprite("Standard");
-				break;	
+				break;
 			case "finalRonda":
 				that.isMyTurn = true;
 				that.gameboard = new canvasFinal(accion.tipoGanador);
-				break;	
+				break;
 			case "finalPartida":
 				that.isMyTurn = true;
 				that.gameboard = new canvasFinal(accion.tipoGanador);
 				that.gameboard.setGanadores(accion.ganadores);
-				break;		
-		}	
+				break;
+			case "doble":
+				//la primera es la carta
+			  	that.gameboard.board.list[accion.primera.fila][accion.primera.columna].setSprite(accion.primera.sprite);
+			  	that.gameboard.board.list[accion.primera.fila][accion.primera.columna].girada = accion.primera.girada;
+			  	//la segunda la de destino
+				that.gameboard.board.list[accion.segunda.fila][accion.segunda.columna].setSprite(accion.segunda.sprite);
+			  	that.gameboard.board.list[accion.segunda.fila][accion.segunda.columna].girada = accion.segunda.girada;
+				break
+
+		}
 	};
 
 	//LOOP DEL GAME
@@ -590,7 +599,6 @@ var Game = function(partidaId) {
 
 		if(!that.stop){
 			setTimeout(that.loop, 60);
-		}	
+		}
 	};
 };
-

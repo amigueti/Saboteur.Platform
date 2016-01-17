@@ -1,14 +1,14 @@
-var destruir = function(partidaId,carta,nameObjetivo,objeto){
+var destruir = function(partidaId,carta,nameObjetivo){
 	var idObjetivo = Meteor.users.findOne({username: nameObjetivo})._id;
 	var c = Caracteristicas.findOne({partidaId: partidaId,jugadorId: idObjetivo});
 
-	if(!c[carta.Objeto[0]]){
+	if(!c[carta.Objeto]){
 		return false;
 	}
 
-	if(carta.Objeto[0] == "pico"){
+	if(carta.Objeto == "pico"){
 		Caracteristicas.update({partidaId: partidaId,jugadorId: idObjetivo},{$set: {pico: false}});
-	} else if(carta.Objeto[0] == "vagoneta"){
+	} else if(carta.Objeto == "vagoneta"){
 		Caracteristicas.update({partidaId: partidaId,jugadorId: idObjetivo},{$set: {vagoneta: false}});
 	}else{
 		Caracteristicas.update({partidaId: partidaId,jugadorId: idObjetivo},{$set: {farolillo: false}});
@@ -17,35 +17,23 @@ var destruir = function(partidaId,carta,nameObjetivo,objeto){
 	return true;
 };
 
-var arreglar = function(partidaId,carta,nameObjetivo,objeto){
-	var r = false;
-	var index = 0;
-	if(carta.Objeto.length > 1){
-		if(objeto != "default" && carta.Objeto.indexOf(objeto) == -1){
-			return r;
-		} else {
-			index = carta.Objeto.indexOf(objeto);
-		}
-	}
+var arreglar = function(partidaId,carta,nameObjetivo){
 	var idObjetivo = Meteor.users.findOne({username: nameObjetivo})._id;
 	var c = Caracteristicas.findOne({partidaId: partidaId,jugadorId: idObjetivo});
 
-	if(c[carta.Objeto[index]]){
-		return r;
+	if(c[carta.Objeto]){
+		return false;
 	}
 
-	if(carta.Objeto[index] == "pico"){
+	if(carta.Objeto == "pico"){
 		Caracteristicas.update({partidaId: partidaId,jugadorId: idObjetivo},{$set: {pico: true}});
-		r = "ArreglarPico";
-	} else if(carta.Objeto[index] == "vagoneta"){
+	}else if(carta.Objeto == "vagoneta"){
 		Caracteristicas.update({partidaId: partidaId,jugadorId: idObjetivo},{$set: {vagoneta: true}});
-		r = "ArreglarVagoneta";
 	}else{
 		Caracteristicas.update({partidaId: partidaId,jugadorId: idObjetivo},{$set: {farolillo: true}});
-		r = "ArreglarFarolillo";
 	}
 
-	return r;
+	return true;
 };
 
 var destapaCartaDestino = function(partidaId,carta){
@@ -100,8 +88,8 @@ tiposCartas = {
 	//Tipo Inicio
 	ComienzoEscalera: { Type: "camino", Izquierda: true, Derecha: true, Arriba: true, Abajo: true, Bloqueante: false},
 	//Tipo Destino
-	DestinoNada1: { Type: "camino", Izquierda: true, Derecha: false, Arriba: false, Abajo: true, Bloqueante: false,name: "DestinoNada1"},
-	DestinoNada2: { Type: "camino", Izquierda: true, Derecha: false, Arriba: true, Abajo: false, Bloqueante: false,name: "DestinoNada2"},
+	DestinoNada1: { Type: "camino", Izquierda: false, Derecha: true, Arriba: false, Abajo: true, Bloqueante: false,name: "DestinoNada1"},
+	DestinoNada2: { Type: "camino", Izquierda: true, Derecha: false, Arriba: false, Abajo: true, Bloqueante: false,name: "DestinoNada2"},
 	DestinoPepita: { Type: "camino", Izquierda: true, Derecha: true, Arriba: true, Abajo: true, Bloqueante: false,name: "DestinoPepita"},
 	//Tipo Roll
 	Saboteador: {Type: "roll", Roll: "Sabotear"},
@@ -111,15 +99,12 @@ tiposCartas = {
 	Pepitas2: {Type: "gold", nPepitas: 2},
 	Pepitas3: {Type: "gold", nPepitas: 3},
 	//Tipo Accion
-	RomperVagoneta: {Type: "accionP", Funcion: destruir, Objeto: ["vagoneta"]},
-	RomperFarolillo: {Type: "accionP", Funcion: destruir, Objeto: ["farolillo"]},
-	RomperPico: {Type: "accionP", Funcion: destruir, Objeto: ["pico"]},
-	ArreglarVagoneta: {Type: "accionP", Funcion: arreglar, Objeto:["vagoneta"]},
-	ArreglarFarolillo: {Type: "accionP", Funcion: arreglar, Objeto:["farolillo"]},
-	ArreglarPico: {Type: "accionP", Funcion: arreglar, Objeto:["pico"]},
-	ArreglarFaro_Pico: {Type: "accionP", Funcion: arreglar, Objeto:["farolillo","pico"]},
-	ArreglarFaro_Vagon: {Type: "accionP", Funcion: arreglar, Objeto: ["farolillo","vagoneta"]},
-	ArreglarVagon_Pico: {Type: "accionP", Funcion: arreglar, Objeto: ["vagoneta","pico"]},
+	RomperVagoneta: {Type: "accionP", Funcion: destruir, Objeto: "vagoneta"},
+	RomperFarolillo: {Type: "accionP", Funcion: destruir, Objeto: "farolillo"},
+	RomperPico: {Type: "accionP", Funcion: destruir, Objeto: "pico"},
+	ArreglarVagoneta: {Type: "accionP", Funcion: arreglar, Objeto:"vagoneta"},
+	ArreglarFarolillo: {Type: "accionP", Funcion: arreglar, Objeto:"farolillo"},
+	ArreglarPico: {Type: "accionP", Funcion: arreglar, Objeto:"pico"},
 	Mapa: {Type: "accionT", Funcion: destapaCartaDestino},
 	Derrumbamiento: {Type: "accionT", Funcion: derrumbamiento}
 };
@@ -145,9 +130,9 @@ cartasPepitas = ['Pepitas1','Pepitas1','Pepitas1','Pepitas1','Pepitas1','Pepitas
 cartasAccion = ['Mapa','Mapa','Mapa','Mapa','Mapa','Mapa','ArreglarVagoneta','ArreglarVagoneta','ArreglarPico',
 					'ArreglarPico','ArreglarFarolillo','ArreglarFarolillo','RomperVagoneta','RomperVagoneta','RomperVagoneta',
 					'RomperFarolillo','RomperFarolillo','RomperFarolillo','RomperPico','RomperPico','RomperPico',
-					'ArreglarFaro_Pico','ArreglarFaro_Vagon','ArreglarVagon_Pico','Derrumbamiento','Derrumbamiento',
-					'Derrumbamiento'
+					'Derrumbamiento','Derrumbamiento','Derrumbamiento'
 ];
+
 
 girarCarta = function(carta){
 	aux = tiposCartas.Standard;
@@ -172,6 +157,7 @@ ponerCamino = function(partidaId,jugadorId,carta){
 		if(carta.girada){
 			tipoCarta = girarCarta(tipoCarta);
 		}
+		
         return comprobarCelda(partidaId,t,tipoCarta,carta.fila,carta.columna);
     }
 
@@ -183,7 +169,7 @@ var comprobarCelda = function(partidaId,tablero,c,row,col){
 	// [izq,der,arr,abj]
 	var aux = [null,null,null,null];
 	var caux = [c.Derecha,c.Izquierda,c.Arriba,c.Abajo];
-	
+
 	// CHECKING
 
    	if(tablero.list[row][col+1].ocupada){
@@ -210,7 +196,7 @@ var comprobarCelda = function(partidaId,tablero,c,row,col){
    		}
    	}
 
-	
+
    	if(tablero.list[row+1][col].ocupada){
    		if(tablero.list[row+1][col].carta.Arriba){
    			aux[3] = true;
@@ -230,18 +216,20 @@ var comprobarCelda = function(partidaId,tablero,c,row,col){
    	tablero.list[row][col].carta = c;
    	tablero.list[row][col].ocupada = true;
 
-   	if(c.Izquierda && !tablero.list[row][col-1].ocupada){
-		tablero.posiblesCells.push(row.toString() + "," + (col-1).toString());
-	}
-	if (c.Derecha && !tablero.list[row][col+1].ocupada) {
-		tablero.posiblesCells.push(row.toString() + "," + (col+1).toString());
-	}
-	if (c.Arriba && !tablero.list[row-1][col].ocupada) {
-		tablero.posiblesCells.push((row-1).toString() + "," + col.toString());
-	}
-	if (c.Abajo && !tablero.list[row+1][col].ocupada) {
-		tablero.posiblesCells.push((row+1).toString() + "," + col.toString());
-	}
+   	if(!c.Bloqueante){
+	   	if(c.Izquierda && !tablero.list[row][col-1].ocupada){
+			tablero.posiblesCells.push(row.toString() + "," + (col-1).toString());
+		}
+		if (c.Derecha && !tablero.list[row][col+1].ocupada) {
+			tablero.posiblesCells.push(row.toString() + "," + (col+1).toString());
+		}
+		if (c.Arriba && !tablero.list[row-1][col].ocupada) {
+			tablero.posiblesCells.push((row-1).toString() + "," + col.toString());
+		}
+		if (c.Abajo && !tablero.list[row+1][col].ocupada) {
+			tablero.posiblesCells.push((row+1).toString() + "," + col.toString());
+		}
+	}	
 
 
    	Partidas.update({_id: partidaId}, {$set: {tablero: tablero}});
@@ -331,13 +319,13 @@ var Tablero = function(){
    	this.list[14][3].ocupada = true;
 
    	this.list[12][11].carta = arrayDestinos[0];
-   	this.list[12][11].ocupada = true;
+   	this.list[12][11].ocupada = false;
 
    	this.list[14][11].carta = arrayDestinos[1];
-   	this.list[14][11].ocupada = true;
+   	this.list[14][11].ocupada = false;
 
    	this.list[16][11].carta = arrayDestinos[2];
-   	this.list[16][11].ocupada = true;
+   	this.list[16][11].ocupada = false;
 };
 
 
@@ -374,7 +362,7 @@ configurarPartida = function(partidaId){
 	    for (i = 0; i < caracs.length; i++) {
 	    	puntuacion[i] = caracs[i].puntuacion;
 	    };
-		Caracteristicas.remove({partidaId: partidaId}); 
+		Caracteristicas.remove({partidaId: partidaId});
 	}else{
 		ronda = 1;
 		for (i = 0; i < numJugadores; i++) {
@@ -395,7 +383,7 @@ configurarPartida = function(partidaId){
 	        puntuacion: puntuacion[i],
 	   	});
 	};
-	
+
 
 	Partidas.update({_id: partidaId}, {$set:{
 						mazoGeneral: mazo,
@@ -405,5 +393,3 @@ configurarPartida = function(partidaId){
 						empezada: true,
 					}});
 };
-
-

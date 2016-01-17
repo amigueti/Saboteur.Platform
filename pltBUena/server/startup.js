@@ -41,54 +41,148 @@ var actualizarTurno = function(partidaId){
 };
 
 
-var ponerCarta = function(partidaId,jugadorId,carta,nameObjetivo){
-    var aux = carta;
-    //FUNCION DE LA CARTA
-    var objeto;
-    if(aux.sprite == "ArreglarFaro_Vagon"){
-        objeto = "farolillo";
-    }else if(aux.sprite == "ArreglarFaro_Pico"){
-        objeto = "pico";
-    }else if(aux.sprite == "ArreglarVagon_Pico"){    
-        objeto = "vagoneta";
-    }else{
-        if(aux.sprite.charAt(0) == 'A'){
-            objeto = aux.sprite.toLowerCase().split("arreglar");
-        }else{
-            objeto = aux.sprite.toLowerCase().split("romper");
-        }
+var actualizarTablero = function(partidaId,fila,columna,girada){
+    var tablero = Partidas.findOne({_id: partidaId}).tablero;
+    var aux = tablero.list[fila][columna].carta;
+    if(girada){
+        aux = girarCarta(aux);
     }
-            
-    //
-    var r;
-    var selectedCard = tiposCartas[aux.sprite];
+    if(tablero.list[fila][columna].carta.name != "DestinoPepita"){
+        aux.name = "Ocupada";
+    }    
+    aux.Type = tablero.list[fila][columna].carta.Type;
+
+    tablero.list[fila][columna].carta = aux;
+    tablero.list[fila][columna].ocupada = true;
+
+    //ABAJO
+    if(tablero.list[fila][columna].carta.Abajo && !tablero.list[fila+1][columna].ocupada){
+        tablero.posiblesCells.push((fila+1).toString() + "," + columna.toString());
+    }
+
+    //ARRIBA
+    if(tablero.list[fila][columna].carta.Arriba && !tablero.list[fila-1][columna].ocupada){
+        tablero.posiblesCells.push((fila-1).toString() + "," + columna.toString());
+    }
+
+    //DERECHA
+    if(tablero.list[fila][columna].carta.Derecha && !tablero.list[fila][columna+1].ocupada){
+        tablero.posiblesCells.push(fila.toString() + "," + (columna+1).toString());
+    }
+
+    //IZQUIERDA
+    if(tablero.list[fila][columna].carta.Izquierda && !tablero.list[fila][columna-1].ocupada){
+        tablero.posiblesCells.push(fila.toString() + "," + (columna-1).toString());
+    } 
+
+    Partidas.update({_id: partidaId}, {$set: {tablero: tablero}});
+};
+
+
+var llegaDestino = function(partidaId, carta){
+    var tablero = Partidas.findOne({_id: partidaId}).tablero;
+    var propCarta = tiposCartas[carta.sprite];
+    var c = {sprite: "", fila: -1, columna:-1,girada: false};
+    var girada = false;
+
+    if(propCarta.Arriba==true){
+        if(cartasDestino.indexOf(tablero.list[carta.fila-1][carta.columna].carta.name)!= -1){
+            c.sprite = tablero.list[carta.fila-1][carta.columna].carta.name;
+            c.fila = carta.fila-1;
+            c.columna =carta.columna;
+            if(!tablero.list[carta.fila-1][carta.columna].carta.Abajo){
+                c.girada = true;
+                girada = true;
+            }
+            tablero.list[carta.fila-1][carta.columna].carta.ocupada = true;
+            actualizarTablero(partidaId,carta.fila-1,carta.columna,girada);
+            return c;
+        }   
+    }
+    if(propCarta.Abajo==true){
+        if(cartasDestino.indexOf(tablero.list[carta.fila+1][carta.columna].carta.name)!= -1){
+            c.sprite = tablero.list[carta.fila+1][carta.columna].carta.name;
+            c.fila = carta.fila+1;
+            c.columna =carta.columna; 
+            if(!tablero.list[carta.fila+1][carta.columna].carta.Arriba){
+                c.girada = true;
+                girada = true;
+            }
+            tablero.list[carta.fila+1][carta.columna].carta.ocupada = true;
+            actualizarTablero(partidaId,carta.fila+1,carta.columna,girada);
+            return c;
+        } 
+    }
+    if(propCarta.Izquierda==true){
+        if(cartasDestino.indexOf(tablero.list[carta.fila][carta.columna-1].carta.name)!= -1){
+            c.sprite = tablero.list[carta.fila][carta.columna-1].carta.name;
+            c.fila = carta.fila;
+            c.columna =carta.columna-1;
+            if(!tablero.list[carta.fila][carta.columna-1].carta.Derecha){
+                c.girada = true;
+                girada = true;
+            }
+            tablero.list[carta.fila][carta.columna-1].carta.ocupada = true;
+            actualizarTablero(partidaId,carta.fila,carta.columna-1,girada);
+            return c;
+        } 
+    }
+    if(propCarta.Derecha==true){
+        if(cartasDestino.indexOf(tablero.list[carta.fila][carta.columna+1].carta.name)!= -1){
+            c.sprite = tablero.list[carta.fila][carta.columna+1].carta.name;
+            c.fila = carta.fila;
+            c.columna =carta.columna+1;
+            if(!tablero.list[carta.fila][carta.columna+1].carta.Izquierda){
+                c.girada = true;
+                girada = true;
+            }
+            tablero.list[carta.fila][carta.columna+1].carta.ocupada = true;
+            actualizarTablero(partidaId,carta.fila,carta.columna+1,girada);
+            return c;
+        } 
+    }
+
+    return null;
+};
+
+var ponerCarta = function(partidaId,jugadorId,carta,nameObjetivo){
+    var r = false;
+    var selectedCard = tiposCartas[carta.sprite];
     switch(selectedCard.Type) {
         case "excavacion":
-            r = ponerCamino(partidaId,jugadorId,aux);
+            r = ponerCamino(partidaId,jugadorId,carta);
             break;
         case "accionT":
-            r = selectedCard.Funcion(partidaId,aux);
+            r = selectedCard.Funcion(partidaId,carta);
             break;
         case "accionP":
-            r = selectedCard.Funcion(partidaId,selectedCard,nameObjetivo,objeto);
-            if(r != true && r != false && r.charAt(0) == 'A'){
-                aux.sprite = r;
-                r = true;
-            }
+            r = selectedCard.Funcion(partidaId,selectedCard,nameObjetivo);
             break;
     }
+
 
 
     //INSERTAR EN ACCIONES
-    if(r == true){
-        Acciones.insert({
-            partidaId: partidaId,
-            tipo: selectedCard.Type,
-            carta: aux,
-            targetName: nameObjetivo,
-            objeto: objeto,
-            datetime: new Date().getTime(),
-        });
+    if(r == true ){
+        var cartaDestino = llegaDestino(partidaId,carta);
+
+        if(cartaDestino != null){
+            Acciones.insert({
+                partidaId: partidaId,
+                tipo: "doble",
+                primera: carta,
+                segunda: cartaDestino,
+                datetime: new Date().getTime(),
+            });
+        }else{
+            Acciones.insert({
+                partidaId: partidaId,
+                tipo: selectedCard.Type,
+                carta: carta,
+                targetName: nameObjetivo,
+                datetime: new Date().getTime(),
+            });
+        }
     }
 
     return r;
@@ -143,75 +237,93 @@ var isFinish = function(partida){
     var terminada = false;
     var tipoGanador = null;
     var mano = [];
-    var caracs = Caracteristicas.find({partidaId: partida._id}).fetch(); 
+    var caracs = Caracteristicas.find({partidaId: partida._id}).fetch();
     this.list = partida.tablero.list;
     this.usadas = partida.cartasUsadas;
 
-    if((partida.mazoGeneral.length == 0) && (this.usadas == 67)){
+    if((partida.mazoGeneral.length == 0) && (this.usadas == 64)){
         terminada = true;
         tipoGanador = "Saboteador";
     }
-    
+
     if(this.list[14][11].carta.name == "DestinoPepita"){
         if((this.list[14][10].ocupada == true) && (this.list[14][10].carta.Derecha == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
+
         }
         else if((this.list[13][11].ocupada == true) && (this.list[13][11].carta.Abajo == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
         else if((this.list[14][12].ocupada == true) && (this.list[14][12].carta.Izquierda == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
         else if((this.list[15][11].ocupada == true) && (this.list[15][11].carta.Arriba == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
     }
 
     if(this.list[12][11].carta.name == "DestinoPepita"){
         if((this.list[12][10].ocupada == true) && (this.list[12][10].carta.Derecha == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
         else if((this.list[11][11].ocupada == true) && (this.list[11][11].carta.Abajo == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
         else if((this.list[12][12].ocupada == true) && (this.list[12][12].carta.Izquierda == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
         else if((this.list[13][11].ocupada == true) && (this.list[13][11].carta.Arriba == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
     }
 
     if(this.list[16][11].carta.name == "DestinoPepita"){
         if((this.list[16][10].ocupada == true) && (this.list[16][10].carta.Derecha == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
         else if((this.list[15][11].ocupada == true) && (this.list[15][11].carta.Abajo == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
         else if((this.list[16][12].ocupada == true) && (this.list[16][12].carta.Izquierda == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
         else if((this.list[17][11].ocupada == true) && (this.list[17][11].carta.Arriba == true)){
             terminada = true;
-            tipoGanador = "Buscador";   
+            tipoGanador = "Buscador";
         }
     }
+    /*if(this.list[16][11].carta.name == "DestinoNada1"){
+      if((this.list[16][10].ocupada == true) && (this.list[16][10].carta.Derecha == true)){
+          //
+      }
+      else if((this.list[15][11].ocupada == true) && (this.list[15][11].carta.Abajo == true)){
+          terminada = true;
+          tipoGanador = "Buscador";
+      }
+      else if((this.list[16][12].ocupada == true) && (this.list[16][12].carta.Izquierda == true)){
+          terminada = true;
+          tipoGanador = "Buscador";
+      }
+      else if((this.list[17][11].ocupada == true) && (this.list[17][11].carta.Arriba == true)){
+          terminada = true;
+          tipoGanador = "Buscador";
+      }
+    }*/
 
     if(terminada){
         this.usadas = 0;
-        Partidas.update({_id: partida._id},{$set:{cartasUsadas: usadas}});    
+        Partidas.update({_id: partida._id},{$set:{cartasUsadas: usadas}});
     }
 
     return [terminada,tipoGanador];
@@ -255,7 +367,7 @@ var finalRonda = function(partidaId){
 Meteor.startup(function () {
     // code to run on server at startup
     Meteor.publish("partidas", function () {
-        return Partidas.find();
+        return Partidas.find({},{fields:{mazoGeneral:0}});
     });
 
     Meteor.publish("acciones", function () {
@@ -318,7 +430,7 @@ Meteor.startup(function () {
                 r = ponerCarta(partidaId,jugadorId,carta,nameObjetivo);
             }
 
-            
+
             if(r != false){
                 descartarCarta(partidaId,jugadorId,carta);
                 if(Partidas.findOne({_id: partidaId}).mazoGeneral.length > 0){
@@ -326,7 +438,7 @@ Meteor.startup(function () {
                     Caracteristicas.update({partidaId: partidaId,jugadorId: jugadorId},{$push: {mano: nuevaCarta}});
                 }
                 usadas++;
-                Partidas.update({_id: partidaId},{$set:{cartasUsadas: usadas}});   
+                Partidas.update({_id: partidaId},{$set:{cartasUsadas: usadas}});
                 actualizarTurno(partidaId);
             }
 
