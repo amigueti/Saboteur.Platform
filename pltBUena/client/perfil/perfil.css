@@ -30,6 +30,8 @@
 	height: 449px;
 	width: 500px;
 	border-style: solid;
+	    background-image: url("images/fondo-piedra.png");
+
 }
 #panelinfo2{
 	position: absolute;
@@ -39,6 +41,7 @@
 	width: 200px;
 	border-style: solid;
 	border-radius: 10px;
+	background-image: url("images/fondo-piedra.png");
 }
 #panelinfo3{
 	position: absolute;
@@ -48,6 +51,7 @@
 	width: 198px;
 	border-style: solid;
 	border-radius: 10px;
+	background-image: url("images/fondo-piedra.png");
 }
 #formPerfil{
 	position: absolute;
