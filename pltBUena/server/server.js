@@ -12,7 +12,7 @@ Meteor.publish('amigos',function(){
 });
 Meteor.publish('users',function(){
 	if(this.userId){
-		return Meteor.users.find({},{fields:{username:1,_id:1,profile:1}});
+		return Meteor.users.find({},{fields:{username:1,_id:1,profile:1,status:1}});
 	}else{
 		this.ready()
 	}

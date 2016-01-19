@@ -8,7 +8,7 @@ Template.navigation.helpers({
    'usuarios': function() {
         a=[];
         for(i=0;i<Meteor.users.find().fetch().length;i++){
-            a.push({username:Meteor.users.find().fetch()[i].username,image:Meteor.users.find().fetch()[i].profile.image,id:Meteor.users.find().fetch()[i]._id})
+            a.push({username:Meteor.users.find().fetch()[i].username,image:Meteor.users.find().fetch()[i].profile.image,id:Meteor.users.find().fetch()[i]._id,status:Meteor.users.find().fetch()[i].status.online})
                 //{login:Meteor.users.find().fetch()[i].profile.login})}
         }
         return a;

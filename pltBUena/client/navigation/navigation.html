@@ -2,6 +2,7 @@
 	<div class="navbar navbar-static-top">
 		<div class="navbar-inner">
 			<ul id="menu">
+				
 			    <li><a href="/" class="btn btn-primary btn-lg" id="navHome">Home</a></li>
 			    
 			    
@@ -19,10 +20,10 @@
             		<input type="text" placeholder="Buscar Usuario" name="busqueda">
        			</form></li>
        			{{/if}}
-       				<li><a href="/#" class="btn btn-primary" id="navConectados"><span class="glyphicon glyphicon-search"></span></a>
+       				<li><a href="/#" class="btn btn-primary" id="navConectados" ><span class="glyphicon glyphicon-search"></span></a>
        				<ul>
        					{{#each usuarios}}
-			            <li><span> <a href="#"><img src="{{this.image}}" width="22" height="22">  {{this.username}}</a></span></li>
+			            <li><span> <a href="/perfiles/{{this.id}}"><img src="{{this.image}}" type="submit" width="22" height="22">  {{this.username}} {{#if this.status}} <span class="glyphicon glyphicon-user" style="color:green"></span>{{else}}<span class="glyphicon glyphicon-user" style="color:red"></span> {{/if}}</a></span></li>
        					{{/each}}
 			            
 			        </ul>
