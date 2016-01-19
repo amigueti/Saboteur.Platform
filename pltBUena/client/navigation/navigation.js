@@ -12,6 +12,13 @@ Template.navigation.helpers({
                 //{login:Meteor.users.find().fetch()[i].profile.login})}
         }
         return a;
+    },
+    'tienePerfil':function(){
+        if(Perfiles.findOne({_id:Meteor.user()._id})){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
