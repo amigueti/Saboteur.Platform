@@ -18,6 +18,9 @@ Router.route('/perfiles/:_id',{
 	},
 	action:function(){
 		if(this.ready()){this.render();}
+	},
+	waitOn:function(){
+		return Meteor.subscribe('perfiles',this.params._id);
 	}
 });
 Router.route('/ranking',{name: 'ranking'});
