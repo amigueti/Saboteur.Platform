@@ -13,10 +13,14 @@ Router.route('/juego',{
 });
 Router.route('/perfiles/:_id',{
 	name: 'perfiles',
-		data: function() { return Perfiles.findOne(this.params._id);
+	template:'perfiles',
+		data: function() { return Perfiles.findOne({_id:this.params._id});
 	},
 	action:function(){
 		if(this.ready()){this.render();}
+	},
+	waitOn:function(){
+		return Meteor.subscribe('perfiles',this.params._id);
 	}
 });
 Router.route('/ranking',{name: 'ranking'});

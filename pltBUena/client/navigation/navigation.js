@@ -8,10 +8,17 @@ Template.navigation.helpers({
    'usuarios': function() {
         a=[];
         for(i=0;i<Meteor.users.find().fetch().length;i++){
-            a.push({username:Meteor.users.find().fetch()[i].username,image:Meteor.users.find().fetch()[i].profile.image/*,login:Meteor.users.find().fetch()[i].profile.login*/})
+            a.push({username:Meteor.users.find().fetch()[i].username,image:Meteor.users.find().fetch()[i].profile.image,id:Meteor.users.find().fetch()[i]._id,status:Meteor.users.find().fetch()[i].status.online})
                 //{login:Meteor.users.find().fetch()[i].profile.login})}
         }
         return a;
+    },
+    'tienePerfil':function(){
+        if(Perfiles.findOne({_id:Meteor.user()._id})){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
@@ -28,7 +35,7 @@ Template.navigation.events({
                 idRuta=Perfiles.findOne({nick: buscado})._id;
                 console.log(idRuta);
                 ruta="/perfiles/"+String(idRuta);
-                Router.go(ruta);
+                //Router.go(ruta);
                 location.href=ruta;
                 //.setTimeout(location.reload(),300000);
 

@@ -114,7 +114,7 @@ li.active a, li.active a:hover {
 
     background: transparent;
     color: #B22222;
-    font-size: 17px;
+    font-size: 14px;
     text-align: justify;
     font-weight: 600;
 }
@@ -123,7 +123,7 @@ li.active a, li.active a:hover {
 
     background: transparent;
     color: #B22222;
-    font-size: 17px;
+    font-size: 14px;
     text-align: justify;
     font-weight: 600;
     height: 300px;
@@ -154,7 +154,7 @@ li.active a, li.active a:hover {
 
     background: transparent;
     color: #B22222;
-    font-size: 17px;
+    font-size: 14px;
     text-align: justify;
     font-weight: 600;    
 
@@ -174,7 +174,7 @@ li.active a, li.active a:hover {
     background: transparent;
     font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
     color: #B22222;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 600;
 }
 .como-jugar-links .active{
@@ -200,6 +200,7 @@ li.active a, li.active a:hover {
 
 #tunel{
     margin-top: 50px;
+    font-size: 14px;
 }
 
 #img-cartas-1{
@@ -209,12 +210,12 @@ li.active a, li.active a:hover {
     float:left;
 }
 #primera-fila{
-    font-size: 15px;
+    font-size: 12.8px;
     width: 390px;
     float: left;
 }
 #segunda-fila{
-    font-size: 15px;
+    font-size: 12.8px;
     width: 390px;
     float: left;
 }
@@ -222,7 +223,7 @@ li.active a, li.active a:hover {
     float: right;
 }
 #derrumbe{
-    font-size: 15px;
+    font-size: 12.8px;
     width: 500px;
     float: right;
 }
@@ -230,15 +231,17 @@ li.active a, li.active a:hover {
     float: left;
 }
 #mapa{
-    font-size: 15px;
+    font-size: 12.8px;
     width: 500px;
     float: left;
 }
 #final-ronda{
     margin-top: 50px;
+    font-size: 14px;
 }
 #pepitas{
     margin-top: 50px;
+    font-size: 14px;
 }
 
 #final{
@@ -246,7 +249,7 @@ li.active a, li.active a:hover {
 
     background: transparent;
     color: #B22222;
-    font-size: 17px;
+    font-size: 14px;
     text-align: justify;
     font-weight: 600;
     margin-top: 75px;
