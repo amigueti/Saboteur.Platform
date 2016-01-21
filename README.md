@@ -8,3 +8,4 @@
 7. Chat de partida
 8. Footer
 9. Logo
+10. Cambiar fuente en perfil
