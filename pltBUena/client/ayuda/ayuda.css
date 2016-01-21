@@ -53,6 +53,10 @@
     width: 900px;
     background-image: url("images/fondo-piedra.png");
     margin-top: 40px;
+
+
+
+
 }
 .ayuda-links a {
     height: 40px;
@@ -96,7 +100,15 @@ li.active a, li.active a:hover {
     font-size: 15px;
 
 }
+/*.parrafos{
+    font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
 
+    background: transparent;
+    color: #B22222;
+    font-size: 17px;
+    text-align: justify;
+    font-weight: 600;
+}*/
 #idea{
     font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
 
@@ -114,6 +126,7 @@ li.active a, li.active a:hover {
     font-size: 17px;
     text-align: justify;
     font-weight: 600;
+    height: 300px;
 }
 #logo{
     height: 100px;
