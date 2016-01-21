@@ -8,7 +8,8 @@ Template.navigation.helpers({
    'usuarios': function() {
         a=[];
         for(i=0;i<Meteor.users.find().fetch().length;i++){
-            a.push({username:Meteor.users.find().fetch()[i].username,image:Meteor.users.find().fetch()[i].profile.image,id:Meteor.users.find().fetch()[i]._id,status:Meteor.users.find().fetch()[i].status.online})
+            if(Perfiles.findOne({_id:Meteor.users.find().fetch()[i]._id}))
+                a.push({username:Meteor.users.find().fetch()[i].username,image:Meteor.users.find().fetch()[i].profile.image,id:Meteor.users.find().fetch()[i]._id,status:Meteor.users.find().fetch()[i].status.online})
                 //{login:Meteor.users.find().fetch()[i].profile.login})}
         }
         return a;
@@ -65,11 +66,16 @@ Template.navigation.events({
             //console.log(post);
             Meteor.call("addPerfil", post);
             alert("Has creado tu perfil");
-        }    
+        }
+     },   
+
+     'click #login-buttons-logout':function(){
+        Router.go('home');
+     }       
         
 
             
-     }       
+           
 });
 /*Deps.autorun(function(){
             for(i=0;i<Meteor.users.find().fetch().length;i++){

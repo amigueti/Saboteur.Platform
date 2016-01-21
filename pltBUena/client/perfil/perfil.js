@@ -85,6 +85,14 @@ Template.perfil.helpers({
 		
 		perfil=Perfiles.findOne({_id:Meteor.userId()});
 		return perfil.genero;
+	},
+	'tieneFoto':function(){
+		if(Meteor.user().profile.image==AVATAR){
+			return false;
+		}else{
+			return true;
+		}
+
 	}
 
 });

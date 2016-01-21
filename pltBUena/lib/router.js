@@ -26,5 +26,12 @@ Router.route('/perfiles/:_id',{
 Router.route('/ranking',{name: 'ranking'});
 Router.route('/ayuda',{name: 'ayuda',
 template: 'ayuda'});
+/*var fuera = function(){
+	if((!Meteor.user() || Meteor.loggingIn())){
+		Router.route('/home');
+	}else{
+		this.next();
+	}
+}
 
-//Router.onBeforeAction('loading', {only: 'perfiles'});
+Router.onBeforeAction(fuera);*/

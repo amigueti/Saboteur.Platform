@@ -21,7 +21,12 @@
             		<input type="text" placeholder="Buscar Usuario" name="busqueda">
        			</form></li>
        			
-       				<li><a href="/#" class="btn btn-primary" id="navConectados" ><span class="glyphicon glyphicon-search"></span></a>
+       				
+			    <li><a href="/ayuda" class="btn btn-primary" id="navHelp">Ayuda</a></li>
+       			{{/if}}
+       			{{/if}}
+       			<li>{{> loginButtons }}</li>
+       			<li><a href="/#" class="btn btn-primary" id="navConectados" ><span class="glyphicon glyphicon-search"></span></a>
        				<ul>
        					{{#each usuarios}}
 			            <li><span> <a href="/perfiles/{{this.id}}"><img src="{{this.image}}" type="submit" width="22" height="22">  {{this.username}} {{#if this.status}} <span class="glyphicon glyphicon-user" style="color:green"></span>{{else}}<span class="glyphicon glyphicon-user" style="color:red"></span> {{/if}}</a></span></li>
@@ -29,10 +34,6 @@
 			            
 			        </ul>
 			        </li>
-			    <li><a href="/ayuda" class="btn btn-primary" id="navHelp">Ayuda</a></li>
-       			{{/if}}
-       			{{/if}}
-       			<li>{{> loginButtons }}</li>
 
 			</ul>
 		</div>
