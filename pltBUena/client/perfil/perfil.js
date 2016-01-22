@@ -37,7 +37,7 @@ Template.perfil.events({
             	//console.log(post);
                Meteor.call("updatePerfil", id,usuario,email,nombre,nacionalidad,genero);
                
-            	alert("Has actualizado tu perfil");
+            	
             
 	},
 	'click .list-group-item':function(){

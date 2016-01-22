@@ -11,6 +11,7 @@
     background: transparent linear-gradient(to bottom, #519EF9 2%, #448EF0 2%, #3376DE 47%, #2866D2 59%, #2866D2 100%) repeat scroll 0% 0%;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     position: absolute;
+   
 }
 .tab {
     display:none;

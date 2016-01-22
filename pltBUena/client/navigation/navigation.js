@@ -7,11 +7,12 @@ AVATAR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYEBQYFBAYGBQY
 Template.navigation.helpers({
    'usuarios': function() {
         a=[];
-        for(i=0;i<Meteor.users.find().fetch().length;i++){
+        for(i=0;i<Meteor.users.find({},{sort:{"status.online":-1,username:1}}).fetch().length;i++){
             if(Perfiles.findOne({_id:Meteor.users.find().fetch()[i]._id}))
-                a.push({username:Meteor.users.find().fetch()[i].username,image:Meteor.users.find().fetch()[i].profile.image,id:Meteor.users.find().fetch()[i]._id,status:Meteor.users.find().fetch()[i].status.online})
+                a.push({username:Meteor.users.find({},{sort:{"status.online":-1,username:1}}).fetch()[i].username,image:Meteor.users.find({},{sort:{"status.online":-1,username:1}}).fetch()[i].profile.image,id:Meteor.users.find({},{sort:{"status.online":-1,username:1}}).fetch()[i]._id,status:Meteor.users.find({},{sort:{"status.online":-1,username:1}}).fetch()[i].status.online})
                 //{login:Meteor.users.find().fetch()[i].profile.login})}
         }
+        
         return a;
     },
     'tienePerfil':function(){
