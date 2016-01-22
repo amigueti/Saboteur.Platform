@@ -80,6 +80,10 @@ body {
     background: linear-gradient(#444, #111);
     -moz-border-radius: 5px;
     border-radius: 5px;
+    width: 150px;
+    max-height: 300px;
+    overflow: auto;
+
 }
 
 #menu ul li{
@@ -90,22 +94,27 @@ body {
     -moz-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
     -webkit-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
     box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    
 }
 
 #menu ul li:last-child{
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
+
+
 }
 
 #menu ul a{
-    padding: 10px;
+    padding: 5px;
     height: auto;
     line-height: 1;
-    display: block;
+    
     white-space: nowrap;
     float: none;
     text-transform: none;
+
+
 }
 
 *html #menu ul a{ /* IE6 */
