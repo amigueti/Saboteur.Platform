@@ -23,6 +23,7 @@ Meteor.methods ({
         var timestamp = Math.round(new Date().getTime() / 1000);
         Messages.insert({
             nick : post.nick,
+	    session : post.session,
             message : post.message,
             time : timestamp
         });

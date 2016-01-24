@@ -1,6 +1,12 @@
 
 <template name="chat">
     <div class="panel panel-default" id="chat_gral">
+	<div id="chats">
+		<button type="button" disabled>General</button>
+		<div id="boton_juego" hidden>
+			<button type="button">Juego</button>
+		</div>
+	</div>
         <div id="mensajes">
             <br>
            {{#each latestMessages}} 
@@ -9,7 +15,7 @@
                 {{message}}
             </p>
             {{/each}} 
-            </div>
+        </div>
         <form id="formulario">
             <input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="27">
        </form>

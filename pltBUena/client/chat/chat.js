@@ -14,6 +14,7 @@ Template.chat.events({
             var currentUser = Meteor.user().username;
             var post = {
                 nick : currentUser,
+		session : "home",
                 message : $(event.target).find('[name=message]').val()
             }
             if ( (post.message != "") && (post.nick != "") ) {
@@ -27,7 +28,7 @@ Template.chat.events({
        Template.chat.helpers({
            latestMessages : function() {
                  if (Session.get("active")) {
-                    var UltimosMensajes = Messages.find({}, {sort : {time : -1}, limit : 10}).fetch().reverse();
+                    var UltimosMensajes = Messages.find({session: "home"}, {sort : {time : -1}, limit : 10}).fetch().reverse();
                      return UltimosMensajes;
                  } else {
                      return [];
