@@ -52,6 +52,7 @@
     height: 410px;
     width: 900px;
     background-image: url("images/fondo-piedra.png");
+    background-size: 900px 410px;
     margin-top: 40px;
 }
 .ayuda-links a {
@@ -101,19 +102,22 @@ li.active a, li.active a:hover {
     font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
 
     background: transparent;
-    color: #B22222;
-    font-size: 14px;
+    
+    margin-top: 50px;
+    color: #0B1836;
+    font-size: 17px;
     text-align: justify;
-    font-weight: 600;
+    
 }
 #preparacion{
     font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
 
     background: transparent;
-    color: #B22222;
-    font-size: 14px;
+    margin-top: 50px;
+    color: #0B1836;
+    font-size: 15px;
     text-align: justify;
-    font-weight: 600;
+    
 }
 #logo{
     height: 100px;
@@ -143,7 +147,7 @@ li.active a, li.active a:hover {
     color: #B22222;
     font-size: 14px;
     text-align: justify;
-    font-weight: 600;    
+      
 
 }
 .como-jugar-links{
@@ -162,7 +166,7 @@ li.active a, li.active a:hover {
     font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
     color: #B22222;
     font-size: 14px;
-    font-weight: 600;
+    
 }
 .como-jugar-links .active{
     background: transparent;
@@ -188,6 +192,7 @@ li.active a, li.active a:hover {
 #tunel{
     margin-top: 50px;
     font-size: 14px;
+    color: #0B1836;
 }
 
 #img-cartas-1{
@@ -197,12 +202,14 @@ li.active a, li.active a:hover {
     float:left;
 }
 #primera-fila{
-    font-size: 12.8px;
+    font-size: 13.8px;
+    color: #0B1836;
     width: 390px;
     float: left;
 }
 #segunda-fila{
-    font-size: 12.8px;
+    font-size: 13.8px;
+    color: #0B1836;
     width: 390px;
     float: left;
 }
@@ -210,7 +217,8 @@ li.active a, li.active a:hover {
     float: right;
 }
 #derrumbe{
-    font-size: 12.8px;
+    color: #0B1836;
+    font-size: 13.8px;
     width: 500px;
     float: right;
 }
@@ -218,26 +226,30 @@ li.active a, li.active a:hover {
     float: left;
 }
 #mapa{
-    font-size: 12.8px;
+    color: #0B1836;
+    font-size: 13.8px;
     width: 500px;
     float: left;
 }
 #final-ronda{
     margin-top: 50px;
-    font-size: 14px;
+    font-size: 15px;
+    color: #0B1836;
 }
 #pepitas{
     margin-top: 50px;
-    font-size: 14px;
+    font-size: 15px;
+    color: #0B1836;
 }
 
 #final{
     font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
 
     background: transparent;
-    color: #B22222;
-    font-size: 14px;
+    font-size: 15px;
+    color: #0B1836;
+
     text-align: justify;
-    font-weight: 600;
+    
     margin-top: 75px;
 }

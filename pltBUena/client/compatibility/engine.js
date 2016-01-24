@@ -304,7 +304,7 @@ HandBoard.prototype.inRegion = function(x,y){
 };
 
 HandBoard.prototype.draw = function(){
-	drawText(this.roll,"red","20px Georgia",this.x + 400,this.y + 30);
+	drawText(this.roll,"red","20px Georgia",this.x + 200,this.y + 30);//Muevo a 200 antes 400
 	drawRect("black",this.x,this.y,this.w,this.h);
 	for (i = 0; i < this.list.length; i++) {
 		this.list[i].draw();

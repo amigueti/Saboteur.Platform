@@ -54,6 +54,7 @@ Template.saboteur_temp.events({
 	'click #entrar-partida': function(event){
 	    event.preventDefault();
 	    loadCanvas(this._id);
+	    $("#chatt").show();
 	}
 
 });
