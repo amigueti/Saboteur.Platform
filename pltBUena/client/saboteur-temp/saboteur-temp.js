@@ -56,7 +56,7 @@ Template.saboteur_temp.events({
 	    event.preventDefault();
 	    loadCanvas(this._id);
 	    Session.set("juego", this._id);
-	    $('#boton_juego').show();
+	    $('#chat_juego').show();
 	}
 
 });
@@ -69,8 +69,21 @@ Deps.autorun(function() {
     });
   });
 
-Template.chat_juego.events({
-         'submit form': function(event) {
+Template.chat.events({
+	'click #boton_juego': function(event){
+	    event.preventDefault();
+	    $('#mensajes_juego').show();
+	    $('#mensajes_generales').hide();
+	},
+	'click #boton_general': function(event){
+	    event.preventDefault();
+	    $('#mensajes_juego').hide();
+	    $('#mensajes_generales').show();
+	},
+      });
+
+Template.mensajes_juego.events({
+	'submit form': function(event) {
             event.preventDefault();
             var currentUser = Meteor.user().username;
             var post = {
@@ -82,12 +95,11 @@ Template.chat_juego.events({
                 Meteor.call("addMessage", post);
             }
             $('[name="message"]').val('');
-
         }
-      });
+});
 
-Template.chat_juego.helpers({
-           latestMessages : function() {
+Template.mensajes_juego.helpers({
+           MensajesJuego : function() {
                  if (Session.get("active")) {
                     var MensajesJuego = Messages.find({session : Session.get("juego")}, {sort : {time : -1}, limit : 10}).fetch().reverse();
 			console.log(MensajesJuego);

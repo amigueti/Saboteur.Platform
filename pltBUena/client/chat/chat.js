@@ -8,7 +8,7 @@ Deps.autorun(function() {
     });
   });
 
-Template.chat.events({
+Template.mensajes_generales.events({
          'submit form': function(event) {
             event.preventDefault();
             var currentUser = Meteor.user().username;
@@ -25,7 +25,7 @@ Template.chat.events({
         }
       });
 
-       Template.chat.helpers({
+Template.mensajes_generales.helpers({
            latestMessages : function() {
                  if (Session.get("active")) {
                     var UltimosMensajes = Messages.find({session: "home"}, {sort : {time : -1}, limit : 10}).fetch().reverse();

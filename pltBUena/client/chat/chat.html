@@ -2,11 +2,21 @@
 <template name="chat">
     <div class="panel panel-default" id="chat_gral">
 	<div id="chats">
-		<button type="button" disabled>General</button>
-		<div id="boton_juego" hidden>
-			<button type="button">Juego</button>
+		<button type="button" id="boton_general">General</button>
+		<div id="chat_juego" hidden>
+			<button type="button" id="boton_juego">Juego</button>
 		</div>
 	</div>
+	
+	{{>mensajes_generales}}
+	{{>mensajes_juego}}
+
+    </div>
+        
+</template>
+
+<template name="mensajes_generales">
+	<div id="mensajes_generales">
         <div id="mensajes">
             <br>
            {{#each latestMessages}} 
@@ -14,11 +24,27 @@
                 <label id="nickLetra">{{nick}}: </label>
                 {{message}}
             </p>
-            {{/each}} 
+            {{/each}}
+	</div>
+	    <form id="formulario">
+            	<input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="27">
+	    </form>
+	</div>	
+</template>
+
+<template name="mensajes_juego">
+	<div id="mensajes_juego" hidden>
+	<div id="mensajes">
+            <br>
+           {{#each MensajesJuego}} 
+            <p>
+                <label id="nickLetra">{{nick}}: </label>
+                {{message}}
+            </p>
+            {{/each}}
+	</div>
+	    <form id="formulario">
+            	<input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="27">
+            </form>
         </div>
-        <form id="formulario">
-            <input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="27">
-       </form>
-    </div>
-        
 </template>

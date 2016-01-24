@@ -3,8 +3,7 @@
 <template name="saboteur_temp">
 	<div class="total-board" hidden></div>	
 	<div class="match-board" hidden>
-		<canvas id="canvas"></canvas>
-		
+		<canvas id="canvas"></canvas>	
 	</div>
 
 
@@ -65,62 +64,4 @@
 			</div>
 		</div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div> {{>chat_juego}} </div>
-</template>
-
-<template name="chat_juego">
-	<p> aqui ira el chat</p>
-	<div class="panel panel-default" id="chat_juego">
-        <div id="mensajes">
-            <br>
-           {{#each latestMessages}} 
-            <p>
-                <label id="nickLetra">{{nick}}: </label>
-                {{message}}
-            </p>
-            {{/each}} 
-            </div>
-        <form id="formulario">
-            <input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="27">
-       </form>
-    </div>
 </template>
