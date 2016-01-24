@@ -2,7 +2,6 @@ Meteor.subscribe('partidas');
 Meteor.subscribe('caracteristicas');
 Meteor.subscribe('acciones');
 Meteor.subscribe('toplist');
-Meteor.subscribe("messages");
 
 Template.saboteur_temp.helpers({
 	match: function() {
@@ -56,49 +55,8 @@ Template.saboteur_temp.events({
 	    event.preventDefault();
 	    loadCanvas(this._id);
 	    Session.set("juego", this._id);
-	    $('#chat_juego').show();
+	    $("#chatt").show();//AKI LLAMAMOS AL CHAT
 	}
 
 });
-
-Template.chat.events({
-	'click #boton_juego': function(event){
-	    event.preventDefault();
-	    $('#mensajes_juego').show();
-	    $('#mensajes_generales').hide();
-	},
-	'click #boton_general': function(event){
-	    event.preventDefault();
-	    $('#mensajes_juego').hide();
-	    $('#mensajes_generales').show();
-	},
-      });
-
-Template.mensajes_juego.events({
-	'submit form': function(event) {
-            event.preventDefault();
-            var currentUser = Meteor.user().username;
-            var post = {
-                nick : currentUser,
-		session : Session.get("juego"),
-                message : $(event.target).find('[name=message]').val()
-            }
-            if ( (post.message != "") && (post.nick != "") ) {
-                Meteor.call("addMessage", post);
-            }
-            $('[name="message"]').val('');
-        }
-});
-
-Template.mensajes_juego.helpers({
-           MensajesJuego : function() {
-                 if (Session.get("active")) {
-                    var MensajesJuego = Messages.find({session : Session.get("juego")}, {sort : {time : -1}, limit : 10}).fetch().reverse();
-			console.log(MensajesJuego);
-                     return MensajesJuego;
-                 } else {
-                     return [];
-                 }
-            }
-       });
 

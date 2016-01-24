@@ -8,13 +8,12 @@ Deps.autorun(function() {
     });
   });
 
-Template.mensajes_generales.events({
+Template.chat.events({
          'submit form': function(event) {
             event.preventDefault();
             var currentUser = Meteor.user().username;
             var post = {
                 nick : currentUser,
-		session : "home",
                 message : $(event.target).find('[name=message]').val()
             }
             if ( (post.message != "") && (post.nick != "") ) {
@@ -25,10 +24,10 @@ Template.mensajes_generales.events({
         }
       });
 
-Template.mensajes_generales.helpers({
+       Template.chat.helpers({
            latestMessages : function() {
                  if (Session.get("active")) {
-                    var UltimosMensajes = Messages.find({session: "home"}, {sort : {time : -1}, limit : 10}).fetch().reverse();
+                    var UltimosMensajes = Messages.find({session : Session.get("home")}, {sort : {time : -1}, limit : 10}).fetch().reverse();
                      return UltimosMensajes;
                  } else {
                      return [];

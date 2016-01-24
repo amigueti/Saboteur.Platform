@@ -1,5 +1,5 @@
 #tabs{
-	float: left;
+    float: left;
     top:121px;
     left:350px;
     height: 450px;
@@ -82,7 +82,7 @@ li.active a, li.active a:hover {
 
 
 .a.button{
-	-webkit-appearance: button;
+    -webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
     text-decoration: none;
@@ -181,7 +181,6 @@ h3{
     top: 0px;
     width: 1200px;
     height: 810px;
-    left: 320px;
     background-color: rgba(28, 27, 255, 0.2);
     margin-top: 120px;
 }
@@ -193,7 +192,6 @@ h3{
     bottom: 100px;
     width: 1100px;
     height: 810px;
-    left: 320px;
     margin-top: 0px;
     background-color: #FFF;
     border-radius: 10px;
