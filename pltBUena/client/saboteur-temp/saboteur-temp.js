@@ -61,14 +61,6 @@ Template.saboteur_temp.events({
 
 });
 
-Deps.autorun(function() {
-    Meteor.subscribe('messages', { 
-          onReady : function() {
-              Session.set("active", true); 
-          }
-    });
-  });
-
 Template.chat.events({
 	'click #boton_juego': function(event){
 	    event.preventDefault();

@@ -1,18 +1,17 @@
 
 <template name="chat">
-    <div class="panel panel-default" id="chat_gral">
-	<div id="chats">
-		<button type="button" id="boton_general">General</button>
-		<div id="chat_juego" hidden>
-			<button type="button" id="boton_juego">Juego</button>
-		</div>
-	</div>
-	
-	{{>mensajes_generales}}
-	{{>mensajes_juego}}
-
-    </div>
-        
+	{{#if currentUser}}
+    		<div class="panel panel-default" id="chat_gral">
+			<div id="chats">
+				<button type="button" id="boton_general">General</button>
+				<div id="chat_juego" hidden>
+					<button type="button" id="boton_juego">Juego</button>
+				</div>
+			</div>
+			{{>mensajes_generales}}
+			{{>mensajes_juego}}
+   		 </div>
+	{{/if}}        
 </template>
 
 <template name="mensajes_generales">
