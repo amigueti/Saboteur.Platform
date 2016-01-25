@@ -1,6 +1,7 @@
 //var idOtro=document.URL.slice(31,100);
 //var existeListaAmigos =false;
 Meteor.subscribe("perfiles");
+Meteor.subscribe("Toplist");
 Template.perfiles.helpers({
 
 	'imagen':function(){
@@ -55,7 +56,17 @@ Template.perfiles.helpers({
 		}
 		return encontrado;
 
-	}
+	},
+
+	  "buscarpuntos": function() {
+       usuario =	Perfiles.findOne({_id:Meteor.userId()}).nick;
+				return Toplist.findOne({name: usuario}, {sort : {puntos : -1}});
+	  },
+
+	"jugadorSelected2": function() {
+			var playerID = this.name;
+			return Perfiles.findOne({nick: playerID });
+	  }
 
 
 });
