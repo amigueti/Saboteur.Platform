@@ -154,11 +154,11 @@ ponerCamino = function(partidaId,jugadorId,carta){
 		return false;
 	}
     if (t.posiblesCells.indexOf(carta.fila.toString() + "," + carta.columna.toString()) != -1 && !t.list[carta.fila][carta.columna].ocupada){
-		if(carta.girada){
-			tipoCarta = girarCarta(tipoCarta);
-		}
-		
+				if(carta.girada){
+					tipoCarta = girarCarta(tipoCarta);
+				}
         return comprobarCelda(partidaId,t,tipoCarta,carta.fila,carta.columna);
+
     }
 
     return false;
@@ -229,7 +229,7 @@ var comprobarCelda = function(partidaId,tablero,c,row,col){
 		if (c.Abajo && !tablero.list[row+1][col].ocupada) {
 			tablero.posiblesCells.push((row+1).toString() + "," + col.toString());
 		}
-	}	
+	}
 
 
    	Partidas.update({_id: partidaId}, {$set: {tablero: tablero}});
@@ -391,5 +391,6 @@ configurarPartida = function(partidaId){
 						tablero: tablero,
 						jugadorActivo: p.listaJugadores[0],
 						empezada: true,
+						cartasUsadas: 0,
 					}});
 };

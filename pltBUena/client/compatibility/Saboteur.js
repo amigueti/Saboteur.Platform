@@ -122,6 +122,7 @@ var offListener = function(game){
 	});
 };
 
+
 //TRACKER PARA ACTUALIZAR EL TURNO Y PROCESAR ACCIONES NUEVAS
 var runTracker = function(partidaId,game){
 	// TRACKER DEL TURNO

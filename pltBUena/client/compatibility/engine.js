@@ -122,6 +122,20 @@ var Board = function() {
 	this.list[12][11].setSprite("DestinoAtras");
 	this.list[14][11].setSprite("DestinoAtras");
 	this.list[16][11].setSprite("DestinoAtras");
+
+
+	this.up = function(){
+		if(this.scroll > 0){
+			this.scroll--;
+		}
+	};
+
+	this.down = function(){
+		if(this.scroll < 24){
+			this.scroll++;
+		}
+	};
+
 };
 
 Board.prototype = new BaseClass();
@@ -286,7 +300,7 @@ HandBoard.prototype.updateHand = function(card){
 	for (i = 0; i < this.list.length - 2; i++) {
 		this.list[i].setColor("black");
 		if(this.list[i] === card){
-			this.list[i].setColor("yellow");
+			this.list[i].setColor("red");
 		}
 	};
 };
@@ -304,7 +318,7 @@ HandBoard.prototype.inRegion = function(x,y){
 };
 
 HandBoard.prototype.draw = function(){
-	drawText(this.roll,"red","20px Georgia",this.x + 200,this.y + 30);//Muevo a 200 antes 400
+	drawText(this.roll,"red","20px Georgia",this.x + 400,this.y + 30);
 	drawRect("black",this.x,this.y,this.w,this.h);
 	for (i = 0; i < this.list.length; i++) {
 		this.list[i].draw();
@@ -463,10 +477,31 @@ var Game = function(partidaId) {
     	}
 	};
 
+	//LISTENER SCROLLING BOARD
+	this.scrollFunction = function(e){
+		if(e.keyCode == '38'){
+			e.preventDefault();
+			that.gameboard.board.up();
+		}
+
+		if(e.keyCode == '40'){
+			e.preventDefault();
+			that.gameboard.board.down();
+		}
+	};
+
+	this.scrollListener = function(game){
+		window.addEventListener('keydown',this.scrollFunction);
+	};
+
+	this.stopScroll = function(){
+		window.removeEventListener('keydown',this.scrollFunction);
+	};
 
 	//INICIALIZAR EL GAME
 	this.initialize = function(spriteData,src,namesPlayers,cardsHand,roll) {
 		this.gameboard = new GameBoard(namesPlayers,cardsHand,roll);
+		this.scrollListener();
 		this.updateAcciones();
 		SpriteSheet.load(spriteData,src,this.loop);
 	};
@@ -474,6 +509,7 @@ var Game = function(partidaId) {
 	//SI SE HACE CLICK FUERA DEL CANVAS DE PARA TODOS LOS LISTENER Y EL GAME
 	this.stopGame = function(){
 		this.stop = true;
+		this.stopScroll();
 		stopAll(this.accionTracker,this.turnoTracker);
 	};
 

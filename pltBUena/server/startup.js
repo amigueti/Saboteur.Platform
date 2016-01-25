@@ -49,7 +49,7 @@ var actualizarTablero = function(partidaId,fila,columna,girada){
     }
     if(tablero.list[fila][columna].carta.name != "DestinoPepita"){
         aux.name = "Ocupada";
-    }    
+    }
     aux.Type = tablero.list[fila][columna].carta.Type;
 
     tablero.list[fila][columna].carta = aux;
@@ -73,20 +73,73 @@ var actualizarTablero = function(partidaId,fila,columna,girada){
     //IZQUIERDA
     if(tablero.list[fila][columna].carta.Izquierda && !tablero.list[fila][columna-1].ocupada){
         tablero.posiblesCells.push(fila.toString() + "," + (columna-1).toString());
-    } 
+    }
 
     Partidas.update({_id: partidaId}, {$set: {tablero: tablero}});
+};
+
+var comprobarDestinoPepita = function(tablero,propCarta,fila,columna){
+    var c = {sprite: "", fila: -1, columna:-1,girada: false};
+
+    if(propCarta.Arriba==true){
+        if(tablero.list[fila-1][columna].carta.name == "DestinoPepita"){
+            c.sprite = "DestinoPepita";
+            c.fila = fila-1;;
+            c.columna = columna;
+            return c;
+        }
+    }
+
+    if(propCarta.Abajo==true){
+        if(tablero.list[fila+1][columna].carta.name == "DestinoPepita"){
+            c.sprite = "DestinoPepita";
+            c.fila = fila+1;
+            c.columna = columna;
+            return c;
+        }
+    }
+    if(propCarta.Izquierda==true){
+        if(tablero.list[fila][columna-1].carta.name == "DestinoPepita"){
+            c.sprite = "DestinoPepita";
+            c.fila = fila;
+            c.columna = columna-1;
+            return c;
+        }
+    }
+    if(propCarta.Derecha==true){
+        if(tablero.list[fila][columna+1].carta.name == "DestinoPepita"){
+            c.sprite = "DestinoPepita";
+            c.fila = fila;
+            c.columna = columna+1;
+            return c;
+        }
+    }
+
+    return null;
 };
 
 
 var llegaDestino = function(partidaId, carta){
     var tablero = Partidas.findOne({_id: partidaId}).tablero;
     var propCarta = tiposCartas[carta.sprite];
+    if(carta.girada){
+        propCarta = girarCarta(propCarta);
+    }
     var c = {sprite: "", fila: -1, columna:-1,girada: false};
     var girada = false;
 
+
+    if ( !propCarta.Bloqueante ) {
+        var aux = comprobarDestinoPepita(tablero,propCarta,carta.fila,carta.columna);
+        if(aux !=  null){
+            c = aux;
+            return c;
+        }
+    }
+
     if(propCarta.Arriba==true){
         if(cartasDestino.indexOf(tablero.list[carta.fila-1][carta.columna].carta.name)!= -1){
+          if ( !propCarta.Bloqueante ) {
             c.sprite = tablero.list[carta.fila-1][carta.columna].carta.name;
             c.fila = carta.fila-1;
             c.columna =carta.columna;
@@ -97,13 +150,15 @@ var llegaDestino = function(partidaId, carta){
             tablero.list[carta.fila-1][carta.columna].carta.ocupada = true;
             actualizarTablero(partidaId,carta.fila-1,carta.columna,girada);
             return c;
-        }   
+          }
+        }
     }
     if(propCarta.Abajo==true){
         if(cartasDestino.indexOf(tablero.list[carta.fila+1][carta.columna].carta.name)!= -1){
+          if ( !propCarta.Bloqueante ) {
             c.sprite = tablero.list[carta.fila+1][carta.columna].carta.name;
             c.fila = carta.fila+1;
-            c.columna =carta.columna; 
+            c.columna =carta.columna;
             if(!tablero.list[carta.fila+1][carta.columna].carta.Arriba){
                 c.girada = true;
                 girada = true;
@@ -111,10 +166,12 @@ var llegaDestino = function(partidaId, carta){
             tablero.list[carta.fila+1][carta.columna].carta.ocupada = true;
             actualizarTablero(partidaId,carta.fila+1,carta.columna,girada);
             return c;
-        } 
+          }
+        }
     }
     if(propCarta.Izquierda==true){
         if(cartasDestino.indexOf(tablero.list[carta.fila][carta.columna-1].carta.name)!= -1){
+          if ( !propCarta.Bloqueante ) {
             c.sprite = tablero.list[carta.fila][carta.columna-1].carta.name;
             c.fila = carta.fila;
             c.columna =carta.columna-1;
@@ -125,10 +182,12 @@ var llegaDestino = function(partidaId, carta){
             tablero.list[carta.fila][carta.columna-1].carta.ocupada = true;
             actualizarTablero(partidaId,carta.fila,carta.columna-1,girada);
             return c;
-        } 
+          }
+        }
     }
     if(propCarta.Derecha==true){
         if(cartasDestino.indexOf(tablero.list[carta.fila][carta.columna+1].carta.name)!= -1){
+          if ( !propCarta.Bloqueante ) {
             c.sprite = tablero.list[carta.fila][carta.columna+1].carta.name;
             c.fila = carta.fila;
             c.columna =carta.columna+1;
@@ -139,7 +198,8 @@ var llegaDestino = function(partidaId, carta){
             tablero.list[carta.fila][carta.columna+1].carta.ocupada = true;
             actualizarTablero(partidaId,carta.fila,carta.columna+1,girada);
             return c;
-        } 
+          }
+        }
     }
 
     return null;
@@ -148,9 +208,28 @@ var llegaDestino = function(partidaId, carta){
 var ponerCarta = function(partidaId,jugadorId,carta,nameObjetivo){
     var r = false;
     var selectedCard = tiposCartas[carta.sprite];
+
+    var cartaDestino = llegaDestino(partidaId,carta);
+
     switch(selectedCard.Type) {
         case "excavacion":
-            r = ponerCamino(partidaId,jugadorId,carta);
+            if(cartaDestino != null){
+                if ( selectedCard.Bloqueante ) {
+                    return false;
+                }else{
+                    if (cartaDestino.sprite == "DestinoPepita"){
+                        r = ponerCamino(partidaId,jugadorId,carta);
+                        if(r == true){
+                            finalRonda(partidaId,"Buscador");
+                            return true;
+                        }
+                    }else{
+                      r = ponerCamino(partidaId,jugadorId,carta);
+                    }
+                }
+            }else{
+                r = ponerCamino(partidaId,jugadorId,carta);
+            }
             break;
         case "accionT":
             r = selectedCard.Funcion(partidaId,carta);
@@ -161,11 +240,8 @@ var ponerCarta = function(partidaId,jugadorId,carta,nameObjetivo){
     }
 
 
-
     //INSERTAR EN ACCIONES
     if(r == true ){
-        var cartaDestino = llegaDestino(partidaId,carta);
-
         if(cartaDestino != null){
             Acciones.insert({
                 partidaId: partidaId,
@@ -219,147 +295,34 @@ var setGanadores = function(partidaId){
     return ganadores;
 };
 
-/*var isFinish = function(partida){
-    var bool = false;
-    var tipoGanador = null;
-    var ganadores = [];
-
-    if(partida.mazoGeneral.length == 40){
-        bool = true;
-        tipoGanador = "Buscador";
-    }
-
-    return [bool,tipoGanador];
-};*/
-
-
-var isFinish = function(partida){
-    var terminada = false;
-    var tipoGanador = null;
-    var mano = [];
-    var caracs = Caracteristicas.find({partidaId: partida._id}).fetch();
-    this.list = partida.tablero.list;
-    this.usadas = partida.cartasUsadas;
-
-    if((partida.mazoGeneral.length == 0) && (this.usadas == 64)){
-        terminada = true;
-        tipoGanador = "Saboteador";
-    }
-
-    if(this.list[14][11].carta.name == "DestinoPepita"){
-        if((this.list[14][10].ocupada == true) && (this.list[14][10].carta.Derecha == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-
-        }
-        else if((this.list[13][11].ocupada == true) && (this.list[13][11].carta.Abajo == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-        else if((this.list[14][12].ocupada == true) && (this.list[14][12].carta.Izquierda == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-        else if((this.list[15][11].ocupada == true) && (this.list[15][11].carta.Arriba == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-    }
-
-    if(this.list[12][11].carta.name == "DestinoPepita"){
-        if((this.list[12][10].ocupada == true) && (this.list[12][10].carta.Derecha == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-        else if((this.list[11][11].ocupada == true) && (this.list[11][11].carta.Abajo == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-        else if((this.list[12][12].ocupada == true) && (this.list[12][12].carta.Izquierda == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-        else if((this.list[13][11].ocupada == true) && (this.list[13][11].carta.Arriba == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-    }
-
-    if(this.list[16][11].carta.name == "DestinoPepita"){
-        if((this.list[16][10].ocupada == true) && (this.list[16][10].carta.Derecha == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-        else if((this.list[15][11].ocupada == true) && (this.list[15][11].carta.Abajo == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-        else if((this.list[16][12].ocupada == true) && (this.list[16][12].carta.Izquierda == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-        else if((this.list[17][11].ocupada == true) && (this.list[17][11].carta.Arriba == true)){
-            terminada = true;
-            tipoGanador = "Buscador";
-        }
-    }
-    /*if(this.list[16][11].carta.name == "DestinoNada1"){
-      if((this.list[16][10].ocupada == true) && (this.list[16][10].carta.Derecha == true)){
-          //
-      }
-      else if((this.list[15][11].ocupada == true) && (this.list[15][11].carta.Abajo == true)){
-          terminada = true;
-          tipoGanador = "Buscador";
-      }
-      else if((this.list[16][12].ocupada == true) && (this.list[16][12].carta.Izquierda == true)){
-          terminada = true;
-          tipoGanador = "Buscador";
-      }
-      else if((this.list[17][11].ocupada == true) && (this.list[17][11].carta.Arriba == true)){
-          terminada = true;
-          tipoGanador = "Buscador";
-      }
-    }*/
-
-    if(terminada){
-        this.usadas = 0;
-        Partidas.update({_id: partida._id},{$set:{cartasUsadas: usadas}});
-    }
-
-    return [terminada,tipoGanador];
-};
-
-
 //PARA FINALIZAR TENGO QUE ELIMINAR LAS ACCIONES Y AÑADIR LA DE "FINALRONDA"
-var finalRonda = function(partidaId){
+var finalRonda = function(partidaId, ganador){
     var p = Partidas.findOne({_id: partidaId});
-    var aux = isFinish(p);
-    if(aux[0]){
-        //PRIMERO HAGO UN REMOVE DE TODAS LAS ACCIONES
-        Acciones.remove({partidaId: partidaId});
-        //AÑADO LA ACCION DE FINALIZAR RONDA
+
+    //PRIMERO HAGO UN REMOVE DE TODAS LAS ACCIONES
+    Acciones.remove({partidaId: partidaId});
+    //AÑADO LA ACCION DE FINALIZAR RONDA
+    Acciones.insert({
+        partidaId: partidaId,
+        tipo: "finalRonda",
+        tipoGanador: ganador,
+        datetime: new Date().getTime(),
+    });
+
+    //REPARTO LOS PUNTOS(AHORA MISMO SIEMPRE GANAN BUSCADORES)
+    repartirPuntos(partidaId,ganador);
+    //POR ULTIMO CONFIGURO LA PARTIDA PARA SIGUIENTE RONDA
+    if(p.ronda == 3){
+        var ganadores = setGanadores(partidaId);
         Acciones.insert({
             partidaId: partidaId,
-            tipo: "finalRonda",
-            tipoGanador: aux[1],
+            tipo: "finalPartida",
+            ganadores: ganadores,
+            tipoGanador: ganador,
             datetime: new Date().getTime(),
         });
-
-        //REPARTO LOS PUNTOS(AHORA MISMO SIEMPRE GANAN BUSCADORES)
-        repartirPuntos(partidaId,aux[1]);
-        //POR ULTIMO CONFIGURO LA PARTIDA PARA SIGUIENTE RONDA
-        if(p.ronda == 3){
-            var ganadores = setGanadores(partidaId);
-            Acciones.insert({
-                partidaId: partidaId,
-                tipo: "finalPartida",
-                ganadores: ganadores,
-                tipoGanador: aux[1],
-                datetime: new Date().getTime(),
-            });
-        }else{
-            Meteor.setTimeout(function(){configurarPartida(partidaId);}, 1000);
-        }
+    }else{
+        Meteor.setTimeout(function(){configurarPartida(partidaId);}, 1000);
     }
 
 };
@@ -367,7 +330,7 @@ var finalRonda = function(partidaId){
 Meteor.startup(function () {
     // code to run on server at startup
     Meteor.publish("partidas", function () {
-        return Partidas.find({},{fields:{mazoGeneral:0}});
+        return Partidas.find({},{fields:{mazoGeneral:0,tablero: 0}});
     });
 
     Meteor.publish("acciones", function () {
@@ -399,7 +362,7 @@ Meteor.startup(function () {
                   numJugadores: numJugadores,
                   listaJugadores: [username],
                   empezada: false,
-                  cartasUsadas: 0
+                  
                 });
             }
         },
@@ -442,8 +405,11 @@ Meteor.startup(function () {
                 actualizarTurno(partidaId);
             }
 
+            if(usadas == 64){
+                finalRonda(partidaId, "Saboteador");
+            }
             //COMPROBAR SI SE HA TERMINADO LA RONDA O PARTIDA
-            finalRonda(partidaId);
+            //finalRonda(partidaId);
 
             return r;
         },
