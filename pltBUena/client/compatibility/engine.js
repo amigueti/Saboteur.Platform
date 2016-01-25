@@ -65,7 +65,7 @@ BaseClass.prototype.inRegion = function(x,y){
 
 var Card = function(x,y) {
 	this.girada = false;
-	this.color = "black";
+	this.color = "grey";
 	this.sprite = "Standard";
 	this.initialize(x,y,60,90);
 
@@ -99,7 +99,7 @@ Card.prototype.draw = function(scroll){
 	SpriteSheet.draw(this.sprite,x,y,this.girada);
 	drawRect(this.color,x,y,this.w,this.h);
 	if(this.text){
-		drawText(this.text,"black","20px Georgia",x,y + 40);
+		drawText(this.text,"white","17px Georgia",x,y + 40);
 	}
 };
 
@@ -153,7 +153,7 @@ Board.prototype.selectCell = function(x,y){
 
 
 Board.prototype.draw = function(){
-	drawRect("black",this.x,this.y,this.w,this.h);
+	drawRect("white",this.x,this.y,this.w,this.h);
 	for (i = this.scroll; i < this.scroll + 7; i++) {
 		for (j = 0; j < 15; j++) {
 			this.list[i][j].draw(this.scroll);
@@ -213,7 +213,7 @@ PlayerZone.prototype = new BaseClass();
 PlayerZone.prototype.draw = function(){
 	fillRect(this.fontColor,this.x, this.y, this.w, this.h);
 	drawText(this.name,"black","20px Georgia",this.x,this.y + 40);
-	drawRect("black",this.x,this.y,this.w,this.h);
+	drawRect("white",this.x,this.y,this.w,this.h);
 	this.drawObjects();
 };
 
@@ -270,7 +270,7 @@ PointsBoard.prototype.selectTarget = function(x,y){
 };
 
 PointsBoard.prototype.draw = function(){
-	drawRect("black",this.x,this.y,this.w,this.h);
+	drawRect("white",this.x,this.y,this.w,this.h);
 	for (i = 0; i < this.list.length; i++) {
 		this.list[i].draw();
 	};
@@ -319,7 +319,7 @@ HandBoard.prototype.inRegion = function(x,y){
 
 HandBoard.prototype.draw = function(){
 	drawText(this.roll,"yellow","20px Georgia",this.x + 150,this.y + 30);
-	drawRect("black",this.x,this.y,this.w,this.h);
+	drawRect("white",this.x,this.y,this.w,this.h);
 	for (i = 0; i < this.list.length; i++) {
 		this.list[i].draw();
 	};
@@ -395,7 +395,7 @@ GameBoard.prototype.inRegion = function(x,y){
 };
 
 GameBoard.prototype.draw = function(){
-	drawRect("black",this.x,this.y,this.w,this.h);
+	drawRect("white",this.x,this.y,this.w,this.h);
 	this.board.draw();
 	this.pointsboard.draw();
 	this.handboard.draw();
