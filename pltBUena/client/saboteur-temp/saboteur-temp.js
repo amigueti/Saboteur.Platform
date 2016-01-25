@@ -39,6 +39,7 @@ Template.saboteur_temp.events({
 	    var titulo = $('[name=titulo]').val();
 	    var numJugadores = $('[name=numJugadores]').val();
 	    Meteor.call("nuevaPartida",titulo, numJugadores);
+		  $.growlUI('¡Enhorabuena!', 'Has creado una nueva partida');  
 	    //$(".tabs li:first-child a").click();
 
 	},
@@ -54,6 +55,8 @@ Template.saboteur_temp.events({
 	'click #entrar-partida': function(event){
 	    event.preventDefault();
 	    loadCanvas(this._id);
+	    Session.set("juego", this._id);
+	    $("#chatt").show();//AKI LLAMAMOS AL CHAT
 	}
 
 });

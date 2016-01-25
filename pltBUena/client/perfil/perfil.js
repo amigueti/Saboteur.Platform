@@ -37,7 +37,7 @@ Template.perfil.events({
             	//console.log(post);
                Meteor.call("updatePerfil", id,usuario,email,nombre,nacionalidad,genero);
                
-            	alert("Has actualizado tu perfil");
+            	
             
 	},
 	'click .list-group-item':function(){
@@ -85,6 +85,14 @@ Template.perfil.helpers({
 		
 		perfil=Perfiles.findOne({_id:Meteor.userId()});
 		return perfil.genero;
+	},
+	'tieneFoto':function(){
+		if(Meteor.user().profile.image==AVATAR){
+			return false;
+		}else{
+			return true;
+		}
+
 	}
 
 });
