@@ -39,6 +39,7 @@ Template.saboteur_temp.events({
 	    var titulo = $('[name=titulo]').val();
 	    var numJugadores = $('[name=numJugadores]').val();
 	    Meteor.call("nuevaPartida",titulo, numJugadores);
+		  $.growlUI('¡Enhorabuena!', 'Has creado una nueva partida');  
 	    //$(".tabs li:first-child a").click();
 
 	},
