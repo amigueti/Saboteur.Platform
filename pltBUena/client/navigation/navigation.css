@@ -203,3 +203,7 @@ body {
 #formbusqueda input{
     text-align: center;
 }
+
+div.growlUI h1, div.growlUI h1 {
+    color: white; padding: 15px 15px 5px 75px; text-align: left
+}

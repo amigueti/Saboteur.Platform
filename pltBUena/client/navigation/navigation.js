@@ -43,14 +43,14 @@ Template.navigation.events({
 
             }else{
             	console.log("no encontrado");
-                alert("Usuario no encontrado");
+                $.growlUI('Lo sentimos, usuario no encontrado'); 
             }
      },
      'click #navPerfil':function(){
         
         
         if(!Perfiles.findOne({_id:Meteor.userId()})){
-            alert("Has creado tu perfil");
+            $.growlUI('Ya tienes tu perfil'); 
             Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR,login:true}}});
            
             //Se crea el perfil por primera vez
@@ -66,7 +66,7 @@ Template.navigation.events({
             }
             //console.log(post);
             Meteor.call("addPerfil", post);
-            alert("Has creado tu perfil");
+            $.growlUI('¡Enhorabuena!', 'Has creado tu perfil'); 
         }
      },   
 
