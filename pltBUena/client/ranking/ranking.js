@@ -15,7 +15,7 @@ Meteor.subscribe('perfiles');
 	  },
 
 	'imagen':function(){
-		var imagen =Perfiles.findOne({name:this.name}).profile.image;
+		var imagen =Meteor.users.findOne({username:this.name}).profile.image;
 		return imagen;
 	},
 
