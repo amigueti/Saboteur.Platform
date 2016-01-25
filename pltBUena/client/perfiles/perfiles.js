@@ -38,8 +38,10 @@ Template.perfiles.helpers({
 	'amigos':function(){
 		a=[];
 		idOtro=document.URL.slice(31,100);
-		for(i=0;i<Amigos.findOne({_id:idOtro}).usernames.length;i++){
-		a.push(Meteor.users.findOne({_id:Amigos.findOne({_id:idOtro}).usernames[i].idAmigo}))
+		if(Amigos.findOne({_id:idOtro}).usernames.length){
+			for(i=0;i<Amigos.findOne({_id:idOtro}).usernames.length;i++){
+				a.push(Meteor.users.findOne({_id:Amigos.findOne({_id:idOtro}).usernames[i].idAmigo}))
+			}
 		}
 		return a;
 	},

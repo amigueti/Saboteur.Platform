@@ -76,7 +76,7 @@
 				{{#each amigos}}
 				<div class="list-group" >
 				    <a href="/perfiles/{{this._id}}" class="list-group-item active">
-				        <span> <img src="{{this.profile.image}}" width="25" height="25"></span> {{this.username}}<span class="badge">0</span>
+				        <span> <img src="{{this.profile.image}}" width="25" height="25"></span> {{this.username}}<span class="badge">{{#if this.status.online}} <span class="glyphicon glyphicon-user" style="color:green"></span>{{else}}<span class="glyphicon glyphicon-user" style="color:red"></span> {{/if}}</span>
 				    </a>
 				    
 				</div>

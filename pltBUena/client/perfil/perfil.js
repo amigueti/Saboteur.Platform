@@ -57,9 +57,10 @@ Template.perfil.helpers({
 	'amigos':function(){
 		
 		a=[];
-		
-		for(i=0;i<Amigos.findOne({_id:Meteor.userId()}).usernames.length;i++){
-		a.push(Meteor.users.findOne({_id:Amigos.findOne({_id:Meteor.userId()}).usernames[i].idAmigo}))
+		if(Amigos.findOne({_id:Meteor.userId()}).usernames.length){
+			for(i=0;i<Amigos.findOne({_id:Meteor.userId()}).usernames.length;i++){
+				a.push(Meteor.users.findOne({_id:Amigos.findOne({_id:Meteor.userId()}).usernames[i].idAmigo}))
+			}
 		}
 		return a;
 		
