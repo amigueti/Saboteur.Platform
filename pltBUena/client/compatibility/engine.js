@@ -65,7 +65,7 @@ BaseClass.prototype.inRegion = function(x,y){
 
 var Card = function(x,y) {
 	this.girada = false;
-	this.color = "grey";
+	this.color = "transparent";
 	this.sprite = "Standard";
 	this.initialize(x,y,60,90);
 
@@ -301,6 +301,7 @@ HandBoard.prototype.updateHand = function(card){
 		this.list[i].setColor("black");
 		if(this.list[i] === card){
 			this.list[i].setColor("yellow");
+			this.color="yellow";
 		}
 	};
 };
