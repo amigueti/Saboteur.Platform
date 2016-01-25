@@ -300,7 +300,7 @@ HandBoard.prototype.updateHand = function(card){
 	for (i = 0; i < this.list.length - 2; i++) {
 		this.list[i].setColor("black");
 		if(this.list[i] === card){
-			this.list[i].setColor("red");
+			this.list[i].setColor("yellow");
 		}
 	};
 };
@@ -318,7 +318,7 @@ HandBoard.prototype.inRegion = function(x,y){
 };
 
 HandBoard.prototype.draw = function(){
-	drawText(this.roll,"red","20px Georgia",this.x + 400,this.y + 30);
+	drawText(this.roll,"yellow","20px Georgia",this.x + 150,this.y + 30);
 	drawRect("black",this.x,this.y,this.w,this.h);
 	for (i = 0; i < this.list.length; i++) {
 		this.list[i].draw();

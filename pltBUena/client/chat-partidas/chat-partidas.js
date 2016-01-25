@@ -13,11 +13,11 @@ Template.chatpartidas.events({
             }
             $('[name="message"]').val('');
         },
-    'click #botonPrueba1':function(){
+    'focusin #message2':function(){
       if($("#chat_gral2").fadeIn());
 
     },
-    'click #botonPrueba2':function(){
+    'focusout #message2':function(){
       $("#chat_gral2").fadeOut();
     }    
 });
