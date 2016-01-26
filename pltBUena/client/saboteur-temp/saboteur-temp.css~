@@ -73,7 +73,7 @@
     height: 450px;
     width: 700px;
 	 float: rigth;
-    overflow: scroll;
+    overflow: auto;
 }
 .tab_links a {
     height: 40px;
@@ -82,7 +82,7 @@
     border-radius:3px 3px 0px 0px;
     font-size:16px;
     font-weight:600;
-    transition:all linear 0.15s;
+    transition:all linear 0.16s;
     color: #E9DF1D;
     font: bold 12px/25px Arial, Helvetica;
 
@@ -229,7 +229,7 @@ h3{
 #caja{
     height: 900px;
     width: 1100px;
-    overflow: scroll;
+    overflow: auto;
 }
 
 
@@ -257,11 +257,11 @@ div.growlUI h1, div.growlUI h1 {
 	margin: 2px;
 	background: rgba(0,0,0,0.7);
 	letter-spacing: 1px;
-	-webkit-transition: all 0.2s linear;
-	-moz-transition: all 0.2s linear;
-	-o-transition: all 0.2s linear;
-	-ms-transition: all 0.2s linear;
-	transition: all 0.2s linear;
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	transition: all 0.3s linear;
 }
 
 .bmenu:hover li a{
