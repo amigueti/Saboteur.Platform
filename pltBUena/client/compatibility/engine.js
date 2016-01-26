@@ -175,28 +175,30 @@ var PlayerZone = function(x,y,w,h){
 		this.name = name;
 	};
 
-	this.changeObject = function(objeto){
+	this.fixObject = function(objeto){
 		switch(objeto){
 			case "farolillo":
-				if(this.farol == "FarolOk"){
-					this.farol = "FarolNo";
-				}else{
-					this.farol = "FarolOk";
-				}
+				this.farol = "FarolOk";
 				break;
 			case "vagoneta":
-				if(this.vagon == "VagonOk"){
-					this.vagon = "VagonNo";
-				}else{
-					this.vagon = "VagonOk";
-				}
+				this.vagon = "VagonOk";
 				break;
 			case "pico":
-				if(this.pico == "PicoOk"){
-					this.pico = "PicoNo";
-				}else{
-					this.pico = "PicoOk";
-				}
+				this.pico = "PicoOk";
+				break;
+		}
+	};
+
+	this.breakObject = function(objeto){
+		switch(objeto){
+			case "farolillo":
+				this.farol = "FarolNo";
+				break;
+			case "vagoneta":
+				this.vagon = "VagonNo";
+				break;
+			case "pico":
+				this.pico = "PicoNo";
 				break;
 		}
 	};
@@ -247,10 +249,14 @@ var PointsBoard = function(names) {
 
 PointsBoard.prototype = new BaseClass();
 
-PointsBoard.prototype.updateTarget = function(name,objeto){
+PointsBoard.prototype.updateTarget = function(name,objeto,task){
 	for (i = 0; i < this.list.length; i++) {
 		if(this.list[i].name == name){
-			this.list[i].changeObject(objeto);
+			if(task == "arreglar"){
+				this.list[i].fixObject(objeto);
+			}else{
+				this.list[i].breakObject(objeto);
+			}
 		}
 	};
 };
@@ -469,6 +475,7 @@ var Game = function(partidaId) {
 
 
 	this.updateAcciones = function(){
+		var i = 0;
 		var acciones = Acciones.find({partidaId: this.partidaId}).fetch();
 		if(acciones.length > 0){
       		for (i = 0; i < acciones.length;i++) {
@@ -599,10 +606,12 @@ var Game = function(partidaId) {
 			case "accionP":
 				if(accion.carta.sprite.charAt(0) == 'A'){
 					var objeto = accion.carta.sprite.toLowerCase().split("arreglar");
+					var task = "arreglar";
 				}else{
 					var objeto = accion.carta.sprite.toLowerCase().split("romper");
+					var task = "romper";
 				}
-				that.gameboard.pointsboard.updateTarget(accion.targetName,objeto[1]);
+				that.gameboard.pointsboard.updateTarget(accion.targetName,objeto[1],task);
 				break;
 			case "accionT":
 				that.gameboard.board.list[accion.carta.fila][accion.carta.columna].setSprite("Standard");
@@ -624,7 +633,6 @@ var Game = function(partidaId) {
 				that.gameboard.board.list[accion.segunda.fila][accion.segunda.columna].setSprite(accion.segunda.sprite);
 			  	that.gameboard.board.list[accion.segunda.fila][accion.segunda.columna].girada = accion.segunda.girada;
 				break
-
 		}
 	};
 
@@ -634,7 +642,7 @@ var Game = function(partidaId) {
 		that.gameboard.draw();
 
 		if(!that.stop){
-			setTimeout(that.loop, 60);
+			setTimeout(that.loop, 30);
 		}
 	};
 };

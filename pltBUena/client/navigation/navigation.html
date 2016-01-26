@@ -2,6 +2,8 @@
 	<div class="navbar navbar-static-top">
 		<div class="navbar-inner">
 			<ul id="menu">
+
+				<div id="botones-menu">
 				{{#if currentUser}}
 
 			    <li><a href="/" class="btn btn-primary btn-lg" id="navHome">Home</a></li>
@@ -33,14 +35,13 @@
 
 			        <li><a href="/ayuda" class="btn btn-primary" id="navHelp">Ayuda</a></li>	
 			    
-
 			    
        			{{/if}}
        			{{/if}}
        			
        			
 			        <li>{{> loginButtons }}</li>
-
+			    </div>
 			</ul>
 		</div>
 	</div>

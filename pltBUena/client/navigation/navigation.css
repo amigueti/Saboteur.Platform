@@ -12,7 +12,16 @@ body {
     margin-top: -20px;
     margin-bottom: 20px; 
 }
+/*Para centrar botones
+#botones-menu{
+    width: 960px;
+    margin: 0px auto;
+    position: relative;
+}
+
+*/
 #menu{
+
     width: 100%;
     margin: 0;
     padding: 10px 0 0 0;

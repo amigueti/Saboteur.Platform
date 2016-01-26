@@ -334,7 +334,7 @@ Meteor.startup(function () {
     });
 
     Meteor.publish("acciones", function () {
-        return Acciones.find();
+        return Acciones.find({});
     });
 
     Meteor.publish("caracteristicas", function () {
