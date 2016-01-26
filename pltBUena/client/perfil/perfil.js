@@ -100,5 +100,16 @@ Template.perfil.helpers({
 				return Toplist.findOne({name: Perfiles.findOne({_id:Meteor.userId()}).nick});
 
 	  },
+	  'buscarRanking':function(){
+	  		a=0;
+	  		for(i=0;i<Toplist.find().fetch().length;i++){
+	  			if(Toplist.find({},{sort:{puntos:-1}}).fetch()[i].name == Meteor.user().username){
+	  				a=i+1;
+	  			}
+	  		}
+	  		return a;
+				
+	 
+	  }
 
 });
