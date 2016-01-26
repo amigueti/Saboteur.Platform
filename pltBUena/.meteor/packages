@@ -25,3 +25,4 @@ iron:router
 ejson
 mizzao:user-status
 benjaminrh:jquery-blockui
+mizzao:jquery-ui
