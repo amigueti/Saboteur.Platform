@@ -98,10 +98,8 @@ Template.perfil.helpers({
 
 	  "buscarpuntos": function() {
        usuario =	Perfiles.findOne({_id:Meteor.userId()}).nick;
-				return Toplist.findOne({name: usuario}, {sort : {puntos : -1}});
-				return Toplist.find({name: usuario}, {sort : {puntos : -1}, limit : 10}).map(function(document, index){
-           document.index = index +1;
-			return document;});
+				return Toplist.findOne({name: usuario}).puntos;
+
 	  },
 
 });
