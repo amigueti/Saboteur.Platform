@@ -20,8 +20,9 @@ body{
 	width: 900px;
 }
 
+.table table-bordered td{ 
+	text-align: center;
 }
-
 
 #tablasaboteur{
 		width: 900px;

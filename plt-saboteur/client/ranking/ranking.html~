@@ -29,26 +29,26 @@
   				 <thead>
 			        <tr>
 			           
-			            <th>Posicion</th>
-			            <th>Foto</th>
-			            <th>Usuario</th>
-							<th>Puntos</th>
-							<th>Juego</th>
-							<th>Última partida</th>
-							<th>Pais</th>
+			            <th align="center">Posicion</th>
+			            <th align="center">Foto</th>
+			            <th align="center">Usuario</th>
+							<th align="center">Puntos</th>
+							<th align="center">Juego</th>
+							<th align="center">Última partida</th>
+							<th align="center">Pais</th>
 			        </tr>
 			    </thead>
 			    <tbody>
-					 {{setContador}}
+
 					 {{#each position2}}
 			        <tr>
-							<td>{{index}}</td>
-							<td>{{jugadorSelected2.imagen}}</td>
-							<td>{{jugadorSelected2.nick}}</td>
-			            <td>{{puntos}}</td>
-							<td>{{juego}}</td>
-							<td>{{ultpartida}}</td>
-							<td>{{jugadorSelected2.nacionalidad}}</td>
+							<td align="center">{{index}}</td>
+							<td align="center">{{jugadorSelected2.imagen}}</td>
+							<td align="center">{{jugadorSelected2.nick}}</td>
+			            <td align="center">{{puntos}}</td>
+							<td align="center">{{juego}}</td>
+							<td align="center">{{ultpartida}}</td>
+							<td align="center">{{jugadorSelected2.nacionalidad}}</td>
 
 			        </tr>
 					{{/each}}
@@ -62,13 +62,13 @@
   				 <thead>
 			        <tr>
 			           
-			            <th>Posicion</th>
-			            <th>Foto</th>
-			            <th>Usuario</th>
-							<th>Puntos</th>
-							<th>Juego</th>
-							<th>Última partida</th>
-							<th>Pais</th>
+			            <th align="center">Posicion</th>
+			            <th align="center">Foto</th>
+			            <th align="center">Usuario</th>
+							<th align="center">Puntos</th>
+							<th align="center">Juego</th>
+							<th align="center">Última partida</th>
+							<th align="center">Pais</th>
 			        </tr>
 			    </thead>
 			    <tbody>
@@ -76,13 +76,13 @@
 					 {{#each position}}
 					 
 			        <tr>
-							<td>{{showContador}}</td>
-							<td>{{jugadorSelected.imagen}}</td>
-							<td>{{jugadorSelected.nick}}</td>
-			            <td>{{puntos}}</td>
-							<td>{{juego}}</td>
-							<td>{{ultpartida}}</td>
-							<td>{{jugadorSelected.nacionalidad}}</td>
+							<td align="center">{{showContador}}</td>
+							<td align="center">{{jugadorSelected.imagen}}</td>
+							<td align="center">{{jugadorSelected.nick}}</td>
+			            <td align="center">{{puntos}}</td>
+							<td align="center">{{juego}}</td>
+							<td align="center">{{ultpartida}}</td>
+							<td align="center">{{jugadorSelected.nacionalidad}}</td>
 			        </tr>
 					{{/each}}
     			</tbody>
