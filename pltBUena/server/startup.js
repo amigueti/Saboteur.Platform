@@ -362,7 +362,7 @@ Meteor.startup(function () {
                   numJugadores: numJugadores,
                   listaJugadores: [username],
                   empezada: false,
-                  
+                  finalizada: false,
                 });
             }
         },
