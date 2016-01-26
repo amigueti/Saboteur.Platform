@@ -11,10 +11,14 @@
             {{/each}} 
             </div>
         <form id="formulario">
-            <input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="27" autocomplete="off">
+            <input type="text" placeholder="Deja tu mensaje" name="message" id="message" maxlength="27">
        </form>
 		
     </div>
-
+	 <footer id= "footer">
+	  <p>Posted by: Hege Refsnes</p>
+	  <p>Contact information: <a href="mailto:someone@example.com">
+	  someone@example.com</a>.</p>
+	</footer> 
         
 </template>

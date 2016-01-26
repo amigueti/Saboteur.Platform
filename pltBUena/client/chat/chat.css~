@@ -48,4 +48,10 @@
 }
 */
 
+#footer{
+    width: 100%;
+    padding-top: 900px 0 0 0;
+    list-style: none;
+    background: #111;
 
+}

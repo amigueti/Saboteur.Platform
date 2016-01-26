@@ -68,7 +68,7 @@ Template.perfiles.helpers({
     		usuario=document.URL.slice(31,100);
 		datos=Perfiles.findOne({_id:usuario});
 		encontrado=false;
-		maximo=Toplist.find({}, {sort : {puntos : -1}}).length;
+		maximo=Toplist.find({}, {sort : {puntos : -1}})length;
 		for(i=0;i<maximo;i++){
 			if(Toplist.findOne({name: perfil.nick}) == usuario)
 				encontrado=true;
