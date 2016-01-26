@@ -98,7 +98,7 @@ input#nacionalidad_1.col-xs-4{
 }
 #points{
 	position: absolute;
-	top: 175px;
+	top: 170px;
 	left:84px;
 }
 #trofeo{
@@ -109,13 +109,13 @@ input#nacionalidad_1.col-xs-4{
 }
 #podium{
 	position: absolute;
-	top: 300px;
+	top: 310px;
 	left:0px;
 
 }
 #puesto{
 	position: absolute;
-	top: 98px;
+	top: 92px;
 	left:64px;
 
 }

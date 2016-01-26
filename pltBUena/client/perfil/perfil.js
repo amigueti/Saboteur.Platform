@@ -17,8 +17,8 @@ Template.perfil.events({
 		//Meteor.users.update({_id:Meteor.userId()},{$set:{profile:{image:AVATAR}}});
 		$('#editYourAvatarModal').modal();
 	},
-	'click #botonDatos':function(){
-		//preventDefault();
+	'click #botonDatos':function(event){
+		event.preventDefault();
 			console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
              usuario = Meteor.user().username;
              id = Meteor.user()._id;
@@ -36,7 +36,7 @@ Template.perfil.events({
             }});*/
             	//console.log(post);
                Meteor.call("updatePerfil", id,usuario,email,nombre,nacionalidad,genero);
-               
+               $.growlUI('¡Enhorabuena!', 'Has actualizado tu perfil'); 
             	
             
 	},

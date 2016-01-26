@@ -37,8 +37,8 @@ Template.navigation.events({
                 idRuta=Perfiles.findOne({nick: buscado})._id;
                 console.log(idRuta);
                 ruta="/perfiles/"+String(idRuta);
-                //Router.go(ruta);
-                location.href=ruta;
+                Router.go(ruta);
+                //location.href=ruta;
                 //.setTimeout(location.reload(),300000);
 
             }else{
