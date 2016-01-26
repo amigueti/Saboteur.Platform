@@ -4,23 +4,11 @@
 	<div class="total-board" hidden></div>	
 	<div class="match-board" hidden>
 		<canvas id="canvas"></canvas>
-		<div id="chatt">
-			{{>chatpartidas}}
-			
-		</div>
 	</div>
 
 
-	<div id="cuadro">
-		<div id="tabs">
-			<ul class="bmenu">
-				<li><a href="#">Crear partida</a></li>
-				<li><a href="#">Unirse a partida</a></li>
-				<li><a href="#">Partidas empezadas</a></li>
-				<li><a href="#">Partidas pendientes</a></li>
-			</ul>
-		</div>
-		<!--<ul class="tab_links">
+	<div id="tabs">
+		<ul class="tab_links">
 			<li class="active"><a href="#partidas" data-toggle="tab" class="btn">Partidas</a></li>
 			<li><a href="#mis_partidas" data-toggle="tab" class="btn">Mis Partidas</a></li>
 			<li><a href="#crear_partida" data-toggle="tab" class="btn">Crear Partida</a></li>
@@ -28,14 +16,12 @@
 		<div class="tab_content">
 			<div id="partidas" class="tab active">
 				<h3>Partidas disponibles</h3>
-				<div class="lista_partidas">
+				<div>
 					{{#each match}}
-						<li >
-							<p class="match"> <span class="titulo">{{titulo}}</span> 
-								<span class="lista-jug">[{{listaJugadores}}]</span></p>
-							<p class="medida">{{measure}}</p>
+						<li class="lista_partidas">
+							{{titulo}}, [{{listaJugadores}}] {{measure}}
 							{{#if userInMatch}}
-								<button type="button" id="unirse-partida" class="boton">Unirse</button>
+								<button type="button" class="unirse-partida">Unirse</button>
 							{{/if}}	
 						</li>
 					{{/each}}
@@ -43,25 +29,23 @@
 			</div>
 			<div id="mis_partidas" class="tab">
 				<h3>Mis partidas sin lanzar</h3>
-				<div class="lista_partidas">
+				<div>
 					{{#each mymatch}}
 						<li>
-							<p class="match"> <span class="titulo">{{titulo}}</span> 
-								<span class="lista-jug">[{{listaJugadores}}]</span></p><p class="medida">{{measure}}</p>
+							{{titulo}}, [{{listaJugadores}}] {{measure}}
 							{{#if startMatch}}
-								<button type="button" class="boton" id="empezar-partida">Comenzar Partida</button>
+								<button type="button" class="empezar-partida">Comenzar Partida</button>
 							{{/if}}
 						</li>
 					{{/each}}
 
 				</div>
-				<div class="lista_partidas">
+				<div>
 					<h3>Partidas Lanzadas</h3>
 					{{#each mystartedMatch}}
 						<li>
-							<p class="match"> <span class="titulo">{{titulo}}</span> 
-								<span class="lista-jug">[{{listaJugadores}}]</span></p> <p class="medida">{{measure}}</p>
-							<button type="button" class="boton" id="entrar-partida"> Enter Match </button>
+							Match::: {{titulo}}, [{{listaJugadores}}] {{measure}}
+							<button type="button" class="entrar-partida"> Enter Match </button>
 						</li>
 					{{/each}}
 				</div>	
@@ -71,10 +55,10 @@
 				<form>
 		    		<input type="text" name="titulo" placeholder="Titulo Partida" required />
 		    		<input type="number" name="numJugadores"  min="2" max="10" required />
-		   			<button id="crear_partida" class="boton" type="submit">Crear Partida</button>
+		   			<button class="crear_partida" type="submit">Crear Partida</button>
 		   		</form>
 			</div>
-		</div>-->
+		</div>
 	</div>
 
 	

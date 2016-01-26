@@ -39,24 +39,21 @@ Template.saboteur_temp.events({
 	    var titulo = $('[name=titulo]').val();
 	    var numJugadores = $('[name=numJugadores]').val();
 	    Meteor.call("nuevaPartida",titulo, numJugadores);
-		  $.growlUI('¡Enhorabuena!', 'Has creado una nueva partida');  
 	    //$(".tabs li:first-child a").click();
 
 	},
-	'click #unirse-partida': function(event){
+	'click .unirse-partida': function(event){
 	    event.preventDefault();
 	    Meteor.call("unirsePartida", this._id);
 	},
-	'click #empezar-partida': function(event){
+	'click .empezar-partida': function(event){
 	    event.preventDefault();
 	    Meteor.call("empezarPartida", this._id);
 	},
 
-	'click #entrar-partida': function(event){
+	'click .entrar-partida': function(event){
 	    event.preventDefault();
 	    loadCanvas(this._id);
-	    Session.set("juego", this._id);
-	    $("#chatt").show();//AKI LLAMAMOS AL CHAT
 	}
 
 });
