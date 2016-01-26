@@ -59,14 +59,22 @@ Template.perfiles.helpers({
 	},
 
 	  "buscarpuntos": function() {
-       usuario =	Perfiles.findOne({_id:Meteor.userId()}).nick;
-				return Toplist.findOne({name: usuario}, {sort : {puntos : -1}});
-	  },
-
-	"jugadorSelected2": function() {
-			var playerID = this.name;
-			return Perfiles.findOne({nick: playerID });
+			idOtro=document.URL.slice(31,100);
+			perfil=Perfiles.findOne({_id:idOtro});
+		return Toplist.findOne({name: perfil.nick});
 	  }
+
+	 /* "buscarposicion": function() {
+    		usuario=document.URL.slice(31,100);
+		datos=Perfiles.findOne({_id:usuario});
+		encontrado=false;
+		maximo=Toplist.find({}, {sort : {puntos : -1}})length;
+		for(i=0;i<maximo;i++){
+			if(Toplist.findOne({name: perfil.nick}) == usuario)
+				encontrado=true;
+		}
+		return Toplist.findOne({name: perfil.nick});
+	  }*/
 
 
 });
