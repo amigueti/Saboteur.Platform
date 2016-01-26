@@ -14,7 +14,7 @@
 	<div id="cuadro">
 		<div id="tabs">
 			<ul class="bmenu">
-				<li id="inicio"><a href="#">Inicio</a></li>
+				<li id="inicio"><a href="#">Ayuda</a></li>
 				<li id="partidas"><a href="#partidas">Unirse a partida</a></li>
 				<li id="partidassin"><a href="#partidassin">Partidas empezadas</a></li>
 				<li id="lista_partidas"><a href="#lista_partidas">Partidas pendientes</a></li>
@@ -26,7 +26,9 @@
 			<div class="tab_conten">
 			{{# if rankSelected }}
 				{{#if inicio }}
-					<img src="images/saboteur.jpg" width="700" height="449">
+					<a href="/ayuda">
+						<img src="images/saboteur.jpg" width="700" height="449">
+					</a>
 				{{/if}}
 				{{#if partidas }}
 					<div id="partidas" class="tab_content">
@@ -93,13 +95,19 @@
 							<div class="rw-words rw-words-1">
 								<span>buscardor?</span>
 								<span>saboteador?</span>
+								<span>buscador?</span>
+								<span>saboteador?</span>
+								<span>buscador?</span>
+								<span>saboteador?</span>
 							</div>
 						</h2>
 					</section>
 					</div>
 					{{/if}}
 				{{else}}
-					<img src="images/saboteur.jpg" width="700" height="449">
+					<a href="/ayuda">
+						<img src="images/saboteur.jpg" width="700" height="449">
+					</a>
 				{{/if}}
 			</div>
 		</div>

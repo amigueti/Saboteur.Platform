@@ -134,9 +134,7 @@ h3{
     border-bottom: 1px solid #E4E4E4;
 }
 
-#partidas li{
 
-}
 
 .titulo{
     text-transform: uppercase;
@@ -295,7 +293,7 @@ div.growlUI h1, div.growlUI h1 {
 }
 .rw-words{
 	display: inline;
-	text-indent: 10px;
+	text-indent: 5px;
 }
 
 .rw-words span{
