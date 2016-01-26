@@ -97,8 +97,7 @@ Template.perfil.helpers({
 	},
 
 	  "buscarpuntos": function() {
-       usuario =	Perfiles.findOne({_id:Meteor.userId()}).nick;
-				return Toplist.findOne({name: usuario}).puntos;
+				return Toplist.findOne({name: Perfiles.findOne({_id:Meteor.userId()}).nick});
 
 	  },
 
