@@ -106,6 +106,7 @@ Template.saboteur_temp.events({
 	    loadCanvas(this._id);
 	    Session.set("juego", this._id);
 	    $("#chatt").show();//AKI LLAMAMOS AL CHAT
+	    $("#chat_gral2").hide();
 	},
 
     "click #inicio": function () {
