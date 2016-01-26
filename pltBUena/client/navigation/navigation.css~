@@ -195,11 +195,6 @@ body {
     border-bottom-color: #04acec;
 }
 
-#logo-footer {
-    float: right;
-    margin-top: -20px;
-    margin-bottom: 20px; 
-}
 #formbusqueda input{
     text-align: center;
 }
