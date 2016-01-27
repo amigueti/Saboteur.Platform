@@ -16,8 +16,8 @@
 			<ul class="bmenu">
 				<li id="inicio"><a href="#">Ayuda</a></li>
 				<li id="partidas"><a href="#partidas">Unirse a partida</a></li>
-				<li id="partidassin"><a href="#partidassin">Partidas empezadas</a></li>
-				<li id="lista_partidas"><a href="#lista_partidas">Partidas pendientes</a></li>
+				<li id="partidassin"><a href="#partidassin">Partidas pendiente</a></li>
+				<li id="lista_partidas"><a href="#lista_partidas">Partidas empezadas</a></li>
 				<li id="crear_partida"><a href="#crear_partida">Crear partidA</a></li>
 			</ul> 
 		</div>
@@ -106,7 +106,11 @@
 									<td class="subrayar"><span class="titulo">{{titulo}}</span> </td>
 									<td class="subrayar"><span class="lista-jug">[{{listaJugadores}}]</span></td>
 									<td class="subrayar"><p class="medida">{{measure}}</p></td>
+									{{#if lista_partidas }}
+									<td class="subrayar"><p class="medida">Finalizada</p></td>
+									{{else}}
 									<td><button type="button" class="boton" id="entrar-partida"> Enter Match </button></td>
+									{{/if}}
 							</tr>
 							{{/each}}
 						</tbody>

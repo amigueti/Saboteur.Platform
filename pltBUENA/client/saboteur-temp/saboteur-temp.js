@@ -29,6 +29,10 @@ Template.saboteur_temp.helpers({
 	measure: function() {
 	    return this.listaJugadores.length.toString() + "/" + this.numJugadores.toString();
 	},
+	
+	finalizada: function() {
+	    return this.terminada;
+	},
 
 	rankSelected: function (){
 		if (Session.get("Selected") == "inicio") {
@@ -93,10 +97,12 @@ Template.saboteur_temp.events({
 	'click #unirse-partida': function(event){
 	    event.preventDefault();
 	    Meteor.call("unirsePartida", this._id);
+		Session.set("Selected","lista_partidas");
 	},
 	'click #empezar-partida': function(event){
 	    event.preventDefault();
 	    Meteor.call("empezarPartida", this._id);
+		Session.set("Selected","lista_partidas");
 	},
 
 	'click #entrar-partida': function(event){
@@ -104,6 +110,7 @@ Template.saboteur_temp.events({
 	    loadCanvas(this._id);
 	    Session.set("juego", this._id);
 	    $("#chatt").show();//AKI LLAMAMOS AL CHAT
+	    $("#chat_gral2").hide();
 	},
 
     "click #inicio": function () {

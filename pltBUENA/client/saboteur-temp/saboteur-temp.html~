@@ -16,8 +16,8 @@
 			<ul class="bmenu">
 				<li id="inicio"><a href="#">Ayuda</a></li>
 				<li id="partidas"><a href="#partidas">Unirse a partida</a></li>
-				<li id="partidassin"><a href="#partidassin">Partidas empezadas</a></li>
-				<li id="lista_partidas"><a href="#lista_partidas">Partidas pendientes</a></li>
+				<li id="partidassin"><a href="#partidassin">Partidas pendientes</a></li>
+				<li id="lista_partidas"><a href="#lista_partidas">Partidas empezadas</a></li>
 				<li id="crear_partida"><a href="#crear_partida">Crear partidA</a></li>
 			</ul> 
 		</div>
@@ -34,6 +34,15 @@
 					<div id="partidas" class="tab_content">
 						<h3>Partidas disponibles</h3>
 						<div class="lista_partidas">
+							 <thead>
+								  <tr>
+									  
+									   <th>Título</th>
+									   <th>Jugadores</th>
+									   <th>Num Jugadores</th>
+										<th>Disponibilidad</th>
+								  </tr>
+							 </thead>
 							<tbody>
 							{{#each match}}
 								<tr>
@@ -53,6 +62,15 @@
 						<div id="partidassin" class="tab_content" >
 							<h3>Mis partidas sin lanzar</h3>
 							<div class="lista_partidas">
+							 <thead>
+								  <tr>
+									  
+									   <th>Título</th>
+									   <th>Jugadores</th>
+									   <th>Num Jugadores</th>
+										<th>Disponibilidad</th>
+								  </tr>
+							 </thead>
 							<tbody>
 							{{#each mymatch}}
 							<tr>
@@ -88,7 +106,11 @@
 									<td class="subrayar"><span class="titulo">{{titulo}}</span> </td>
 									<td class="subrayar"><span class="lista-jug">[{{listaJugadores}}]</span></td>
 									<td class="subrayar"><p class="medida">{{measure}}</p></td>
+									{{#if finalizada}}
+									<td class="subrayar"><p class="medida">Finalizada</p></td>
+									{{else}}
 									<td><button type="button" class="boton" id="entrar-partida"> Enter Match </button></td>
+									{{/if}}
 							</tr>
 							{{/each}}
 						</tbody>
@@ -123,7 +145,7 @@
 					{{/if}}
 				{{else}}
 					<a href="/ayuda">
-						<img src="images/saboteur.jpg" width="700" height="449">
+						<img src="/images/saboteur.jpg" width="700" height="449">
 					</a>
 				{{/if}}
 			</div>
