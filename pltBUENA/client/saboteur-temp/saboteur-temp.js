@@ -30,9 +30,6 @@ Template.saboteur_temp.helpers({
 	    return this.listaJugadores.length.toString() + "/" + this.numJugadores.toString();
 	},
 	
-	finalizada: function() {
-	    return this.terminada;
-	},
 
 	rankSelected: function (){
 		if (Session.get("Selected") == "inicio") {

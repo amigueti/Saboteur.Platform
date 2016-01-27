@@ -1,4 +1,4 @@
-//var idOtro=document.URL.slice(31,100);
+//var idOtro=document.URL.slice(42,100);
 //var existeListaAmigos =false;
 Meteor.subscribe("perfiles");
 Meteor.subscribe("Toplist");
@@ -6,39 +6,39 @@ Template.perfiles.helpers({
 
 	'imagen':function(){
 		
-		idOtro=document.URL.slice(31,100);
+		idOtro=document.URL.slice(42,100);
 		 imagenOtro =Meteor.users.findOne({_id:idOtro});
 		return imagenOtro.profile.image;
 	},
 	'nicky':function(){
-		idOtro=document.URL.slice(31,100);
+		idOtro=document.URL.slice(42,100);
 		perfil=Perfiles.findOne({_id:idOtro});
 
 		return perfil.nick;
 	},
 	'email':function(){
-		idOtro=document.URL.slice(31,100);
+		idOtro=document.URL.slice(42,100);
 		perfil=Perfiles.findOne({_id:idOtro});
 		return perfil.email;
 	},
 	'nombre':function(){
-		idOtro=document.URL.slice(31,100);
+		idOtro=document.URL.slice(42,100);
 		perfil=Perfiles.findOne({_id:idOtro});
 		return perfil.nombre;
 	},
 	'nacionalidad':function(){
-		idOtro=document.URL.slice(31,100);
+		idOtro=document.URL.slice(42,100);
 		perfil=Perfiles.findOne({_id:idOtro});
 		return perfil.nacionalidad;
 	},
 	'genero':function(){
-		idOtro=document.URL.slice(31,100);
+		idOtro=document.URL.slice(42,100);
 		perfil=Perfiles.findOne({_id:idOtro});
 		return perfil.genero;
 	},
 	'amigos':function(){
 		a=[];
-		idOtro=document.URL.slice(31,100);
+		idOtro=document.URL.slice(42,100);
 		if(Amigos.find({_id:idOtro}).fetch()[0].usernames.length>0){
 			for(i=0;i<Amigos.findOne({_id:idOtro}).usernames.length;i++){
 				a.push(Meteor.users.findOne({_id:Amigos.findOne({_id:idOtro}).usernames[i].idAmigo}))
@@ -47,7 +47,7 @@ Template.perfiles.helpers({
 		return a;
 	},
 	'esAmigo':function(){
-		idOtro=document.URL.slice(31,100);
+		idOtro=document.URL.slice(42,100);
 		encontrado=false;
 		maximo=Amigos.find({_id:Meteor.userId()}).fetch()[0].usernames.length;
 		for(i=0;i<maximo;i++){
@@ -59,13 +59,13 @@ Template.perfiles.helpers({
 	},
 
 	  "buscarpuntos": function() {
-			idOtro=document.URL.slice(31,100);
+			idOtro=document.URL.slice(42,100);
 			perfil=Perfiles.findOne({_id:idOtro});
 		return Toplist.findOne({name: perfil.nick});
 	  },
 
 	 'buscarRanking2':function(){
-	 		idOtro=document.URL.slice(31,100);
+	 		idOtro=document.URL.slice(42,100);
 	 		nombreAmi=Meteor.users.findOne({_id:idOtro}).username;
 	  		b=0;
 	  		for(i=0;i<Toplist.find().fetch().length;i++){
@@ -82,7 +82,7 @@ Template.perfiles.helpers({
 existeListaAmigos=Amigos.find({id:Meteor.userId()}).fetch().length;
 Template.perfiles.events({
 	'click #botonponerAmigo':function(){
-		idOtro=document.URL.slice(31,100);
+		idOtro=document.URL.slice(42,100);
 		console.log("AÑADIR AMIGO");
 		perfil_username=Perfiles.findOne({_id:idOtro}).nick;
 		id_usuario=Meteor.user()._id;
@@ -104,7 +104,7 @@ Template.perfiles.events({
 		//location.reload();
 	},
 	'click #botonquitarAmigo':function(){
-		idOtro=document.URL.slice(31,100);
+		idOtro=document.URL.slice(42,100);
 		console.log("KITAR AMIGO");
 		perfil_username=Perfiles.findOne({_id:idOtro}).nick;
 		id_usuario=Meteor.user()._id;
@@ -121,7 +121,7 @@ Template.perfiles.events({
 
 /*Tracker.autorun(function(){
 	
-	idOtro=document.URL.slice(31,100);
+	idOtro=document.URL.slice(42,100);
 		console.log("Actualizar amigo AMIGO");
 		perfil_username=Perfiles.findOne({_id:idOtro}).nick;
 		id_usuario=Meteor.user()._id;
