@@ -48,7 +48,19 @@ Meteor.methods ({
     		nacionalidad:nacionalidad,
     		genero:genero}
     	});
+    },
+    kitarAmigos:function(id_usuario,idOtro,perfil_username){
+        Amigos.update({_id:id_usuario},{$pull:{usernames:{idAmigo:idOtro,username:perfil_username}}});
+
+    },
+    ponerAmigos:function(id_usuario,idOtro,perfil_username){
+        Amigos.update({_id:id_usuario},{$push:{usernames:{idAmigo:idOtro,username:perfil_username}}});
+
+    },
+    crearAmigos:function(id_usuario,idOtro,perfil_username){
+        Amigos.insert({_id:id_usuario,usernames:[{idAmigo:idOtro,username:perfil_username}]});
     }
+
 });
 Amigos.allow({
 	insert:function(userId,doc){
